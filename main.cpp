@@ -5,7 +5,10 @@ void welcome_page()
 {
     HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
     std::cout << "\n\n\n\n\t\t\tWelcome to Grid Trading Emulator!";
-    std::cout << "\n\t\t\t[1] Continue";
+    SetConsoleTextAttribute(hConsole, FOREGROUND_GREEN);
+    std::cout << "\n\t\t[1] Get Advice";
+    SetConsoleTextAttribute(hConsole, FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE);
+    std::cout << "\t\t[2] Set Trading Profile";
     SetConsoleTextAttribute(hConsole, FOREGROUND_RED);
     std::cout << "\t\t[2]Exit\n";
     SetConsoleTextAttribute(hConsole, FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE);
