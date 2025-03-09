@@ -34,8 +34,7 @@ void get_start()
         std::cout << "Exiting...";
         break;
     default:
-        std::cout << "Invalid input! Please retry.";
-        get_start();
+        std::cout << "Invalid input! Exiting...";
         break;
     }
 }
