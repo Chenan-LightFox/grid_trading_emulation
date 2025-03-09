@@ -44,6 +44,6 @@ int main()
 {
     welcome_page();
     get_start();
-
+    system("pause");
     return 0;
 }
