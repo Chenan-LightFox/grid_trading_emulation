@@ -1,7 +1,7 @@
 #include <iostream>
 #include <Windows.h>
-#include "AdviceMainpage.h"
-#include "ProfileMainpage.h"
+#include "../head_files/AdviceMainpage.h"
+#include "../head_files/ProfileMainpage.h"
 
 void welcome_page()
 {

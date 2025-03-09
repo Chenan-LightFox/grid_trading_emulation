@@ -1,6 +1,6 @@
 #include <iostream>
 #include <Windows.h>
-#include "AdviceMainpage.h"
+#include "../head_files/AdviceMainpage.h"
 
 AdviceMainpage::AdviceMainpage() {}
 AdviceMainpage::~AdviceMainpage() {}

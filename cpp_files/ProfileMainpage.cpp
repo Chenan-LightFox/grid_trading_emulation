@@ -1,6 +1,6 @@
 #include <iostream>
 #include <Windows.h>
-#include "ProfileMainpage.h"
+#include "../head_files/ProfileMainpage.h"
 
 ProfileMainpage::ProfileMainpage() {}
 ProfileMainpage::~ProfileMainpage() {}
