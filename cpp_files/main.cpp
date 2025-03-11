@@ -40,7 +40,7 @@ void get_start()
     }
 }
 
-int main()
+int main() // Main entrance
 {
     welcome_page();
     get_start();
