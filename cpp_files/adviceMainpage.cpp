@@ -5,7 +5,7 @@
 AdviceMainpage::AdviceMainpage() {}
 AdviceMainpage::~AdviceMainpage() {}
 
-void AdviceMainpage::show_mainpage()
+void AdviceMainpage::show_mainpage() // Waiting for a module finding if the user has a trading profile
 {
-    std::cout << "AdviceMainpage is under construction.";
+    std::cout << "AdviceMainpage is under construction."; // Waiting for functions designing
 }

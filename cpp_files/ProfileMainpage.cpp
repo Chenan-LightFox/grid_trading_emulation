@@ -21,7 +21,7 @@ void ProfileMainpage::show_mainpage()
     profile_get_operation();
 }
 
-void ProfileMainpage::profile_get_operation()
+void ProfileMainpage::profile_get_operation() // Waiting for functions to be implemented
 {
     int operation = 0;
     std::cin >> operation;
