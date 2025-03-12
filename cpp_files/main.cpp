@@ -40,7 +40,7 @@ void get_start()
     }
 }
 
-int main() // 呃呃呃
+int main() // main function
 {
     welcome_page();
     get_start();
