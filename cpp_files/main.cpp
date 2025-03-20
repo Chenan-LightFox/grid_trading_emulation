@@ -7,12 +7,13 @@ void welcome_page()
 {
     HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
     std::cout << "\n\n\n\n\t\t\tWelcome to Grid Trading Emulator!";
+    std::cout << "\n\t\t\t----------------------------------";
     SetConsoleTextAttribute(hConsole, FOREGROUND_GREEN);
-    std::cout << "\n\t\t[1] Get Advice";
+    std::cout << "\n\n\t\t\t[1] Get Advice";
     SetConsoleTextAttribute(hConsole, FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE);
-    std::cout << "\t\t[2] Set Trading Profile";
+    std::cout << "\n\n\t\t\t[2] Set Trading Profile";
     SetConsoleTextAttribute(hConsole, FOREGROUND_RED);
-    std::cout << "\t\t[3] Exit\n";
+    std::cout << "\n\n\t\t\t[3] Exit\n";
     SetConsoleTextAttribute(hConsole, FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE);
 }
 
@@ -34,13 +35,12 @@ void get_start()
         std::cout << "Exiting...";
         break;
     default:
-        std::cout << "Invalid input! Please retry.";
-        get_start();
+        std::cout << "Invalid input! Exiting...";
         break;
     }
 }
 
-int main()
+int main() // main function
 {
     welcome_page();
     get_start();

@@ -8,6 +8,7 @@ public:
     ~ProfileMainpage();
 
     void show_mainpage();
+    void profile_get_operation();
 };
 
 #endif
