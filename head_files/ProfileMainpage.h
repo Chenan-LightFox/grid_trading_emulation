@@ -9,6 +9,7 @@ public:
 
     void show_mainpage();
     void profile_get_operation();
+    void show_profile();
 };
 
 #endif

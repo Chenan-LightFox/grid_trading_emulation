@@ -17,7 +17,14 @@ void ProfileMainpage::show_mainpage()
     SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE);
     std::cout << "\n\n\t\t\t[3] Back to main menu.\n";
     SetConsoleTextAttribute(hConsole, FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE);
+    std::cout << "\n\t\t\t---------------\n";
+    show_profile();
     profile_get_operation();
+}
+
+void ProfileMainpage::show_profile() // Need fstream to read the profile from a file
+{
+    std::cout << "The profile showing function is not implemented yet!\n";
 }
 
 void ProfileMainpage::profile_get_operation() // Waiting for functions to be implemented
