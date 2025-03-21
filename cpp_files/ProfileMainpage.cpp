@@ -12,13 +12,19 @@ void ProfileMainpage::show_mainpage()
     std::cout << "\n\n\n\n\t\t\tTrading Profile";
     std::cout << "\n\t\t\t---------------";
     std::cout << "\n\n\t\t\t[1] Set your trading profile.";
-    std::cout << "\n\n\t\t\t[2] View your trading profile.";
     SetConsoleTextAttribute(hConsole, FOREGROUND_RED);
-    std::cout << "\n\n\t\t\t[3] Delete your trading profile.";
+    std::cout << "\n\n\t\t\t[2] Delete your trading profile.";
     SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE);
-    std::cout << "\n\n\t\t\t[4] Back to main menu.\n";
+    std::cout << "\n\n\t\t\t[3] Back to main menu.\n";
     SetConsoleTextAttribute(hConsole, FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE);
+    std::cout << "\n\t\t\t---------------\n";
+    show_profile();
     profile_get_operation();
+}
+
+void ProfileMainpage::show_profile() // Need fstream to read the profile from a file
+{
+    std::cout << "The profile showing function is not implemented yet!\n";
 }
 
 void ProfileMainpage::profile_get_operation() // Waiting for functions to be implemented
@@ -31,12 +37,9 @@ void ProfileMainpage::profile_get_operation() // Waiting for functions to be imp
         std::cout << "Setting your trading profile...";
         break;
     case 2:
-        std::cout << "Viewing your trading profile...";
-        break;
-    case 3:
         std::cout << "Deleting your trading profile...";
         break;
-    case 4:
+    case 3:
         std::cout << "Back to main menu...";
         break;
     default:
