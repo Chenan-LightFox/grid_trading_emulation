@@ -1,5 +1,5 @@
 ﻿#include <iostream>
-#include"../readtxt/readtxt.h"
+#include"../head_files/readtxt.h"
 #include<iomanip>
 ReadTxt::~ReadTxt() {};
 void ReadTxt::read(Data* &m) {
