@@ -24,5 +24,5 @@ public:
 	void print(Data* m);
 private:
 	std::string textname;
-};
+};//没有主动创建txt文件，需要用户自己创建并放入根目录
 

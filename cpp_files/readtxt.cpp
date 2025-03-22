@@ -62,11 +62,11 @@ void ReadTxt::print(Data* m) {
 		temp = temp->next;
 	}
 }
-int main() {
+/*int main() {
 	std::string a = "../readtxt/data.txt";
 	ReadTxt readtext(a);
 	readtext.read(head);
 	readtext.print(head);
 	readtext.print(head);
 	return 0;
-}
+}*/
