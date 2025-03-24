@@ -7,13 +7,13 @@ struct Data {
 	double Open;//开盘价
 	double High;//最高价
 	double Low;//最低价
-	double close;//收盘价
-	double Change;//涨跌
+	double Close;//收盘价
+	double Change;//涨跌额
 	double Amplitude;//涨跌幅
 	double Volume;//成交量
-	double Turnover;//成交金额
+	double Turnover;//成交额
 	Data* next;
-}*head=NULL;
+}*head=NULL;//实现时直接调用head即可
 class ReadTxt
 {
 public:
@@ -24,5 +24,11 @@ public:
 	void print(Data* m);
 private:
 	std::string textname;
-};//没有主动创建txt文件，需要用户自己创建并放入根目录
-
+};//没有主动创建txt文件，需要用户自己创建并放入根目录，然后输入文件名即可
+/*int main() {
+	std::string a = "../readtxt/data.txt";
+	ReadTxt readtext(a);
+	readtext.read(head);
+	readtext.print(head);
+	return 0;
+}用法*/
