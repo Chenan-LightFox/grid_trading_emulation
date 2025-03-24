@@ -27,7 +27,7 @@ private:
 };//没有主动创建txt文件，需要用户自己创建并放入根目录，然后输入文件名即可
 /*int main() {
 	std::string a = "../readtxt/data.txt";
-	ReadTxt readtext(a);
+	ReadTxt readtext(a);//从此开始head才有数据，能够调用，若出错应则停止程序（即head==NULL）
 	readtext.read(head);
 	readtext.print(head);
 	return 0;
