@@ -1,6 +1,7 @@
 #include <iostream>
 #include <Windows.h>
 #include "../head_files/ProfileMainpage.h"
+#include "../head_files/SetArgument.h"
 
 ProfileMainpage::ProfileMainpage() {}
 ProfileMainpage::~ProfileMainpage() {}

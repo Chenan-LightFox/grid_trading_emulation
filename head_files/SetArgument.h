@@ -9,7 +9,7 @@ public:
     ~SetArgument();
 
     void show_mainpage();
-    void set();
+    void getDATAfile();
     void show_profile(string);
 };
 

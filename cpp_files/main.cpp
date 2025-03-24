@@ -2,6 +2,7 @@
 #include <Windows.h>
 #include "../head_files/AdviceMainpage.h"
 #include "../head_files/ProfileMainpage.h"
+#include "../head_files/SetArgument.h"
 
 void welcome_page()
 {
