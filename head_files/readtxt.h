@@ -3,15 +3,15 @@
 #include<sstream>
 #include<string>
 struct Data {
-	std::string date;
-	double Open;
-	double High;
-	double Low;
-	double Close;
-	double Change;
-	double Amplitude;
-	double Volume;
-	double Turnover;
+	std::string date;//日期
+	double Open;//开盘价
+	double High;//最高价
+	double Low;//最低价
+	double close;//收盘价
+	double Change;//涨跌
+	double Amplitude;//涨跌幅
+	double Volume;//成交量
+	double Turnover;//成交金额
 	Data* next;
 }*head=NULL;
 class ReadTxt
