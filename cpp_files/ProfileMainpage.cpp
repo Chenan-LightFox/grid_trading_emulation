@@ -9,13 +9,13 @@ void ProfileMainpage::show_mainpage()
 {
     HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
     system("cls");
-    std::cout << "\n\n\n\n\t\t\tTrading Profile";
+    std::cout << "\n\n\n\n\t\t\t交易助手 - 个人信息";
     std::cout << "\n\t\t\t---------------";
-    std::cout << "\n\n\t\t\t[1] Set your trading profile.";
+    std::cout << "\n\n\t\t\t[1] 设置您的交易信息";
     SetConsoleTextAttribute(hConsole, FOREGROUND_RED);
-    std::cout << "\n\n\t\t\t[2] Delete your trading profile.";
+    std::cout << "\n\n\t\t\t[2] 删除您的交易信息";
     SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE);
-    std::cout << "\n\n\t\t\t[3] Back to main menu.\n";
+    std::cout << "\n\n\t\t\t[3] 回到主界面\n";
     SetConsoleTextAttribute(hConsole, FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE);
     std::cout << "\n\t\t\t---------------\n";
     show_profile();
@@ -43,7 +43,7 @@ void ProfileMainpage::profile_get_operation() // Waiting for functions to be imp
         std::cout << "Back to main menu...";
         break;
     default:
-        std::cout << "Invalid input! Exiting...";
+        std::cout << "未知的命令，程序正在退出...";
         break;
     }
 }

@@ -2,18 +2,20 @@
 #include<fstream>	
 #include<sstream>
 #include<string>
+
 struct Data {
-	std::string date;//日期
-	double Open;//开盘价
-	double High;//最高价
-	double Low;//最低价
-	double Close;//收盘价
-	double Change;//涨跌额
-	double Amplitude;//涨跌幅
-	double Volume;//成交量
-	double Turnover;//成交额
+	std::string date;	//日期
+	double Open;		//开盘价
+	double High;		//最高价
+	double Low;			//最低价
+	double Close;		//收盘价
+	double Change;		//涨跌额
+	double Amplitude;	//涨跌幅
+	double Volume;		//成交量
+	double Turnover;	//成交额
 	Data* next;
-}*head=NULL;//实现时直接调用head即可
+}*head=NULL;			//实现时直接调用head即可
+
 class ReadTxt
 {
 public:

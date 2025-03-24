@@ -6,14 +6,14 @@
 void welcome_page()
 {
     HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
-    std::cout << "\n\n\n\n\t\t\tWelcome to Grid Trading Emulator!";
+    std::cout << "\n\n\n\n\t\t\t欢迎使用股票交易助手！";
     std::cout << "\n\t\t\t----------------------------------";
     SetConsoleTextAttribute(hConsole, FOREGROUND_GREEN);
-    std::cout << "\n\n\t\t\t[1] Get Advice";
+    std::cout << "\n\n\t\t\t[1] 获得交易建议";
     SetConsoleTextAttribute(hConsole, FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE);
-    std::cout << "\n\n\t\t\t[2] Set Trading Profile";
+    std::cout << "\n\n\t\t\t[2] 设置个人信息";
     SetConsoleTextAttribute(hConsole, FOREGROUND_RED);
-    std::cout << "\n\n\t\t\t[3] Exit\n";
+    std::cout << "\n\n\t\t\t[3] 退出\n";
     SetConsoleTextAttribute(hConsole, FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE);
 }
 
@@ -32,10 +32,10 @@ void get_start()
         profile.show_mainpage();
         break;
     case 3:
-        std::cout << "Exiting...";
+        std::cout << "程序正在退出...";
         break;
     default:
-        std::cout << "Invalid input! Exiting...";
+        std::cout << "未知的命令，程序正在退出...";
         break;
     }
 }
