@@ -1,10 +1,12 @@
 #include <iostream>
 #include <Windows.h>
+#include"../head_files/MainMenu.h"
 #include "../head_files/ProfileMainpage.h"
 #include "../head_files/SetArgument.h"
 
 ProfileMainpage::ProfileMainpage() {}
 ProfileMainpage::~ProfileMainpage() {}
+std::string filename = "docs/data.txt";
 
 void ProfileMainpage::show_mainpage()
 {
@@ -32,16 +34,24 @@ void ProfileMainpage::profile_get_operation() // Waiting for functions to be imp
 {
     int operation = 0;
     std::cin >> operation;
+    SetArgument setargument;
+    MainMenu mainmenu;
     switch (operation)
     {
     case 1:
-        std::cout << "Setting your trading profile...";
+        setargument.show_mainpage();
         break;
     case 2:
-        std::cout << "Deleting your trading profile...";
+        if (remove(filename.c_str()) != 0) {
+            std::perror("删除失败！");
+        } 
+        else {
+            std::cout << "删除成功！" << std::endl;
+        }
         break;
     case 3:
-        std::cout << "Back to main menu...";
+        mainmenu.show();
+        mainmenu.get_start();
         break;
     default:
         std::cout << "未知的命令，程序正在退出...";

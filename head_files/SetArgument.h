@@ -1,5 +1,7 @@
 #pragma once
 #include<iostream>
+#include<fstream>
+#include<string>
 using namespace std;
 
 class SetArgument
@@ -10,6 +12,6 @@ public:
 
     void show_mainpage();
     void getDATAfile();
-    void show_profile(string);
+    void show_profile(istream &);
 };
 
