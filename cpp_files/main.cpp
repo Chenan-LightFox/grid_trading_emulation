@@ -7,6 +7,9 @@
 
 int main() // main function
 {
+    SetConsoleOutputCP(65001);
+    SetConsoleCP(65001);
+    //↑解决中文乱码问题
     MainMenu mainmenu;
     mainmenu.show();
     mainmenu.get_start();
