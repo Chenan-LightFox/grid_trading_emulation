@@ -43,11 +43,13 @@ void ProfileMainpage::profile_get_operation() // Waiting for functions to be imp
         break;
     case 2:
         if (remove(filename.c_str()) != 0) {
-            std::perror("删除失败！");
+            std::perror("删除失败");
         } 
         else {
             std::cout << "删除成功！" << std::endl;
         }
+        system("pause");
+        show_mainpage();
         break;
     case 3:
         mainmenu.show();
