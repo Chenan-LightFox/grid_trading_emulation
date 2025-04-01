@@ -21,7 +21,6 @@ void ProfileMainpage::show_mainpage()
     std::cout << "\n\n\t\t\t[3] 回到主界面\n";
     SetConsoleTextAttribute(hConsole, FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE);
     std::cout << "\n\t\t\t---------------\n";
-    show_profile();
     profile_get_operation();
 }
 

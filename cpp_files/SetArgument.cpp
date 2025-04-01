@@ -1,15 +1,18 @@
 #include <iostream>
-#include<fstream>
-#include<string>
+#include <fstream>
+#include <string>
 #include <Windows.h>
 #include "../head_files/SetArgument.h"
 #include "../head_files/ProfileMainpage.h"
+#include "../head_files/GlobalVariables.h" // 添加全局变量头文件
 using namespace std;
 
 SetArgument::SetArgument() {}
 SetArgument::~SetArgument() {}
 
-double center, a, b, w, n;
+// 移除原来的局部变量定义
+// double center, a, b, w, n;
+
 void SetArgument::show_mainpage()
 {
     ProfileMainpage profile;
@@ -81,4 +84,16 @@ void SetArgument::getDATAfile() // Waiting for functions to be implemented
         fout << "模拟行数：" << n << endl;
     }
     fout.close();
+
+    //更新全局变量
+    ifstream fin("docs/data.txt"); 
+    if (fin) {
+        string line;
+        fin >> line >> center;
+        fin >> line >> a;
+        fin >> line >> b;
+        fin >> line >> w;
+        fin >> line >> n;
+        fin.close();
+    }
 }
