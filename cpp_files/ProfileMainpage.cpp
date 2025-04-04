@@ -1,6 +1,6 @@
 #include <iostream>
 #include <Windows.h>
-#include"../head_files/MainMenu.h"
+#include "../head_files/MainMenu.h"
 #include "../head_files/ProfileMainpage.h"
 #include "../head_files/SetArgument.h"
 
@@ -24,12 +24,7 @@ void ProfileMainpage::show_mainpage()
     profile_get_operation();
 }
 
-void ProfileMainpage::show_profile() // Need fstream to read the profile from a file
-{
-    std::cout << "The profile showing function is not implemented yet!\n";
-}
-
-void ProfileMainpage::profile_get_operation() // Waiting for functions to be implemented
+void ProfileMainpage::profile_get_operation()
 {
     int operation = 0;
     std::cin >> operation;
@@ -41,16 +36,20 @@ void ProfileMainpage::profile_get_operation() // Waiting for functions to be imp
         setargument.show_mainpage();
         break;
     case 2:
-        if (remove(filename.c_str()) != 0) {
+        if (remove(filename.c_str()) != 0)
+        {
             std::perror("删除失败");
-        } 
-        else {
+        }
+        else
+        {
             std::cout << "删除成功！" << std::endl;
         }
         system("pause");
+        system("cls");
         show_mainpage();
         break;
     case 3:
+        system("cls");
         mainmenu.show();
         mainmenu.get_start();
         break;

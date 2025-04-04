@@ -4,14 +4,11 @@
 #include <Windows.h>
 #include "../head_files/SetArgument.h"
 #include "../head_files/ProfileMainpage.h"
-#include "../head_files/GlobalVariables.h" // 添加全局变量头文件
+#include "../head_files/GlobalVariables.h"
 using namespace std;
 
 SetArgument::SetArgument() {}
 SetArgument::~SetArgument() {}
-
-// 移除原来的局部变量定义
-// double center, a, b, w, n;
 
 void SetArgument::show_mainpage()
 {
@@ -19,7 +16,8 @@ void SetArgument::show_mainpage()
     string filename = "docs/data.txt";
     ifstream fin;
     fin.open(filename, ios::in);
-    if (fin.is_open() == 0) {
+    if (fin.is_open() == 0)
+    {
         HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
         system("cls");
         cout << "基准价（元/股）：";
@@ -37,46 +35,53 @@ void SetArgument::show_mainpage()
         system("pause");
         profile.show_mainpage();
     }
-    else {
+    else
+    {
         HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
-		cout << "您已经设置过参数：\n";
+        system("cls");
+        cout << "\n\n\n\t\t\t您已经设置过参数：";
         show_profile(fin);
         fin.close();
-		cout << "\n\t\t\t是否重新设置参数？";
+        cout << "\n\n\t\t\t是否重新设置参数？";
         SetConsoleTextAttribute(hConsole, FOREGROUND_GREEN);
         cout << "\n\n\t\t\t[1] 是";
+        SetConsoleTextAttribute(hConsole, FOREGROUND_RED);
+        cout << "\n\n\t\t\t[2] 否\n";
         SetConsoleTextAttribute(hConsole, FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE);
-        cout << "\n\n\t\t\t[2] 否";
-		cout << "\n";
         int op;
-		cin >> op;
-        if (op == 1) {
-			remove(filename.c_str());
+        cin >> op;
+        if (op == 1)
+        {
+            system("cls");
+            remove(filename.c_str());
             show_mainpage();
         }
-        else {
-			profile.show_mainpage();
+        else
+        {
+            system("cls");
+            profile.show_mainpage();
         }
     }
-    
 }
 
-void SetArgument::show_profile(istream & fin) // Need fstream to read the profile from a file
+void SetArgument::show_profile(istream &fin)
 {
     string column;
-    while (!fin.eof()) {
-        getline(fin, column);  //按行读取，默认遇换行结束.若遇逗号结束，可添加第三个参数','
-        cout << column << endl;
+    while (!fin.eof())
+    {
+        getline(fin, column); // 按行读取，默认遇换行结束.若遇逗号结束，可添加第三个参数','
+        cout << "\n\n\t\t\t" << column;
     }
 }
 
-void SetArgument::getDATAfile() // Waiting for functions to be implemented
+void SetArgument::getDATAfile()
 {
     ofstream fout;
-    fout.open("docs/data.txt", ios::out);   //若不存在该文件，会自动创建
-    //ios::out,ios::trunc和不写意义一样，覆盖式；
-    //ios::app 追加式
-    if (fout.is_open() != false) {
+    fout.open("docs/data.txt", ios::out); // 若不存在该文件，会自动创建
+    // ios::out,ios::trunc和不写意义一样，覆盖式；
+    // ios::app 追加式
+    if (fout.is_open() != false)
+    {
         fout << "基准价（元/股）：" << center << endl;
         fout << "网格大小（%）：" << a << endl;
         fout << "期望收益率（%）：" << b << endl;
@@ -85,9 +90,10 @@ void SetArgument::getDATAfile() // Waiting for functions to be implemented
     }
     fout.close();
 
-    //更新全局变量
-    ifstream fin("docs/data.txt"); 
-    if (fin) {
+    // 更新全局变量
+    ifstream fin("docs/data.txt");
+    if (fin)
+    {
         string line;
         fin >> line >> center;
         fin >> line >> a;

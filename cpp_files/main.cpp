@@ -5,9 +5,11 @@
 #include "../head_files/GlobalVariables.h"
 using namespace std;
 
-void loadFromFile() {
+void loadFromFile()
+{
     ifstream fin("docs/data.txt");
-    if (fin) {
+    if (fin)
+    {
         string line;
         fin >> line >> center;
         fin >> line >> a;
@@ -18,12 +20,11 @@ void loadFromFile() {
     }
 }
 
-
 int main() // main function
 {
     SetConsoleOutputCP(65001);
     SetConsoleCP(65001);
-    //↑解决中文乱码问题
+    // ↑解决中文乱码问题
     loadFromFile();
     MainMenu mainmenu;
     mainmenu.show();

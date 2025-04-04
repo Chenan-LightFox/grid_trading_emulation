@@ -1,5 +1,5 @@
-#include<iostream>
-#include<Windows.h>
+#include <iostream>
+#include <Windows.h>
 #include "../head_files/MainMenu.h"
 #include "../head_files/AdviceMainpage.h"
 #include "../head_files/ProfileMainpage.h"
@@ -8,7 +8,8 @@
 MainMenu::MainMenu() {}
 MainMenu::~MainMenu() {}
 
-void MainMenu::show() {
+void MainMenu::show()
+{
     HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
     std::cout << "\n\n\n\n\t\t\t欢迎使用股票交易助手！";
     std::cout << "\n\t\t\t----------------------------------";
