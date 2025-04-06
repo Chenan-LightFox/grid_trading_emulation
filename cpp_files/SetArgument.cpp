@@ -66,12 +66,11 @@ void SetArgument::show_mainpage()
 
 void SetArgument::show_profile(istream &fin)
 {
-    string column;
-    while (!fin.eof())
-    {
-        getline(fin, column); // 按行读取，默认遇换行结束.若遇逗号结束，可添加第三个参数','
-        cout << "\n\n\t\t\t" << column;
-    }
+    cout << "基准价（元/股）：" << center << endl;
+    cout << "网格大小（%）：" << a << endl;
+    cout << "期望收益率（%）：" << b << endl;
+    cout << "一次买入金额（元）：" << w << endl;
+    cout << "模拟行数：" << n << endl;
 }
 
 void SetArgument::getDATAfile()
@@ -82,11 +81,11 @@ void SetArgument::getDATAfile()
     // ios::app 追加式
     if (fout.is_open() != false)
     {
-        fout << "基准价（元/股）：" << center << endl;
-        fout << "网格大小（%）：" << a << endl;
-        fout << "期望收益率（%）：" << b << endl;
-        fout << "一次买入金额（元）：" << w << endl;
-        fout << "模拟行数：" << n << endl;
+        fout << "center " << center << endl;
+        fout << "a " << a << endl;
+        fout << "b " << b << endl;
+        fout << "w " << w << endl;
+        fout << "n " << n << endl;
     }
     fout.close();
 

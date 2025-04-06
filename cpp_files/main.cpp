@@ -5,7 +5,7 @@
 #include "../head_files/GlobalVariables.h"
 using namespace std;
 
-void loadFromFile()
+void loadFromFile() //每次程序启动时，从文件中读取数据
 {
     ifstream fin("docs/data.txt");
     if (fin)

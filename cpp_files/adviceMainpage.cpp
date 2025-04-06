@@ -48,10 +48,5 @@ void AdviceMainpage::show_mainpage()
 
 void AdviceMainpage::show()
 { // 测试，之后要在算法之后把日期、买入、卖出打印出来
-    system("cls");
-    int i = 20;
-    while (i--)
-    {
-        cout << center << " " << a << " " << b << " " << w << endl;
-    }
+    cout << center << " " << a << " " << b << " " << w << endl;
 }
