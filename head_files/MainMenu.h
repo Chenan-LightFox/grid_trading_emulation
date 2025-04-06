@@ -1,6 +1,8 @@
-#pragma once
+#ifndef MAINMENU_H
+#define MAINMENU_H
 
-class MainMenu{
+class MainMenu
+{
 public:
     MainMenu();
     ~MainMenu();
@@ -8,3 +10,5 @@ public:
     void show();
     void get_start();
 };
+
+#endif

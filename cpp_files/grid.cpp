@@ -1,22 +1,14 @@
-#include <iostream>
-#include <vector>
+#include "../head_files/grid.h"
+#include "../head_files/GlobalVariables.h"
 using namespace std;
-struct grid // 定义一个网格的结构体用来存放各种数据。
-{
-<<<<<<< HEAD
-	double center = 0;//定义中心
-	double unit = 0;//定义每股多少元
-	int i = 0;//作为标号
-	double sell = 0.0;//该条网格所期望的目标金额
-=======
-	double center = 0; // 定义中心
-	double unit = 0;   // 定义每股多少元
-	int i = 0;		   // 作为标号
-	double sell = 0.0;
->>>>>>> f2b545ed00d342dbfd136cfdc62163ce91d3a136
-};
-void divide(double center, int unit, int n, double a, vector<grid> &rattle, double b)
-// 作为分网格的函数,center确定中线，unit确定单位价，n确定总共设置的行数,默认用户给的n是偶数，不然上下不平
+
+Grid::Grid() {};
+Grid::~Grid() {};
+
+
+
+void Grid::divide(double center, int unit, int n, double a, vector<grid> &rattle, double b)
+// 作为分网格的函数,center确定中线,unit确定单位价,n确定总共设置的行数,默认用户给的n是偶数,不然上下不平,a是网格的百分比，b是卖出价格的百分比
 {
 	// 创建一个能够存储多个结构体的动态数组,数组传在上面不然只能函数定义域
 	grid rattle0;
@@ -42,14 +34,11 @@ void divide(double center, int unit, int n, double a, vector<grid> &rattle, doub
 		rattle.insert(rattle.begin(), *p); // 一直在数组的最前面插入结构体信息
 	}
 }
-<<<<<<< HEAD
-grid sell(double price, vector<grid>& rattle,double b,vector<grid>buy)//用来判断哪组需要卖出
-=======
-grid sell(double price, vector<grid> &rattle, double b) // 用来判断哪组需要卖出
->>>>>>> f2b545ed00d342dbfd136cfdc62163ce91d3a136
+
+Grid::grid Grid::sell(double price, vector<grid> &rattle, double b, vector<grid> buy) // 用来判断哪组需要卖出
 {
 	int c = 0;
-	for (int i = 0;; i++)//找出目前价格会在哪个网格之下网格，然后在这之下找
+	for (int i = 0;; i++) // 找出目前价格会在哪个网格之下网格，然后在这之下找
 	{
 		if (rattle[i].unit >= price)
 		{
@@ -61,10 +50,7 @@ grid sell(double price, vector<grid> &rattle, double b) // 用来判断哪组需
 	{
 		if (price >= buy[i].unit * (1 + (b / 100.0)))
 		{
-<<<<<<< HEAD
-           buy.erase(buy.begin()+i);//当实时价格超过存储的批次所对应的网格的目标金额则删除该批次，认为已卖出
-=======
->>>>>>> f2b545ed00d342dbfd136cfdc62163ce91d3a136
+			buy.erase(buy.begin() + i); // 当实时价格超过存储的批次所对应的网格的目标金额则删除该批次，认为已卖出
 		}
 	}
 }

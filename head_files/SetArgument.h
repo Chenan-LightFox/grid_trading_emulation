@@ -1,7 +1,9 @@
-#pragma once
-#include<iostream>
-#include<fstream>
-#include<string>
+#ifndef SETARG_H
+#define SETARG_H
+
+#include <iostream>
+#include <fstream>
+#include <string>
 using namespace std;
 
 class SetArgument
@@ -15,3 +17,4 @@ public:
     void show_profile(istream &);
 };
 
+#endif
