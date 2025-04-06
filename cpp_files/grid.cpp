@@ -5,7 +5,12 @@ using namespace std;
 Grid::Grid() {};
 Grid::~Grid() {};
 
-
+void Grid::print(grid line) {
+	cout << "网格中心价：" << line.center << endl;
+	cout << "网格单位价：" << line.unit << endl;
+	cout << "网格标号：" << line.i << endl;
+	cout << "网格卖出价：" << line.sell << endl;
+}
 
 void Grid::divide(double center, int unit, int n, double a, vector<grid> &rattle, double b)
 // 作为分网格的函数,center确定中线,unit确定单位价,n确定总共设置的行数,默认用户给的n是偶数,不然上下不平,a是网格的百分比，b是卖出价格的百分比
@@ -19,26 +24,28 @@ void Grid::divide(double center, int unit, int n, double a, vector<grid> &rattle
 	rattle.push_back(rattle0);
 	for (int i = 1; i <= n / 2; i++) // 向上设置网格
 	{
-		grid *p = new grid;
-		p->center = center;
-		p->i = i;
-		p->unit = unit * (1 + i * (a / 100.0));
-		rattle.push_back(*p);
+		grid p;
+		p.center = center;
+		p.i = i;
+		p.unit = unit * (1 + i * (a / 100.0));
+		p.sell = p.unit * (1 + b / 100.0);
+		rattle.push_back(p);
 	}
 	for (int i = 1; i <= n / 2; i++) // 向下设置网格
 	{
-		grid *p = new grid;
-		p->center = center;
-		p->i = i;
-		p->unit = unit * (1 - i * (a / 100.0));
-		rattle.insert(rattle.begin(), *p); // 一直在数组的最前面插入结构体信息
+		grid p;
+		p.center = center;
+		p.i = -i;
+		p.unit = unit * (1 - i * (a / 100.0));
+		p.sell = p.unit * (1 + b / 100.0);
+		rattle.insert(rattle.begin(), p); // 一直在数组的最前面插入结构体信息
 	}
 }
 
 void Grid::sell(double price,double b, vector<grid> &buy) // 用来判断哪组需要卖出
 {
 	int c = 0;
-	int size=sizeof(buy)/sizeof(grid);
+	int size = sizeof(buy) / sizeof(grid);
 	for (int i = 0;i<size; i++) // 找出目前价格会在哪个网格之下网格，然后在这之下找
 	{
 		if (buy[i].sell >= price)
@@ -47,6 +54,7 @@ void Grid::sell(double price,double b, vector<grid> &buy) // 用来判断哪组�
 			break;
 		}
 	}
+
 	for (int i = 0; i <= c; i++)
 	{
 		if (price >= buy[i].sell)
@@ -54,19 +62,33 @@ void Grid::sell(double price,double b, vector<grid> &buy) // 用来判断哪组�
 			buy.erase(buy.begin() + i); // 当实时价格超过存储的批次所对应的网格的目标金额则删除该批次，认为已卖出
 		}
 	}
+
     for(int i=c+1;i<size;i++)//前面的删除后，后面的会补到前面去，补完之后这些变为空白位置
 	{
 		grid reset;
-      grid tem=buy[i];
-	  buy[i]=reset;
-	  buy[i-c+1]=tem;
+      	grid tem=buy[i];
+	 	 buy[i]=reset;
+	 	 buy[i-c+1]=tem;
 	}
 	for(int i=0;i<size;i++)//在往前补了之后把空白位置删除掉
-	
 	{
 		if(buy[i].sell=0.0)
 		{
 			buy.erase(buy.begin()+i);
 		}
 	}
+}
+
+int Grid::getIndex(double high,double low, std::vector<grid> &rattle) {
+	if(high < rattle[0].unit) return INT_MIN;
+	if(low > rattle[rattle.size()-1].unit) return INT_MIN;
+	for(int i = 0;i < rattle.size();i++){
+		if(high <= rattle[i+1].unit && low >= rattle[i].unit){
+			return rattle[i].i;
+		}
+		else if(high >= rattle[i].unit && low <= rattle[i].unit){
+			return rattle[i].i;
+		}
+	}
+	return INT_MIN;
 }

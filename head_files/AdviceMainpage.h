@@ -8,7 +8,8 @@ public:
     ~AdviceMainpage();
 
     void show_mainpage();
-    void show(); // 添加show方法声明
+    void show(); // 打印最终方案，目前用于测试
+    void buyRecorder(); // 买入记录
 };
 
 #endif
