@@ -35,22 +35,38 @@ void Grid::divide(double center, int unit, int n, double a, vector<grid> &rattle
 	}
 }
 
-Grid::grid Grid::sell(double price, vector<grid> &rattle, double b, vector<grid> buy) // 用来判断哪组需要卖出
+void Grid::sell(double price,double b, vector<grid> &buy) // 用来判断哪组需要卖出
 {
 	int c = 0;
-	for (int i = 0;; i++) // 找出目前价格会在哪个网格之下网格，然后在这之下找
+	int size=sizeof(buy)/sizeof(grid);
+	for (int i = 0;i<size; i++) // 找出目前价格会在哪个网格之下网格，然后在这之下找
 	{
-		if (rattle[i].unit >= price)
+		if (buy[i].sell >= price)
 		{
-			c = i;
+			c = i-1;
 			break;
 		}
 	}
 	for (int i = 0; i <= c; i++)
 	{
-		if (price >= buy[i].unit * (1 + (b / 100.0)))
+		if (price >= buy[i].sell)
 		{
 			buy.erase(buy.begin() + i); // 当实时价格超过存储的批次所对应的网格的目标金额则删除该批次，认为已卖出
+		}
+	}
+    for(int i=c+1;i<size;i++)//前面的删除后，后面的会补到前面去，补完之后这些变为空白位置
+	{
+		grid reset;
+      grid tem=buy[i];
+	  buy[i]=reset;
+	  buy[i-c+1]=tem;
+	}
+	for(int i=0;i<size;i++)//在往前补了之后把空白位置删除掉
+	
+	{
+		if(buy[i].sell=0.0)
+		{
+			buy.erase(buy.begin()+i);
 		}
 	}
 }

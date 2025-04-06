@@ -20,7 +20,7 @@ public:
     };
 
     void divide(double center, int unit, int n, double a, std::vector<grid> &rattle, double b); // 分网格函数
-    grid sell(double price, std::vector<grid> &rattle, double b, std::vector<grid> buy);        // 卖出函数
+    void sell(double price,  double b, std::vector<grid> &buy);        // 卖出函数
 };
 
 #endif
