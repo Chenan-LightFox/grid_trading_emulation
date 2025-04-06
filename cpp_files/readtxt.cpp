@@ -55,7 +55,7 @@ void ReadTxt::read(Data *&m)
 			temp->next = NULL;
 
 			// 将节点添加到链表中
-			Data *head = nullptr;//是不是搞错了=。=
+			
 			if (head == NULL)
 				head = temp;
 			else
