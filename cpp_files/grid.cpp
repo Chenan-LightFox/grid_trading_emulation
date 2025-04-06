@@ -1,40 +1,41 @@
-#include<iostream>
-#include<vector>
+#include <iostream>
+#include <vector>
 using namespace std;
-struct grid//定义一个网格的结构体用来存放各种数据。
+struct grid // 定义一个网格的结构体用来存放各种数据。
 {
-	double center = 0;//定义中心
-	double unit = 0;//定义每股多少元
-	int i = 0;//作为标号
+	double center = 0; // 定义中心
+	double unit = 0;   // 定义每股多少元
+	int i = 0;		   // 作为标号
 	double sell = 0.0;
 };
-void divide(double center, int unit, int n, double a,vector<grid>&rattle,double b)//作为分网格的函数,center确定中线，unit确定单位价，n确定总共设置的行数,默认用户给的n是偶数，不然上下不平
+void divide(double center, int unit, int n, double a, vector<grid> &rattle, double b)
+// 作为分网格的函数,center确定中线，unit确定单位价，n确定总共设置的行数,默认用户给的n是偶数，不然上下不平
 {
-	//创建一个能够存储多个结构体的动态数组,数组传在上面不然只能函数定义域
+	// 创建一个能够存储多个结构体的动态数组,数组传在上面不然只能函数定义域
 	grid rattle0;
 	rattle0.center = center;
 	rattle0.unit = unit;
 	rattle0.i = 0;
-	rattle0.sell = center*(1+(b/100.0));
+	rattle0.sell = center * (1 + (b / 100.0));
 	rattle.push_back(rattle0);
-	for (int i = 1; i <= n / 2; i++)//向上设置网格
+	for (int i = 1; i <= n / 2; i++) // 向上设置网格
 	{
-		grid* p = new grid;
+		grid *p = new grid;
 		p->center = center;
 		p->i = i;
 		p->unit = unit * (1 + i * (a / 100.0));
 		rattle.push_back(*p);
 	}
-	for (int i = 1; i <= n / 2; i++)//向下设置网格
+	for (int i = 1; i <= n / 2; i++) // 向下设置网格
 	{
-		grid* p = new grid;
+		grid *p = new grid;
 		p->center = center;
 		p->i = i;
 		p->unit = unit * (1 - i * (a / 100.0));
-		rattle.insert(rattle.begin(), *p);//一直在数组的最前面插入结构体信息
+		rattle.insert(rattle.begin(), *p); // 一直在数组的最前面插入结构体信息
 	}
 }
-grid sell(double price, vector<grid>& rattle,double b)//用来判断哪组需要卖出
+grid sell(double price, vector<grid> &rattle, double b) // 用来判断哪组需要卖出
 {
 	int c = 0;
 	for (int i = 0;; i++)
@@ -49,7 +50,6 @@ grid sell(double price, vector<grid>& rattle,double b)//用来判断哪组需要
 	{
 		if (price >= rattle[i].unit * (1 + (b / 100.0)))
 		{
-
 		}
 	}
 }
