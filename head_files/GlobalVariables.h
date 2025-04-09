@@ -1,10 +1,10 @@
 #ifndef GLOBALVARIABLES_H
 #define GLOBALVARIABLES_H
 
-extern double center; // 中线
-extern double a;      // 网格的百分比
-extern double b;      // 期望收益率
-extern double w;      // 买入价格
-extern double n;      // 网格的行数
+extern double CENTER; // 中线
+extern double GridSize;      // 网格的百分比
+extern double YIELD;      // 期望收益率
+extern double FUND;      // 买入价格
+extern double ROWS;      // 网格的行数
 
 #endif

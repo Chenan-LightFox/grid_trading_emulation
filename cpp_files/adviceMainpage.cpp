@@ -75,7 +75,7 @@ void AdviceMainpage::buyRecorder(){
     int buy_index = 0; // 用来记录买入股票的存量
     vector<Grid::grid> buy,rattle;
     Grid grid;
-    grid.divide(center,center,n,a,rattle,b);
+    grid.divide(CENTER,CENTER,ROWS,GridSize,rattle,YIELD);
 
     cout<<"测试grid：\n";
     for(int i=0;i<rattle.size();i++){
@@ -91,10 +91,10 @@ void AdviceMainpage::buyRecorder(){
         cur = grid.getIndex(temp->High,temp->Low,rattle);
         if(cur < last && cur != INT_MIN) { // 当当前价格低于上一个价格时，说明要买入
             Grid::grid tmp;
-	        tmp.center = center;
+	        tmp.center = CENTER;
 	        tmp.unit = temp->Low;
 	        tmp.i = ++buy_index;
-	        tmp.sell = tmp.unit * (1 + (b / 100.0));
+	        tmp.sell = tmp.unit * (1 + (YIELD / 100.0));
             buy.push_back(tmp);  // 买入
         }
         last = cur; // 更新上一个价格

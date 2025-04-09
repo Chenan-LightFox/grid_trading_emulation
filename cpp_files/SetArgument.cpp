@@ -21,15 +21,15 @@ void SetArgument::show_mainpage()
         HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
         system("cls");
         cout << "基准价（元/股）：";
-        cin >> center;
+        cin >> CENTER;
         cout << "网格大小（%）：";
-        cin >> a;
+        cin >> GridSize;
         cout << "期望收益率（%）：";
-        cin >> b;
+        cin >> YIELD;
         cout << "一次买入金额（元）：";
-        cin >> w;
+        cin >> FUND;
         cout << "模拟行数：";
-        cin >> n;
+        cin >> ROWS;
         cout << "所有参数已成功设置!\n";
         getDATAfile();
         system("pause");
@@ -66,11 +66,11 @@ void SetArgument::show_mainpage()
 
 void SetArgument::show_profile(istream &fin)
 {
-    cout << "基准价（元/股）：" << center << endl;
-    cout << "网格大小（%）：" << a << endl;
-    cout << "期望收益率（%）：" << b << endl;
-    cout << "一次买入金额（元）：" << w << endl;
-    cout << "模拟行数：" << n << endl;
+    cout << "基准价（元/股）：" << CENTER << endl;
+    cout << "网格大小（%）：" << GridSize << endl;
+    cout << "期望收益率（%）：" << YIELD << endl;
+    cout << "一次买入金额（元）：" << FUND << endl;
+    cout << "模拟行数：" << ROWS << endl;
 }
 
 void SetArgument::getDATAfile()
@@ -81,11 +81,11 @@ void SetArgument::getDATAfile()
     // ios::app 追加式
     if (fout.is_open() != false)
     {
-        fout << "center " << center << endl;
-        fout << "a " << a << endl;
-        fout << "b " << b << endl;
-        fout << "w " << w << endl;
-        fout << "n " << n << endl;
+        fout << "CENTER " << CENTER << endl;
+        fout << "GridSize " << GridSize << endl;
+        fout << "YIELD " << YIELD << endl;
+        fout << "FUND " << FUND << endl;
+        fout << "ROWS " << ROWS << endl;
     }
     fout.close();
 
@@ -94,11 +94,11 @@ void SetArgument::getDATAfile()
     if (fin)
     {
         string line;
-        fin >> line >> center;
-        fin >> line >> a;
-        fin >> line >> b;
-        fin >> line >> w;
-        fin >> line >> n;
+        fin >> line >> CENTER;
+        fin >> line >> GridSize;
+        fin >> line >> YIELD;
+        fin >> line >> FUND;
+        fin >> line >> ROWS;
         fin.close();
     }
 }

@@ -1,5 +1,5 @@
-center 1000
-a 20
-b 20
-w 100
-n 10
+CENTER 2000
+GridSize 5
+YIELD 10
+FUND 1500
+ROWS 20
