@@ -39,7 +39,7 @@ void SetArgument::show_mainpage()
     {
         HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
         system("cls");
-        cout << "\n\n\n\t\t\t您已经设置过参数：";
+        cout << "\n\n\n\t\t\t您已经设置过参数：\n";
         show_profile(fin);
         fin.close();
         cout << "\n\n\t\t\t是否重新设置参数？";
@@ -66,11 +66,11 @@ void SetArgument::show_mainpage()
 
 void SetArgument::show_profile(istream &fin)
 {
-    cout << "基准价（元/股）：" << CENTER << endl;
-    cout << "网格大小（%）：" << GridSize << endl;
-    cout << "期望收益率（%）：" << YIELD << endl;
-    cout << "一次买入金额（元）：" << FUND << endl;
-    cout << "模拟行数：" << ROWS << endl;
+    cout << "\t\t\t基准价（元/股）：" << CENTER << endl;
+    cout << "\t\t\t网格大小（%）：" << GridSize << endl;
+    cout << "\t\t\t期望收益率（%）：" << YIELD << endl;
+    cout << "\t\t\t一次买入金额（元）：" << FUND << endl;
+    cout << "\t\t\t模拟行数：" << ROWS << endl;
 }
 
 void SetArgument::getDATAfile()

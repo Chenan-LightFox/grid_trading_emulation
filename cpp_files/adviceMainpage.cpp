@@ -1,8 +1,11 @@
 #include <iostream>
 #include <iomanip> 
+#include <fstream>
+#include <string>
 #include <climits>
 #include <Windows.h>
 #include "../head_files/GlobalVariables.h"
+#include "../head_files/SetArgument.h"
 #include "../head_files/AdviceMainpage.h"
 #include "../head_files/MainMenu.h"
 #include "../head_files/readtxt.h"
@@ -23,10 +26,21 @@ inline void back_to_mainmenu()
 
 void AdviceMainpage::show_mainpage()
 {
+    // 先判断参数是否设置完全，若未完全，跳转到设置参数界面。
+    ifstream fin;
+    fin.open("docs/data.txt");
+    if (fin.is_open() == false){
+        cout<<"您尚未设置基本参数！正在为您跳转。。。\n";
+        system("pause");
+        SetArgument setarg;
+        setarg.show_mainpage();
+        return;
+    }
+
     ReadTxt readtext("docs\\file.txt"); // 从此开始head才有数据，能够调用，若出错应则停止程序（即head==NULL）
     readtext.read(head);               // 读取数据到链表中
-    if (head != NULL)
-    { // 测试，之后1要修改成head
+    if (head != NULL) 
+    { 
         cout << "\n\n\t\t交易建议已生成完毕。";
         cout << "\n\t\t回复 1 获取——————\n";
         int operation;
@@ -75,7 +89,7 @@ void AdviceMainpage::buyRecorder(){
     int buy_index = 0; // 用来记录买入股票的存量
     vector<Grid::grid> buy,rattle;
     Grid grid;
-    grid.divide(CENTER,CENTER,ROWS,GridSize,rattle,YIELD);
+    grid.divide(CENTER,ROWS,GridSize,rattle,YIELD);
 
     cout<<"测试grid：\n";
     for(int i=0;i<rattle.size();i++){
@@ -83,26 +97,34 @@ void AdviceMainpage::buyRecorder(){
     }
     cout<<"\n\n——————————————————————\n\n";
 
-    int last = INT_MIN,cur = INT_MAX; // 用来记录上一个价格和当前价格所在网格的标号
+    int last = INT_MIN,cur = INT_MIN; // 用来记录上一个价格和当前价格所在网格的标号
     Data *temp = head;
     last = grid.getIndex(temp->High,temp->Low,rattle);
     temp = temp->next;
-    while(temp!=NULL&&buy_index<10){
+    while(temp!=NULL && buy.size() < 10) {
         cur = grid.getIndex(temp->High,temp->Low,rattle);
-        if(cur < last && cur != INT_MIN) { // 当当前价格低于上一个价格时，说明要买入
+        if(cur < last && cur != INT_MIN) { // 当当前价格低于上一个价格时，考虑买入
             Grid::grid tmp;
-	        tmp.center = CENTER;
+            tmp.date = temp->date;
 	        tmp.unit = temp->Low;
 	        tmp.i = ++buy_index;
 	        tmp.sell = tmp.unit * (1 + (YIELD / 100.0));
             buy.push_back(tmp);  // 买入
+            grid.sort(buy); //排序
+        }
+
+
+        else if(cur>last && last != INT_MIN) { // 当当前价格高于上一个价格时，考虑卖出
+
         }
         last = cur; // 更新上一个价格
         temp = temp->next; // 遍历
     }
 
     cout<<"打印前十个买入信息：\n";
+    cout << "\t日期" <<  "\t交易点数" << "\t买入金额" << endl;
+
     for(int i=0;i<buy.size();i++){
-        grid.print(buy[i]);
-    }
+		cout << setw(12) << buy[i].date << setw(12) << buy[i].unit << setw(12) << FUND << endl;
+	}
 }

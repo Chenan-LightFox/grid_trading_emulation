@@ -1,31 +1,29 @@
 #include "../head_files/grid.h"
 #include "../head_files/GlobalVariables.h"
+#include <algorithm>
 using namespace std;
 
 Grid::Grid() {};
 Grid::~Grid() {};
 
-void Grid::print(grid line) {
-	cout << "网格中心价：" << line.center << endl;
-	cout << "网格单位价：" << line.unit << endl;
-	cout << "网格标号：" << line.i << endl;
-	cout << "网格卖出价：" << line.sell << endl;
+void Grid::print(grid line) { // 打印网格信息
+	cout << "单位价：" << line.unit << endl;
+	cout << "标号：" << line.i << endl;
+	cout << "卖出价：" << line.sell << endl;
 }
 
-void Grid::divide(double center, int unit, int n, double a, vector<grid> &rattle, double b)
-// 作为分网格的函数,center确定中线,unit确定单位价,n确定总共设置的行数,默认用户给的n是偶数,不然上下不平,a是网格的百分比，b是卖出价格的百分比
+void Grid::divide(int unit, int n, double a, vector<grid> &rattle, double b)
+// 作为分网格的函数,unit确定中线价格,n确定总共设置的行数,默认用户给的n是偶数,不然上下不平,a是网格的百分比，b是卖出价格的百分比
 {
 	// 创建一个能够存储多个结构体的动态数组,数组传在上面不然只能函数定义域
 	grid rattle0;
-	rattle0.center = center;
 	rattle0.unit = unit;
 	rattle0.i = 0;
-	rattle0.sell = center * (1 + (b / 100.0));
+	rattle0.sell = rattle0.unit * (1 + (b / 100.0));
 	rattle.push_back(rattle0);
 	for (int i = 1; i <= n / 2; i++) // 向上设置网格
 	{
 		grid p;
-		p.center = center;
 		p.i = i;
 		p.unit = unit * (1 + i * (a / 100.0));
 		p.sell = p.unit * (1 + b / 100.0);
@@ -34,7 +32,6 @@ void Grid::divide(double center, int unit, int n, double a, vector<grid> &rattle
 	for (int i = 1; i <= n / 2; i++) // 向下设置网格
 	{
 		grid p;
-		p.center = center;
 		p.i = -i;
 		p.unit = unit * (1 - i * (a / 100.0));
 		p.sell = p.unit * (1 + b / 100.0);
@@ -91,4 +88,12 @@ int Grid::getIndex(double high,double low, std::vector<grid> &rattle) {
 		}
 	}
 	return INT_MIN;
+}
+
+// 实现排序方法（示例按unit升序排列）
+void Grid::sort(std::vector<grid>& vec) {
+    std::sort(vec.begin(), vec.end(), 
+        [](const grid& a, const grid& b) {
+            return a.unit < b.unit;
+        });
 }
