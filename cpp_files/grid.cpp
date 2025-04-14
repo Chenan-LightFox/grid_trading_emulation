@@ -91,9 +91,16 @@ int Grid::getIndex(double high,double low, std::vector<grid> &rattle) {
 }
 
 // 实现排序方法（示例按unit升序排列）
-void Grid::sort(std::vector<grid>& vec) {
+void Grid::sortBYunit(std::vector<grid>& vec) {
     std::sort(vec.begin(), vec.end(), 
         [](const grid& a, const grid& b) {
             return a.unit < b.unit;
+        });
+}
+
+void Grid::sortBYi(std::vector<grid>& vec) {
+    std::sort(vec.begin(), vec.end(),
+        [](const grid& a, const grid& b) {
+            return a.i < b.i;
         });
 }
