@@ -83,6 +83,7 @@ void AdviceMainpage::show()
     // cout<<"\n\n——————————————————————\n\n";
 
     buyRecorder();
+    
 }
 
 void AdviceMainpage::buyRecorder(){
@@ -91,37 +92,37 @@ void AdviceMainpage::buyRecorder(){
     Grid grid;
     grid.divide(CENTER,ROWS,GridSize,rattle,YIELD);
 
-    cout<<"测试grid：\n";
-    for(int i=0;i<rattle.size();i++){
-        grid.print(rattle[i]);
-    }
-    cout<<"\n\n——————————————————————\n\n";
+    // cout<<"测试grid：\n";
+    // for(int i=0;i<rattle.size();i++){
+    //     grid.print(rattle[i]);
+    // }
+    // cout<<"\n\n——————————————————————\n\n";
 
     double last_low = head->Low;  // 初始化为第一个节点的最低价
     double last_high = head->High;
     Data *temp = head->next;
-    while(temp!=NULL && buy.size() < 10 && sell.size() < 10) {
+    while(temp!=NULL && sell.size() < 10) {
         bool should_buy = temp->Low < last_low;  // 当前最低价低于前一个，考虑买入
         bool should_sell = temp->High > last_high; // 当前最高价高于前一个，考虑卖出
-        if(should_buy) { 
+        if(should_buy && buy.size() < 10) { 
             Grid::grid s;
             s.date = temp->date;
-	        s.unit = temp->Low;
-	        s.i = ++buy_index;
+	        s.unit = temp->Low;  // 以最低价买入
+	        s.i = ++buy_index;  // 增加买入记录
 	        s.sell = s.unit * (1 + (YIELD / 100.0));
             buy.push_back(s);  // 买入
-            grid.sort(buy); //排序
+            grid.sortBYunit(buy); //排序
             last_low = temp->Low;
         }
 
         else if(should_sell) { // 当当前价格高于上一个价格时，考虑卖出
-            for(auto& b : buy) {
+            for(auto& b : buy) {  // 可以一天卖出多天的股
                 if(!b.sold && temp->High >= b.sell) {  // 添加卖出判断
                     Grid::grid s;
                     s.date = temp->date;
-                    s.unit = b.sell;
+                    s.unit = temp->High;  // 以最高价卖出
                     s.i = b.i;           // 保持与买入记录相同的序号
-                    s.sell = 0;          // 卖出金额清零
+                    s.sell = s.unit * FUND / b.unit;   // 卖出的价格
                     s.sold = true;       // 标记已卖出
                     sell.push_back(s);   // 记录卖出
                     b.sold = true;       // 标记买入记录已卖出
@@ -129,17 +130,54 @@ void AdviceMainpage::buyRecorder(){
             }
             last_high = temp->High;
         }
-        
+
         // 更新参考价格为最新值（无论买卖都更新）
         if(!should_buy) last_low = min(last_low, temp->Low);
         if(!should_sell) last_high = max(last_high, temp->High);
         temp = temp->next; // 遍历
     }
 
-    cout<<"打印前十个买入信息：\n";
-    cout << "\t日期" <<  "\t交易点数" << "\t买入金额" << endl;
+    grid.sortBYi(buy);
+    grid.sortBYi(sell); 
+    //cout<<"sell的size："<<sell.size()<<endl;
+    cout<<"打印前十条信息：\n";
+    // 优化表头格式
+    cout << left 
+         << setw(19) << "买入日期" 
+         << setw(16) << "买入点数" 
+         << setw(19) << "买入金额"
+         << setw(19) << "卖出日期" 
+         << setw(16) << "卖出点数" 
+         << setw(16) << "卖出金额" 
+         << setw(16) << "收益"
+         << endl;
 
-    for(int i=0;i<buy.size();i++){
-		cout << setw(12) << buy[i].date << setw(12) << buy[i].unit << setw(12) << FUND << endl;
-	}
+    for(int i = 0,j = 0; i < buy.size();i++) {
+        cout << left 
+             << setw(15) << buy[i].date 
+             << setw(12) << fixed << setprecision(2) << buy[i].unit 
+             << setw(15) << FUND;
+            
+        while(1) {
+            if(j>=sell.size() || sell[j].i>buy[i].i) {
+                cout << setw(15) << "N/A" 
+                     << setw(12) << "N/A" 
+                     << setw(12) << "N/A"
+                     << setw(12) << -FUND ; 
+                break;
+            }
+            if(sell[j].i==buy[i].i){
+                cout << setw(15) << sell[j].date 
+                     << setw(12) << fixed << setprecision(2) << sell[j].unit 
+                     << setw(12) << sell[j].sell
+                     << setw(12) << sell[j].sell - FUND;
+                j++;
+                break;
+            }
+            else if(sell[j].i<buy[i].i){
+                j++;
+            }
+        }
+        cout<<endl;
+    }
 }
