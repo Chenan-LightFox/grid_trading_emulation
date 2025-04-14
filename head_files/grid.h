@@ -12,12 +12,12 @@ public:
     Grid();
     ~Grid();
 
-    struct grid // 定义一个网格的结构体用来存放各种数据。
-    {
-        std::string date = "nullptr";
-        double unit = 0;   // 定义网格线对应的价格
-        int i = 0;         // 作为标号
-        double sell = 0.0; // 定义卖出价格
+    struct grid {
+        string date;     // 日期
+        double unit;     // 交易价格
+        int i;           // 交易序号
+        double sell;     // 卖出价格
+        bool sold = false; // 新增：是否已卖出
     };
 
     void print(grid line); // 打印结构体成员

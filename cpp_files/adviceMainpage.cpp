@@ -87,7 +87,7 @@ void AdviceMainpage::show()
 
 void AdviceMainpage::buyRecorder(){
     int buy_index = 0; // 用来记录买入股票的存量
-    vector<Grid::grid> buy,rattle;
+    vector<Grid::grid> buy,rattle,sell;
     Grid grid;
     grid.divide(CENTER,ROWS,GridSize,rattle,YIELD);
 
@@ -97,27 +97,42 @@ void AdviceMainpage::buyRecorder(){
     }
     cout<<"\n\n——————————————————————\n\n";
 
-    int last = INT_MIN,cur = INT_MIN; // 用来记录上一个价格和当前价格所在网格的标号
-    Data *temp = head;
-    last = grid.getIndex(temp->High,temp->Low,rattle);
-    temp = temp->next;
-    while(temp!=NULL && buy.size() < 10) {
-        cur = grid.getIndex(temp->High,temp->Low,rattle);
-        if(cur < last && cur != INT_MIN) { // 当当前价格低于上一个价格时，考虑买入
-            Grid::grid tmp;
-            tmp.date = temp->date;
-	        tmp.unit = temp->Low;
-	        tmp.i = ++buy_index;
-	        tmp.sell = tmp.unit * (1 + (YIELD / 100.0));
-            buy.push_back(tmp);  // 买入
+    double last_low = head->Low;  // 初始化为第一个节点的最低价
+    double last_high = head->High;
+    Data *temp = head->next;
+    while(temp!=NULL && buy.size() < 10 && sell.size() < 10) {
+        bool should_buy = temp->Low < last_low;  // 当前最低价低于前一个，考虑买入
+        bool should_sell = temp->High > last_high; // 当前最高价高于前一个，考虑卖出
+        if(should_buy) { 
+            Grid::grid s;
+            s.date = temp->date;
+	        s.unit = temp->Low;
+	        s.i = ++buy_index;
+	        s.sell = s.unit * (1 + (YIELD / 100.0));
+            buy.push_back(s);  // 买入
             grid.sort(buy); //排序
+            last_low = temp->Low;
         }
 
-
-        else if(cur>last && last != INT_MIN) { // 当当前价格高于上一个价格时，考虑卖出
-
+        else if(should_sell) { // 当当前价格高于上一个价格时，考虑卖出
+            for(auto& b : buy) {
+                if(!b.sold && temp->High >= b.sell) {  // 添加卖出判断
+                    Grid::grid s;
+                    s.date = temp->date;
+                    s.unit = b.sell;
+                    s.i = b.i;           // 保持与买入记录相同的序号
+                    s.sell = 0;          // 卖出金额清零
+                    s.sold = true;       // 标记已卖出
+                    sell.push_back(s);   // 记录卖出
+                    b.sold = true;       // 标记买入记录已卖出
+                }
+            }
+            last_high = temp->High;
         }
-        last = cur; // 更新上一个价格
+        
+        // 更新参考价格为最新值（无论买卖都更新）
+        if(!should_buy) last_low = min(last_low, temp->Low);
+        if(!should_sell) last_high = max(last_high, temp->High);
         temp = temp->next; // 遍历
     }
 
