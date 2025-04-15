@@ -12,7 +12,7 @@ void Grid::print(grid line) { // 打印网格信息
 	cout << "卖出价：" << line.sell << endl;
 }
 
-void Grid::divide(int unit, int n, double a, vector<grid> &rattle, double b)
+void Grid::divide(double unit, int n, double a, vector<grid> &rattle, double b)
 // 作为分网格的函数,unit确定中线价格,n确定总共设置的行数,默认用户给的n是偶数,不然上下不平,a是网格的百分比，b是卖出价格的百分比
 {
 	// 创建一个能够存储多个结构体的动态数组,数组传在上面不然只能函数定义域
@@ -76,15 +76,16 @@ void Grid::sell(double price,double b, vector<grid> &buy) // 用来判断哪组�
 	}
 }
 
-int Grid::getIndex(double high,double low, std::vector<grid> &rattle) {
-	if(high < rattle[0].unit) return INT_MIN;
-	if(low > rattle[rattle.size()-1].unit) return INT_MIN;
-	for(int i = 0;i < rattle.size();i++){
-		if(high <= rattle[i+1].unit && low >= rattle[i].unit){
-			return rattle[i].i;
-		}
-		else if(high >= rattle[i].unit && low <= rattle[i].unit){
-			return rattle[i].i;
+int Grid::getIndex(double price, std::vector<grid> &rattle) {
+	if(rattle.size() == 0)
+		 return INT_MIN;
+	if(price < rattle[0].unit )
+		return rattle[0].i;
+	if(price > rattle[rattle.size()-1].unit )
+		return rattle[rattle.size()-1].i;
+	for(int i = 1;i<rattle.size();i++){
+		if(price < rattle[i].unit && price >= rattle[i-1].unit){
+			return i-1;
 		}
 	}
 	return INT_MIN;

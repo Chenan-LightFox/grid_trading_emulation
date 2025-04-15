@@ -98,21 +98,23 @@ void AdviceMainpage::buyRecorder(){
     // }
     // cout<<"\n\n——————————————————————\n\n";
 
-    double last_low = head->Low;  // 初始化为第一个节点的最低价
+    double last_low = head->High;  // 初始化参考价格为第一个节点的最高价
     double last_high = head->High;
     Data *temp = head->next;
-    while(temp!=NULL && sell.size() < 10) {
+    while(temp!=NULL && sell.size() < 20) {
         bool should_buy = temp->Low < last_low;  // 当前最低价低于前一个，考虑买入
         bool should_sell = temp->High > last_high; // 当前最高价高于前一个，考虑卖出
-        if(should_buy && buy.size() < 10) { 
-            Grid::grid s;
-            s.date = temp->date;
-	        s.unit = temp->Low;  // 以最低价买入
-	        s.i = ++buy_index;  // 增加买入记录
-	        s.sell = s.unit * (1 + (YIELD / 100.0));
-            buy.push_back(s);  // 买入
-            grid.sortBYunit(buy); //排序
-            last_low = temp->Low;
+        if(should_buy && buy.size() < 20) { 
+            if(grid.getIndex(temp->Low,rattle) < grid.getIndex(last_low,rattle)){ // 网格条件
+                Grid::grid s;
+                s.date = temp->date;
+                s.unit = temp->Low;  // 以最低价买入
+                s.i = ++buy_index;  // 增加买入记录
+                s.sell = s.unit * (1 + (YIELD / 100.0));
+                buy.push_back(s);  // 买入
+                grid.sortBYunit(buy); //排序
+                last_low = temp->Low;
+            } 
         }
 
         else if(should_sell) { // 当当前价格高于上一个价格时，考虑卖出
@@ -132,8 +134,8 @@ void AdviceMainpage::buyRecorder(){
         }
 
         // 更新参考价格为最新值（无论买卖都更新）
-        if(!should_buy) last_low = min(last_low, temp->Low);
-        if(!should_sell) last_high = max(last_high, temp->High);
+        if(!should_buy) last_low = temp->Low;
+        if(!should_sell) last_high = temp->High;
         temp = temp->next; // 遍历
     }
 
