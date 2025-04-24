@@ -109,6 +109,7 @@ void AdviceMainpage::buyRecorder(){
                 Grid::grid s;
                 s.date = temp->date;
                 s.unit = temp->Low;  // 以最低价买入
+                ALL-=FUND;     //每次买相同金额FUND，所以买一次就会扣除那么多钱
                 s.i = ++buy_index;  // 增加买入记录
                 s.sell = s.unit * (1 + (YIELD / 100.0));
                 buy.push_back(s);  // 买入
@@ -124,7 +125,8 @@ void AdviceMainpage::buyRecorder(){
                     s.date = temp->date;
                     s.unit = temp->High;  // 以最高价卖出
                     s.i = b.i;           // 保持与买入记录相同的序号
-                    s.sell = s.unit * FUND / b.unit;   // 卖出的价格
+                    s.sell = s.unit * FUND / b.unit;   // 卖出该批次股后得到的金额
+                    ALL+=s.sell;         //因为卖出了，所以得到一笔资金加到在手里的资金，就是没花出去的钱
                     s.sold = true;       // 标记已卖出
                     sell.push_back(s);   // 记录卖出
                     b.sold = true;       // 标记买入记录已卖出
@@ -181,5 +183,10 @@ void AdviceMainpage::buyRecorder(){
             }
         }
         cout<<endl;
+        if((i+1)%20==0)
+        {
+           cout<<"点击可查看更多记录"<<endl;
+           system("pause");
+        }
     }
 }

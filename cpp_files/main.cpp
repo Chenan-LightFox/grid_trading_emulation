@@ -27,7 +27,7 @@ void loadFromFile() //每次程序启动时，从文件中读取数据
 }
 
 int main() // main function
-{
+{  
     SetConsoleOutputCP(65001);
     SetConsoleCP(65001);
     // ↑解决中文乱码问题
