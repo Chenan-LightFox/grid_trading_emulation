@@ -1,9 +1,9 @@
-#ifndef GRID_H
-#define GRID_H
+#pragma once
 
 #include <iostream>
 #include <vector>
 #include <string>
+using namespace std;
 
 class Grid
 {
@@ -13,19 +13,16 @@ public:
     ~Grid();
 
     struct grid {
-        std::string date = "nullptr";     // æ—¥æœŸ
-        double unit;     // äº¤æ˜“ä»·æ ¼
-        int i;           // äº¤æ˜“åºå·
-        double sell;     // å–å‡ºä»·æ ¼
-        bool sold = false; // æ–°å¢ï¼šæ˜¯å¦å·²å–å‡º
+        string date = "nullptr";     // ÈÕÆÚ
+        double unit;     // ½»Ò×¼Û¸ñ
+        int i;           // ½»Ò×ĞòºÅ
+        double sell;     // Âô³ö¼Û¸ñ
+        bool sold = false; // ÊÇ·ñÂô³ö±êÖ¾
     };
 
-    void print(grid line); // æ‰“å°ç»“æ„ä½“æˆå‘˜
-    void divide(double unit, int n, double a, std::vector<grid> &rattle, double b); // åˆ†ç½‘æ ¼å‡½æ•°
-    void sell(double price,  double b, std::vector<grid> &buy);        // å–å‡ºå‡½æ•°
-    int getIndex(double price, std::vector<grid> &rattle); // å¾—åˆ°ä»·æ ¼æ‰€åœ¨çš„ç½‘æ ¼
-    void sortBYunit(std::vector<grid> &vec); // ä¹°å–æ—¶å¯¹ç½‘æ ¼è¿›è¡Œæ’åº
-    void sortBYi(std::vector<grid> &vec); //ä¹°å–ç»“æŸåå¯¹ç½‘æ ¼è¿›è¡Œæ’åº
+    void print(grid line); // ´òÓ¡½á¹¹Ìå³ÉÔ±
+    void divide(double unit, int n, double a, std::vector<grid> &rattle, double b); // ·ÖÍø¸ñº¯Êı
+    int getIndex(double price, std::vector<grid> &rattle); // µÃµ½¼Û¸ñËùÔÚµÄÍø¸ñ
+    void sortBYunit(std::vector<grid> &vec); // ÂòÂôÊ±¶ÔÍø¸ñ½øĞĞÅÅĞò
+    void sortBYi(std::vector<grid> &vec); //ÂòÂô½áÊøºó¶ÔÍø¸ñ½øĞĞÅÅĞò
 };
-
-#endif

@@ -26,52 +26,52 @@ inline void back_to_mainmenu()
 
 void AdviceMainpage::show_mainpage()
 {
-    // å…ˆåˆ¤æ–­å‚æ•°æ˜¯å¦è®¾ç½®å®Œå…¨ï¼Œè‹¥æœªå®Œå…¨ï¼Œè·³è½¬åˆ°è®¾ç½®å‚æ•°ç•Œé¢ã€‚
+    // ÏÈÅĞ¶Ï²ÎÊıÊÇ·ñÉèÖÃÍêÈ«£¬ÈôÎ´ÍêÈ«£¬Ìø×ªµ½ÉèÖÃ²ÎÊı½çÃæ¡£
     ifstream fin;
     fin.open("docs/data.txt");
     if (fin.is_open() == false){
-        cout<<"æ‚¨å°šæœªè®¾ç½®åŸºæœ¬å‚æ•°ï¼æ­£åœ¨ä¸ºæ‚¨è·³è½¬ã€‚ã€‚ã€‚\n";
+        cout<<"ÄúÉĞÎ´ÉèÖÃ»ù±¾²ÎÊı£¡ÕıÔÚÎªÄúÌø×ª¡£¡£¡£\n";
         system("pause");
         SetArgument setarg;
         setarg.show_mainpage();
         return;
     }
 
-    ReadTxt readtext("docs\\file.txt"); // ä»æ­¤å¼€å§‹headæ‰æœ‰æ•°æ®ï¼Œèƒ½å¤Ÿè°ƒç”¨ï¼Œè‹¥å‡ºé”™åº”åˆ™åœæ­¢ç¨‹åºï¼ˆå³head==NULLï¼‰
-    readtext.read(head);               // è¯»å–æ•°æ®åˆ°é“¾è¡¨ä¸­
+    ReadTxt readtext("docs/file.txt"); // ´Ó´Ë¿ªÊ¼head²ÅÓĞÊı¾İ£¬ÄÜ¹»µ÷ÓÃ£¬Èô³ö´íÓ¦ÔòÍ£Ö¹³ÌĞò£¨¼´head==NULL£©
+    readtext.read(head);               // ¶ÁÈ¡Êı¾İµ½Á´±íÖĞ
     if (head != NULL) 
     { 
-        cout << "\n\n\t\täº¤æ˜“å»ºè®®å·²ç”Ÿæˆå®Œæ¯•ã€‚";
-        cout << "\n\t\tå›å¤ 1 è·å–â€”â€”â€”â€”â€”â€”\n";
+        cout << "\n\n\t\t½»Ò×½¨ÒéÒÑÉú³ÉÍê±Ï¡£";
+        cout << "\n\t\t»Ø¸´ 1 »ñÈ¡¡ª¡ª¡ª¡ª¡ª¡ª\n";
         int operation;
         cin >> operation;
         if (operation == 1)
         {
-            show(); // æ‰“å°é“¾è¡¨ä¸­çš„æ•°æ®
+            show(); // ´òÓ¡Á´±íÖĞµÄÊı¾İ
         }
         else
         {
-            cout << "æœªçŸ¥çš„å‘½ä»¤ï¼Œç¨‹åºæ­£åœ¨é€€å‡º...";
+            cout << "Î´ÖªµÄÃüÁî£¬³ÌĞòÕıÔÚÍË³ö...";
         }
         back_to_mainmenu();
     }
     else
     {
-        cout << "æœªæ£€æµ‹åˆ°æ‰€éœ€æ–‡ä»¶ã€‚\n";
-        cout << "ç¨‹åºæ­£åœ¨é€€å‡º...\n";
+        cout << "Î´¼ì²âµ½ËùĞèÎÄ¼ş¡£\n";
+        cout << "³ÌĞòÕıÔÚÍË³ö...\n";
         back_to_mainmenu();
     }
 }
 
 void AdviceMainpage::show()
-{ // æµ‹è¯•ï¼Œä¹‹åè¦åœ¨ç®—æ³•ä¹‹åæŠŠæ—¥æœŸã€ä¹°å…¥ã€å–å‡ºæ‰“å°å‡ºæ¥
+{ // ²âÊÔ£¬Ö®ºóÒªÔÚËã·¨Ö®ºó°ÑÈÕÆÚ¡¢ÂòÈë¡¢Âô³ö´òÓ¡³öÀ´
 
-    // cout<<"æµ‹è¯•æ‰“å°file.txtå‰åç»„æ•°æ®ï¼š\n";
+    // cout<<"²âÊÔ´òÓ¡file.txtÇ°Ê®×éÊı¾İ£º\n";
     // Data *temp = head;
-	// // æ‰“å°è¡¨å¤´
+	// // ´òÓ¡±íÍ·
 	// cout << setw(12) << "date" << setw(12) << "High" << setw(12) << "Low" << endl;
 
-	// // éå†é“¾è¡¨å¹¶æ‰“å°æ¯ä¸ªèŠ‚ç‚¹çš„æ•°æ®
+	// // ±éÀúÁ´±í²¢´òÓ¡Ã¿¸ö½ÚµãµÄÊı¾İ
     // int i=0;
 	// while (temp != NULL&&i<10)
 	// {
@@ -80,80 +80,80 @@ void AdviceMainpage::show()
     //     i++;
 	// }
 
-    // cout<<"\n\nâ€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”\n\n";
+    // cout<<"\n\n¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª\n\n";
 
     buyRecorder();
     
 }
 
 void AdviceMainpage::buyRecorder(){
-    int buy_index = 0; // ç”¨æ¥è®°å½•ä¹°å…¥è‚¡ç¥¨çš„å­˜é‡
+    int buy_index = 0; // ÓÃÀ´¼ÇÂ¼ÂòÈë¹ÉÆ±µÄ´æÁ¿
     vector<Grid::grid> buy,rattle,sell;
     Grid grid;
     grid.divide(CENTER,ROWS,GridSize,rattle,YIELD);
 
-    // cout<<"æµ‹è¯•gridï¼š\n";
+    // cout<<"²âÊÔgrid£º\n";
     // for(int i=0;i<rattle.size();i++){
     //     grid.print(rattle[i]);
     // }
-    // cout<<"\n\nâ€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”\n\n";
+    // cout<<"\n\n¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª\n\n";
 
-    double last_low = head->High;  // åˆå§‹åŒ–å‚è€ƒä»·æ ¼ä¸ºç¬¬ä¸€ä¸ªèŠ‚ç‚¹çš„æœ€é«˜ä»·
+    double last_low = head->High;  // ³õÊ¼»¯²Î¿¼¼Û¸ñÎªµÚÒ»¸ö½ÚµãµÄ×î¸ß¼Û
     double last_high = head->High;
     Data *temp = head->next;
-    while(temp!=NULL && sell.size() < 20) {
-        bool should_buy = temp->Low < last_low;  // å½“å‰æœ€ä½ä»·ä½äºå‰ä¸€ä¸ªï¼Œè€ƒè™‘ä¹°å…¥
-        bool should_sell = temp->High > last_high; // å½“å‰æœ€é«˜ä»·é«˜äºå‰ä¸€ä¸ªï¼Œè€ƒè™‘å–å‡º
-        if(should_buy && buy.size() < 20) { 
-            if(grid.getIndex(temp->Low,rattle) < grid.getIndex(last_low,rattle)){ // ç½‘æ ¼æ¡ä»¶
+    while(temp!=NULL) {
+        bool should_buy = temp->Low < last_low;  // µ±Ç°×îµÍ¼ÛµÍÓÚÇ°Ò»¸ö£¬¿¼ÂÇÂòÈë
+        bool should_sell = temp->High > last_high; // µ±Ç°×î¸ß¼Û¸ßÓÚÇ°Ò»¸ö£¬¿¼ÂÇÂô³ö
+        if(should_buy && CUR_ALL > 0) { // µ±µ±Ç°¼Û¸ñµÍÓÚÉÏÒ»¸ö¼Û¸ñÊ±£¬¿¼ÂÇÂòÈë
+            if(grid.getIndex(temp->Low,rattle) < grid.getIndex(last_low,rattle)){ // Íø¸ñÌõ¼ş
                 Grid::grid s;
                 s.date = temp->date;
-                s.unit = temp->Low;  // ä»¥æœ€ä½ä»·ä¹°å…¥
-                ALL-=FUND;     //æ¯æ¬¡ä¹°ç›¸åŒé‡‘é¢FUNDï¼Œæ‰€ä»¥ä¹°ä¸€æ¬¡å°±ä¼šæ‰£é™¤é‚£ä¹ˆå¤šé’±
-                s.i = ++buy_index;  // å¢åŠ ä¹°å…¥è®°å½•
+                s.unit = temp->Low;  // ÒÔ×îµÍ¼ÛÂòÈë
+                CUR_ALL-=FUND;     //Ã¿´ÎÂòÏàÍ¬½ğ¶îFUND£¬ËùÒÔÂòÒ»´Î¾Í»á¿Û³ıÄÇÃ´¶àÇ®
+                s.i = ++buy_index;  // Ôö¼ÓÂòÈë¼ÇÂ¼
                 s.sell = s.unit * (1 + (YIELD / 100.0));
-                buy.push_back(s);  // ä¹°å…¥
-                grid.sortBYunit(buy); //æ’åº
+                buy.push_back(s);  // ÂòÈë
+                grid.sortBYunit(buy); //ÅÅĞò
                 last_low = temp->Low;
             } 
         }
 
-        else if(should_sell) { // å½“å½“å‰ä»·æ ¼é«˜äºä¸Šä¸€ä¸ªä»·æ ¼æ—¶ï¼Œè€ƒè™‘å–å‡º
-            for(auto& b : buy) {  // å¯ä»¥ä¸€å¤©å–å‡ºå¤šå¤©çš„è‚¡
-                if(!b.sold && temp->High >= b.sell) {  // æ·»åŠ å–å‡ºåˆ¤æ–­
+        else if(should_sell) { // µ±µ±Ç°¼Û¸ñ¸ßÓÚÉÏÒ»¸ö¼Û¸ñÊ±£¬¿¼ÂÇÂô³ö
+            for(auto& b : buy) {  // ¿ÉÒÔÒ»ÌìÂô³ö¶àÌìµÄ¹É
+                if(!b.sold && temp->High >= b.sell) {  // Ìí¼ÓÂô³öÅĞ¶Ï
                     Grid::grid s;
                     s.date = temp->date;
-                    s.unit = temp->High;  // ä»¥æœ€é«˜ä»·å–å‡º
-                    s.i = b.i;           // ä¿æŒä¸ä¹°å…¥è®°å½•ç›¸åŒçš„åºå·
-                    s.sell = s.unit * FUND / b.unit;   // å–å‡ºè¯¥æ‰¹æ¬¡è‚¡åå¾—åˆ°çš„é‡‘é¢
-                    ALL+=s.sell;         //å› ä¸ºå–å‡ºäº†ï¼Œæ‰€ä»¥å¾—åˆ°ä¸€ç¬”èµ„é‡‘åŠ åˆ°åœ¨æ‰‹é‡Œçš„èµ„é‡‘ï¼Œå°±æ˜¯æ²¡èŠ±å‡ºå»çš„é’±
-                    s.sold = true;       // æ ‡è®°å·²å–å‡º
-                    sell.push_back(s);   // è®°å½•å–å‡º
-                    b.sold = true;       // æ ‡è®°ä¹°å…¥è®°å½•å·²å–å‡º
+                    s.unit = temp->High;  // ÒÔ×î¸ß¼ÛÂô³ö
+                    s.i = b.i;           // ±£³ÖÓëÂòÈë¼ÇÂ¼ÏàÍ¬µÄĞòºÅ
+                    s.sell = s.unit * FUND / b.unit;   // Âô³ö¸ÃÅú´Î¹ÉºóµÃµ½µÄ½ğ¶î
+                    CUR_ALL+=s.sell;         //ÒòÎªÂô³öÁË£¬ËùÒÔµÃµ½Ò»±Ê×Ê½ğ¼Óµ½ÔÚÊÖÀïµÄ×Ê½ğ£¬¾ÍÊÇÃ»»¨³öÈ¥µÄÇ®
+                    s.sold = true;       // ±ê¼ÇÒÑÂô³ö
+                    sell.push_back(s);   // ¼ÇÂ¼Âô³ö
+                    b.sold = true;       // ±ê¼ÇÂòÈë¼ÇÂ¼ÒÑÂô³ö
                 }
             }
             last_high = temp->High;
         }
 
-        // æ›´æ–°å‚è€ƒä»·æ ¼ä¸ºæœ€æ–°å€¼ï¼ˆæ— è®ºä¹°å–éƒ½æ›´æ–°ï¼‰
+        // ¸üĞÂ²Î¿¼¼Û¸ñÎª×îĞÂÖµ£¨ÎŞÂÛÂòÂô¶¼¸üĞÂ£©
         if(!should_buy) last_low = temp->Low;
         if(!should_sell) last_high = temp->High;
-        temp = temp->next; // éå†
+        temp = temp->next; // ±éÀú
     }
 
     grid.sortBYi(buy);
     grid.sortBYi(sell); 
-    //cout<<"sellçš„sizeï¼š"<<sell.size()<<endl;
-    cout<<"æ‰“å°å‰åæ¡ä¿¡æ¯ï¼š\n";
-    // ä¼˜åŒ–è¡¨å¤´æ ¼å¼
+    //cout<<"sellµÄsize£º"<<sell.size()<<endl;
+    cout<<"´òÓ¡Ç°Ê®ÌõĞÅÏ¢£º\n";
+    // ÓÅ»¯±íÍ·¸ñÊ½
     cout << left 
-         << setw(19) << "ä¹°å…¥æ—¥æœŸ" 
-         << setw(16) << "ä¹°å…¥ç‚¹æ•°" 
-         << setw(19) << "ä¹°å…¥é‡‘é¢"
-         << setw(19) << "å–å‡ºæ—¥æœŸ" 
-         << setw(16) << "å–å‡ºç‚¹æ•°" 
-         << setw(16) << "å–å‡ºé‡‘é¢" 
-         << setw(16) << "æ”¶ç›Š"
+         << setw(15) << "ÂòÈëÈÕÆÚ" 
+         << setw(12) << "ÂòÈëµãÊı" 
+         << setw(15) << "ÂòÈë½ğ¶î"
+         << setw(15) << "Âô³öÈÕÆÚ" 
+         << setw(12) << "Âô³öµãÊı" 
+         << setw(12) << "Âô³ö½ğ¶î" 
+         << setw(12) << "ÊÕÒæ"
          << endl;
 
     for(int i = 0,j = 0; i < buy.size();i++) {
@@ -185,8 +185,12 @@ void AdviceMainpage::buyRecorder(){
         cout<<endl;
         if((i+1)%20==0)
         {
-           cout<<"ç‚¹å‡»å¯æŸ¥çœ‹æ›´å¤šè®°å½•"<<endl;
+           cout<<"µã»÷¿É²é¿´¸ü¶à¼ÇÂ¼"<<endl;
            system("pause");
         }
     }
+    cout<<"\n\n¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª\n\n";
+    cout<<"µ±Ç°×Ê½ğ£º"<<CUR_ALL<<endl;
+    cout<<"Ê£ÓàÎ´Âô³öÅú´Î£º"<<buy.size()-sell.size()<<endl;
+    cout<<"×ÜÊÕÒæÂÊ£º"<<fixed<<setprecision(2)<<(CUR_ALL+FUND*(buy.size()-sell.size())-ALL)/ALL*100<<"%"<<endl;
 }

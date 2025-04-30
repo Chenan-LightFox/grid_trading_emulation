@@ -20,17 +20,17 @@ void SetArgument::show_mainpage()
     {
         HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
         system("cls");
-        cout << "åŸºå‡†ä»·ï¼ˆå…ƒ/è‚¡ï¼‰ï¼š";
+        cout << "»ù×¼¼Û£¨Ôª/¹É£©£º";
         cin >> CENTER;
-        cout << "ç½‘æ ¼å¤§å°ï¼ˆ%ï¼‰ï¼š";
+        cout << "Íø¸ñ´óÐ¡£¨%£©£º";
         cin >> GridSize;
-        cout << "æœŸæœ›æ”¶ç›ŠçŽ‡ï¼ˆ%ï¼‰ï¼š";
+        cout << "ÆÚÍûÊÕÒæÂÊ£¨%£©£º";
         cin >> YIELD;
-        cout << "ä¸€æ¬¡ä¹°å…¥é‡‘é¢ï¼ˆå…ƒï¼‰ï¼š";
+        cout << "Ò»´ÎÂòÈë½ð¶î£¨Ôª£©£º";
         cin >> FUND;
-        cout << "æ¨¡æ‹Ÿè¡Œæ•°ï¼š";
+        cout << "Ä£ÄâÐÐÊý£º";
         cin >> ROWS;
-        cout << "æ‰€æœ‰å‚æ•°å·²æˆåŠŸè®¾ç½®!\n";
+        cout << "ËùÓÐ²ÎÊýÒÑ³É¹¦ÉèÖÃ!\n";
         getDATAfile();
         system("pause");
         profile.show_mainpage();
@@ -39,22 +39,26 @@ void SetArgument::show_mainpage()
     {
         HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
         system("cls");
-        cout << "\n\n\n\t\t\tæ‚¨å·²ç»è®¾ç½®è¿‡å‚æ•°ï¼š\n";
+        cout << "\n\n\n\t\t\tÄúÒÑ¾­ÉèÖÃ¹ý²ÎÊý£º\n";
         show_profile(fin);
         fin.close();
-        cout << "\n\n\t\t\tæ˜¯å¦é‡æ–°è®¾ç½®å‚æ•°ï¼Ÿ";
+        cout << "\n\n\t\t\tÊÇ·ñÖØÐÂÉèÖÃ²ÎÊý£¿";
         SetConsoleTextAttribute(hConsole, FOREGROUND_GREEN);
-        cout << "\n\n\t\t\t[1] æ˜¯";
+        cout << "\n\n\t\t\t[1] ÊÇ";
         SetConsoleTextAttribute(hConsole, FOREGROUND_RED);
-        cout << "\n\n\t\t\t[2] å¦\n";
+        cout << "\n\n\t\t\t[2] ·ñ\n";
         SetConsoleTextAttribute(hConsole, FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE);
         int op;
         cin >> op;
         if (op == 1)
         {
             system("cls");
-            remove(filename.c_str());
-            show_mainpage();
+            if (remove(filename.c_str()) != 0) {
+                std::perror("É¾³ýÊ§°Ü");
+            }
+            else {
+                show_mainpage();
+            }
         }
         else
         {
@@ -66,19 +70,19 @@ void SetArgument::show_mainpage()
 
 void SetArgument::show_profile(istream &fin)
 {
-    cout << "\t\t\tåŸºå‡†ä»·ï¼ˆå…ƒ/è‚¡ï¼‰ï¼š" << CENTER << endl;
-    cout << "\t\t\tç½‘æ ¼å¤§å°ï¼ˆ%ï¼‰ï¼š" << GridSize << endl;
-    cout << "\t\t\tæœŸæœ›æ”¶ç›ŠçŽ‡ï¼ˆ%ï¼‰ï¼š" << YIELD << endl;
-    cout << "\t\t\tä¸€æ¬¡ä¹°å…¥é‡‘é¢ï¼ˆå…ƒï¼‰ï¼š" << FUND << endl;
-    cout << "\t\t\tæ¨¡æ‹Ÿè¡Œæ•°ï¼š" << ROWS << endl;
+    cout << "\t\t\t»ù×¼¼Û£¨Ôª/¹É£©£º" << CENTER << endl;
+    cout << "\t\t\tÍø¸ñ´óÐ¡£¨%£©£º" << GridSize << endl;
+    cout << "\t\t\tÆÚÍûÊÕÒæÂÊ£¨%£©£º" << YIELD << endl;
+    cout << "\t\t\tÒ»´ÎÂòÈë½ð¶î£¨Ôª£©£º" << FUND << endl;
+    cout << "\t\t\tÄ£ÄâÐÐÊý£º" << ROWS << endl;
 }
 
 void SetArgument::getDATAfile()
 {
     ofstream fout;
-    fout.open("docs/data.txt", ios::out); // è‹¥ä¸å­˜åœ¨è¯¥æ–‡ä»¶ï¼Œä¼šè‡ªåŠ¨åˆ›å»º
-    // ios::out,ios::truncå’Œä¸å†™æ„ä¹‰ä¸€æ ·ï¼Œè¦†ç›–å¼ï¼›
-    // ios::app è¿½åŠ å¼
+    fout.open("docs/data.txt", ios::out); // Èô²»´æÔÚ¸ÃÎÄ¼þ£¬»á×Ô¶¯´´½¨
+    // ios::out,ios::truncºÍ²»Ð´ÒâÒåÒ»Ñù£¬¸²¸ÇÊ½£»
+    // ios::app ×·¼ÓÊ½
     if (fout.is_open() != false)
     {
         fout << "CENTER " << CENTER << endl;
@@ -86,10 +90,11 @@ void SetArgument::getDATAfile()
         fout << "YIELD " << YIELD << endl;
         fout << "FUND " << FUND << endl;
         fout << "ROWS " << ROWS << endl;
+        fout << "ALL " << ALL << endl;
     }
     fout.close();
 
-    // æ›´æ–°å…¨å±€å˜é‡
+    // ¸üÐÂÈ«¾Ö±äÁ¿
     ifstream fin("docs/data.txt");
     if (fin)
     {
@@ -99,6 +104,8 @@ void SetArgument::getDATAfile()
         fin >> line >> YIELD;
         fin >> line >> FUND;
         fin >> line >> ROWS;
+        fin >> line >> ALL;
+        CUR_ALL = ALL;
         fin.close();
     }
 }

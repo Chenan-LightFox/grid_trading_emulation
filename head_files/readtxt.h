@@ -1,5 +1,4 @@
-#ifndef READTXT_H
-#define READTXT_H
+#pragma once
 
 #include <iostream>
 #include <fstream>
@@ -8,19 +7,19 @@
 
 struct Data
 {
-	std::string date; // æ—¥æœŸ
-	double Open;	  // å¼€ç›˜ä»·
-	double High;	  // æœ€é«˜ä»·
-	double Low;		  // æœ€ä½ä»·
-	double Close;	  // æ”¶ç›˜ä»·
-	double Change;	  // æ¶¨è·Œé¢
-	double Amplitude; // æ¶¨è·Œå¹…
-	double Volume;	  // æˆäº¤é‡
-	double Turnover;  // æˆäº¤é¢
+	std::string date; // ÈÕÆÚ
+	double Open;	  // ¿ªÅÌ¼Û
+	double High;	  // ×î¸ß¼Û
+	double Low;		  // ×îµÍ¼Û
+	double Close;	  // ÊÕÅÌ¼Û
+	double Change;	  // ÕÇµø¶î
+	double Amplitude; // ÕÇµø·ù
+	double Volume;	  // ³É½»Á¿
+	double Turnover;  // ³É½»¶î
 	Data *next;
 };
 
-extern Data *head; // å®ç°æ—¶é€šè¿‡externå£°æ˜
+extern Data *head; // ÊµÏÖÊ±Í¨¹ıexternÉùÃ÷
 
 class ReadTxt
 {
@@ -32,15 +31,13 @@ public:
 
 private:
 	std::string textname;
-}; // æ²¡æœ‰ä¸»åŠ¨åˆ›å»ºtxtæ–‡ä»¶ï¼Œéœ€è¦ç”¨æˆ·è‡ªå·±åˆ›å»ºå¹¶æ”¾å…¥æ ¹ç›®å½•ï¼Œç„¶åè¾“å…¥æ–‡ä»¶åå³å¯
+}; // Ã»ÓĞÖ÷¶¯´´½¨txtÎÄ¼ş£¬ĞèÒªÓÃ»§×Ô¼º´´½¨²¢·ÅÈë¸ùÄ¿Â¼£¬È»ºóÊäÈëÎÄ¼şÃû¼´¿É
 
-/*ç”¨æ³•
+/*ÓÃ·¨
 int main() {
 	std::string filename = "docs/data.txt";
-	ReadTxt readtext(filename); //ä»æ­¤å¼€å§‹headæ‰æœ‰æ•°æ®ï¼Œèƒ½å¤Ÿè°ƒç”¨ï¼Œè‹¥å‡ºé”™åº”åˆ™åœæ­¢ç¨‹åºï¼ˆå³head==NULLï¼‰
+	ReadTxt readtext(filename); //´Ó´Ë¿ªÊ¼head²ÅÓĞÊı¾İ£¬ÄÜ¹»µ÷ÓÃ£¬Èô³ö´íÓ¦ÔòÍ£Ö¹³ÌĞò£¨¼´head==NULL£©
 	readtext.read(head);
 	readtext.print(head);
 	return 0;
 }*/
-
-#endif

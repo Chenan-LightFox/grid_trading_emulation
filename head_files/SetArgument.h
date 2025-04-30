@@ -1,5 +1,4 @@
-#ifndef SETARG_H
-#define SETARG_H
+#pragma once
 
 #include <iostream>
 #include <fstream>
@@ -17,4 +16,3 @@ public:
     void show_profile(istream &);
 };
 
-#endif

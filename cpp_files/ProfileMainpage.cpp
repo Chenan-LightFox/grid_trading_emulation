@@ -12,13 +12,13 @@ void ProfileMainpage::show_mainpage()
 {
     HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
     system("cls");
-    std::cout << "\n\n\n\n\t\t\täº¤æ˜“åŠ©æ‰‹ - ä¸ªäººä¿¡æ¯";
+    std::cout << "\n\n\n\n\t\t\t½»Ò×ÖúÊÖ - ¸öÈËÐÅÏ¢";
     std::cout << "\n\t\t\t---------------";
-    std::cout << "\n\n\t\t\t[1] è®¾ç½®æ‚¨çš„äº¤æ˜“ä¿¡æ¯";
+    std::cout << "\n\n\t\t\t[1] ÉèÖÃÄúµÄ½»Ò×ÐÅÏ¢";
     SetConsoleTextAttribute(hConsole, FOREGROUND_RED);
-    std::cout << "\n\n\t\t\t[2] åˆ é™¤æ‚¨çš„äº¤æ˜“ä¿¡æ¯";
+    std::cout << "\n\n\t\t\t[2] É¾³ýÄúµÄ½»Ò×ÐÅÏ¢";
     SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE);
-    std::cout << "\n\n\t\t\t[3] å›žåˆ°ä¸»ç•Œé¢\n";
+    std::cout << "\n\n\t\t\t[3] »Øµ½Ö÷½çÃæ\n";
     SetConsoleTextAttribute(hConsole, FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE);
     std::cout << "\n\t\t\t---------------\n";
     profile_get_operation();
@@ -38,11 +38,11 @@ void ProfileMainpage::profile_get_operation()
     case 2:
         if (remove(filename.c_str()) != 0)
         {
-            std::perror("åˆ é™¤å¤±è´¥");
+            std::perror("É¾³ýÊ§°Ü");
         }
         else
         {
-            std::cout << "åˆ é™¤æˆåŠŸï¼" << std::endl;
+            std::cout << "É¾³ý³É¹¦£¡" << std::endl;
         }
         system("pause");
         system("cls");
@@ -54,7 +54,7 @@ void ProfileMainpage::profile_get_operation()
         mainmenu.get_start();
         break;
     default:
-        std::cout << "æœªçŸ¥çš„å‘½ä»¤ï¼Œç¨‹åºæ­£åœ¨é€€å‡º...";
+        std::cout << "Î´ÖªµÄÃüÁî£¬³ÌÐòÕýÔÚÍË³ö...";
         break;
     }
 }

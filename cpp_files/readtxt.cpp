@@ -1,22 +1,22 @@
-ï»¿#include <iostream>
+#include <iostream>
 #include "../head_files/readtxt.h"
 #include <iomanip>
 
-// ææ„å‡½æ•°ï¼Œé‡Šæ”¾èµ„æº
+// Îö¹¹º¯Êı£¬ÊÍ·Å×ÊÔ´
 ReadTxt::~ReadTxt() {};
 
-// ä»æ–‡æœ¬æ–‡ä»¶ä¸­è¯»å–æ•°æ®å¹¶å­˜å‚¨åˆ°é“¾è¡¨ä¸­
+// ´ÓÎÄ±¾ÎÄ¼şÖĞ¶ÁÈ¡Êı¾İ²¢´æ´¢µ½Á´±íÖĞ
 void ReadTxt::read(Data *&m)
 {
 	std::ifstream file;
-	file.open(textname); // æ‰“å¼€æ–‡ä»¶
+	file.open(textname); // ´ò¿ªÎÄ¼ş
 	if (!file.is_open())
 	{
-		std::cout << "Error: file not found" << std::endl; // æ–‡ä»¶æœªæ‰¾åˆ°
+		std::cout << "Error: file not found" << std::endl; // ÎÄ¼şÎ´ÕÒµ½
 	}
 	else
 	{
-		// å®šä¹‰å˜é‡ä»¥å­˜å‚¨æ–‡ä»¶ä¸­çš„æ•°æ®
+		// ¶¨Òå±äÁ¿ÒÔ´æ´¢ÎÄ¼şÖĞµÄÊı¾İ
 		std::string date;
 		std::string t = "abc";
 		std::string t1 = "abc";
@@ -29,20 +29,20 @@ void ReadTxt::read(Data *&m)
 		double Volume;
 		double Turnover;
 
-		// æŒ‰è¡Œè¯»å–æ–‡ä»¶å†…å®¹
+		// °´ĞĞ¶ÁÈ¡ÎÄ¼şÄÚÈİ
 		while (std::getline(file, t))
 		{
-			// è·³è¿‡éæ•°å­—å¼€å¤´çš„è¡Œ
+			// Ìø¹ı·ÇÊı×Ö¿ªÍ·µÄĞĞ
 			if (t[0] > 57 || t[0] < 48)
 			{
 				continue;
 			}
-			// åˆ›å»ºæ–°èŠ‚ç‚¹ä»¥å­˜å‚¨æ•°æ®
+			// ´´½¨ĞÂ½ÚµãÒÔ´æ´¢Êı¾İ
 			Data *temp = new Data;
-			std::istringstream iss(t); // ä½¿ç”¨å­—ç¬¦ä¸²æµè§£ææ•°æ®
+			std::istringstream iss(t); // Ê¹ÓÃ×Ö·û´®Á÷½âÎöÊı¾İ
 			iss >> date >> t1 >> t1 >> t1 >> t1 >> t1 >> t1 >> t1 >> t1 >> Open >> High >> Low >> Close >> Change >> Amplitude >> Volume >> Turnover;
 
-			// å°†è§£æçš„æ•°æ®å­˜å‚¨åˆ°èŠ‚ç‚¹ä¸­
+			// ½«½âÎöµÄÊı¾İ´æ´¢µ½½ÚµãÖĞ
 			temp->date = date;
 			temp->Open = Open;
 			temp->High = High;
@@ -54,7 +54,7 @@ void ReadTxt::read(Data *&m)
 			temp->Turnover = Turnover;
 			temp->next = NULL;
 
-			// å°†èŠ‚ç‚¹æ·»åŠ åˆ°é“¾è¡¨ä¸­
+			// ½«½ÚµãÌí¼Óµ½Á´±íÖĞ
 			
 			if (head == NULL)
 				head = temp;
@@ -73,19 +73,19 @@ void ReadTxt::read(Data *&m)
 	}
 	if (file.is_open())
 	{
-		std::cout << "\n\n\t\tæ–‡ä»¶è¯»å–æˆåŠŸã€‚" << std::endl;
+		std::cout << "\n\n\t\tÎÄ¼ş¶ÁÈ¡³É¹¦¡£" << std::endl;
 	}
-	file.close(); // å…³é—­æ–‡ä»¶
+	file.close(); // ¹Ø±ÕÎÄ¼ş
 }
 
-// æ‰“å°é“¾è¡¨ä¸­çš„æ•°æ®
+// ´òÓ¡Á´±íÖĞµÄÊı¾İ
 void ReadTxt::print(Data *m)
 {
 	Data *temp = m;
-	// æ‰“å°è¡¨å¤´
+	// ´òÓ¡±íÍ·
 	std::cout << std::setw(12) << "date" << std::setw(12) << "Open" << std::setw(12) << "High" << std::setw(12) << "Low" << std::setw(12) << "Close" << std::setw(12) << "Change" << std::setw(12) << "Amplitude" << std::setw(12) << "Volume" << std::setw(12) << "Turnover" << std::endl;
 
-	// éå†é“¾è¡¨å¹¶æ‰“å°æ¯ä¸ªèŠ‚ç‚¹çš„æ•°æ®
+	// ±éÀúÁ´±í²¢´òÓ¡Ã¿¸ö½ÚµãµÄÊı¾İ
 	while (temp != NULL)
 	{
 		std::cout << std::setw(12) << temp->date << std::setw(12) << temp->Open << std::setw(12) << temp->High << std::setw(12) << temp->Low << std::setw(12) << temp->Close << std::setw(12) << temp->Change << std::setw(12) << temp->Amplitude << std::setw(12) << temp->Volume << std::setw(12) << temp->Turnover << std::endl;

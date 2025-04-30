@@ -11,14 +11,14 @@ MainMenu::~MainMenu() {}
 void MainMenu::show()
 {
     HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
-    std::cout << "\n\n\n\n\t\t\tæ¬¢è¿Žä½¿ç”¨è‚¡ç¥¨äº¤æ˜“åŠ©æ‰‹ï¼";
+    std::cout << "\n\n\n\n\t\t\t»¶Ó­Ê¹ÓÃ¹ÉÆ±½»Ò×ÖúÊÖ£¡";
     std::cout << "\n\t\t\t----------------------------------";
     SetConsoleTextAttribute(hConsole, FOREGROUND_GREEN);
-    std::cout << "\n\n\t\t\t[1] èŽ·å¾—äº¤æ˜“å»ºè®®";
+    std::cout << "\n\n\t\t\t[1] »ñµÃ½»Ò×½¨Òé";
     SetConsoleTextAttribute(hConsole, FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE);
-    std::cout << "\n\n\t\t\t[2] è®¾ç½®ä¸ªäººä¿¡æ¯";
+    std::cout << "\n\n\t\t\t[2] ÉèÖÃ¸öÈËÐÅÏ¢";
     SetConsoleTextAttribute(hConsole, FOREGROUND_RED);
-    std::cout << "\n\n\t\t\t[3] é€€å‡º\n";
+    std::cout << "\n\n\t\t\t[3] ÍË³ö\n";
     SetConsoleTextAttribute(hConsole, FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE);
 }
 
@@ -37,10 +37,10 @@ void MainMenu::get_start()
         profile.show_mainpage();
         break;
     case 3:
-        std::cout << "ç¨‹åºæ­£åœ¨é€€å‡º...";
+        std::cout << "³ÌÐòÕýÔÚÍË³ö...";
         break;
     default:
-        std::cout << "æœªçŸ¥çš„å‘½ä»¤ï¼Œç¨‹åºæ­£åœ¨é€€å‡º...";
+        std::cout << "Î´ÖªµÄÃüÁî£¬³ÌÐòÕýÔÚÍË³ö...";
         break;
     }
 }

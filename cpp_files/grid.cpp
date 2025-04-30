@@ -6,22 +6,22 @@ using namespace std;
 Grid::Grid() {};
 Grid::~Grid() {};
 
-void Grid::print(grid line) { // æ‰“å°ç½‘æ ¼ä¿¡æ¯
-	cout << "å•ä½ä»·ï¼š" << line.unit << endl;
-	cout << "æ ‡å·ï¼š" << line.i << endl;
-	cout << "å–å‡ºä»·ï¼š" << line.sell << endl;
+void Grid::print(grid line) { // ´òÓ¡Íø¸ñĞÅÏ¢
+	cout << "µ¥Î»¼Û£º" << line.unit << endl;
+	cout << "±êºÅ£º" << line.i << endl;
+	cout << "Âô³ö¼Û£º" << line.sell << endl;
 }
 
 void Grid::divide(double unit, int n, double a, vector<grid> &rattle, double b)
-// ä½œä¸ºåˆ†ç½‘æ ¼çš„å‡½æ•°,unitç¡®å®šä¸­çº¿ä»·æ ¼,nç¡®å®šæ€»å…±è®¾ç½®çš„è¡Œæ•°,é»˜è®¤ç”¨æˆ·ç»™çš„næ˜¯å¶æ•°,ä¸ç„¶ä¸Šä¸‹ä¸å¹³,aæ˜¯ç½‘æ ¼çš„ç™¾åˆ†æ¯”ï¼Œbæ˜¯å–å‡ºä»·æ ¼çš„ç™¾åˆ†æ¯”
+// ×÷Îª·ÖÍø¸ñµÄº¯Êı,unitÈ·¶¨ÖĞÏß¼Û¸ñ,nÈ·¶¨×Ü¹²ÉèÖÃµÄĞĞÊı,Ä¬ÈÏÓÃ»§¸øµÄnÊÇÅ¼Êı,²»È»ÉÏÏÂ²»Æ½,aÊÇÍø¸ñµÄ°Ù·Ö±È£¬bÊÇÂô³ö¼Û¸ñµÄ°Ù·Ö±È
 {
-	// åˆ›å»ºä¸€ä¸ªèƒ½å¤Ÿå­˜å‚¨å¤šä¸ªç»“æ„ä½“çš„åŠ¨æ€æ•°ç»„,æ•°ç»„ä¼ åœ¨ä¸Šé¢ä¸ç„¶åªèƒ½å‡½æ•°å®šä¹‰åŸŸ
+	// ´´½¨Ò»¸öÄÜ¹»´æ´¢¶à¸ö½á¹¹ÌåµÄ¶¯Ì¬Êı×é,Êı×é´«ÔÚÉÏÃæ²»È»Ö»ÄÜº¯Êı¶¨ÒåÓò
 	grid rattle0;
 	rattle0.unit = unit;
 	rattle0.i = 0;
 	rattle0.sell = rattle0.unit * (1 + (b / 100.0));
 	rattle.push_back(rattle0);
-	for (int i = 1; i <= n / 2; i++) // å‘ä¸Šè®¾ç½®ç½‘æ ¼
+	for (int i = 1; i <= n / 2; i++) // ÏòÉÏÉèÖÃÍø¸ñ
 	{
 		grid p;
 		p.i = i;
@@ -29,50 +29,13 @@ void Grid::divide(double unit, int n, double a, vector<grid> &rattle, double b)
 		p.sell = p.unit * (1 + b / 100.0);
 		rattle.push_back(p);
 	}
-	for (int i = 1; i <= n / 2; i++) // å‘ä¸‹è®¾ç½®ç½‘æ ¼
+	for (int i = 1; i <= n / 2; i++) // ÏòÏÂÉèÖÃÍø¸ñ
 	{
 		grid p;
 		p.i = -i;
 		p.unit = unit * (1 - i * (a / 100.0));
 		p.sell = p.unit * (1 + b / 100.0);
-		rattle.insert(rattle.begin(), p); // ä¸€ç›´åœ¨æ•°ç»„çš„æœ€å‰é¢æ’å…¥ç»“æ„ä½“ä¿¡æ¯
-	}
-}
-
-void Grid::sell(double price,double b, vector<grid> &buy) // ç”¨æ¥åˆ¤æ–­å“ªç»„éœ€è¦å–å‡º
-{
-	int c = 0;
-	int size = sizeof(buy) / sizeof(grid);
-	for (int i = 0;i<size; i++) // æ‰¾å‡ºç›®å‰ä»·æ ¼ä¼šåœ¨å“ªä¸ªç½‘æ ¼ä¹‹ä¸‹ç½‘æ ¼ï¼Œç„¶ååœ¨è¿™ä¹‹ä¸‹æ‰¾
-	{
-		if (buy[i].sell >= price)
-		{
-			c = i-1;
-			break;
-		}
-	}
-
-	for (int i = 0; i <= c; i++)
-	{
-		if (price >= buy[i].sell)
-		{
-			buy.erase(buy.begin() + i); // å½“å®æ—¶ä»·æ ¼è¶…è¿‡å­˜å‚¨çš„æ‰¹æ¬¡æ‰€å¯¹åº”çš„ç½‘æ ¼çš„ç›®æ ‡é‡‘é¢åˆ™åˆ é™¤è¯¥æ‰¹æ¬¡ï¼Œè®¤ä¸ºå·²å–å‡º
-		}
-	}
-
-    for(int i=c+1;i<size;i++)//å‰é¢çš„åˆ é™¤åï¼Œåé¢çš„ä¼šè¡¥åˆ°å‰é¢å»ï¼Œè¡¥å®Œä¹‹åè¿™äº›å˜ä¸ºç©ºç™½ä½ç½®
-	{
-		grid reset;
-      	grid tem=buy[i];
-	 	 buy[i]=reset;
-	 	 buy[i-c+1]=tem;
-	}
-	for(int i=0;i<size;i++)//åœ¨å¾€å‰è¡¥äº†ä¹‹åæŠŠç©ºç™½ä½ç½®åˆ é™¤æ‰
-	{
-		if(buy[i].sell=0.0)
-		{
-			buy.erase(buy.begin()+i);
-		}
+		rattle.insert(rattle.begin(), p); // Ò»Ö±ÔÚÊı×éµÄ×îÇ°Ãæ²åÈë½á¹¹ÌåĞÅÏ¢
 	}
 }
 
@@ -91,7 +54,7 @@ int Grid::getIndex(double price, std::vector<grid> &rattle) {
 	return INT_MIN;
 }
 
-// å®ç°æ’åºæ–¹æ³•ï¼ˆç¤ºä¾‹æŒ‰unitå‡åºæ’åˆ—ï¼‰
+// ÊµÏÖÅÅĞò·½·¨£¨Ê¾Àı°´unitÉıĞòÅÅÁĞ£¬·½±ãÂòÂô£©
 void Grid::sortBYunit(std::vector<grid>& vec) {
     std::sort(vec.begin(), vec.end(), 
         [](const grid& a, const grid& b) {
@@ -99,6 +62,7 @@ void Grid::sortBYunit(std::vector<grid>& vec) {
         });
 }
 
+// ÊµÏÖÅÅĞò·½·¨£¨Ê¾Àı°´iÉıĞòÅÅÁĞ£¬×îºó´òÓ¡£©
 void Grid::sortBYi(std::vector<grid>& vec) {
     std::sort(vec.begin(), vec.end(),
         [](const grid& a, const grid& b) {

@@ -1,6 +1,4 @@
-#ifndef ADVMAIN_H
-#define ADVMAIN_H
-
+#pragma once
 class AdviceMainpage
 {
 public:
@@ -8,8 +6,6 @@ public:
     ~AdviceMainpage();
 
     void show_mainpage();
-    void show(); // 鎵撳嵃鏈�缁堟柟妗堬紝鐩墠鐢ㄤ簬娴嬭瘯
-    void buyRecorder(); // 涔板叆璁板綍
+    void show(); // 打印最终方案，目前用于测试
+    void buyRecorder(); // 买入记录
 };
-
-#endif

@@ -1,10 +1,9 @@
-#ifndef GLOBALVARIABLES_H
-#define GLOBALVARIABLES_H
+#pragma once
 
-extern double CENTER; // ä¸­çº¿
-extern double GridSize;      // ç½‘æ ¼çš„ç™¾åˆ†æ¯”
-extern double YIELD;      // æœŸæœ›æ”¶ç›ŠçŽ‡
-extern double FUND;      // ä¹°å…¥ä»·æ ¼
-extern double ROWS;      // ç½‘æ ¼çš„è¡Œæ•°
-extern double ALL;      //æ‹¥æœ‰çš„æ€»èµ„é‡‘
-#endif
+extern double CENTER; // ÖÐÏß
+extern double GridSize;      // Íø¸ñµÄ°Ù·Ö±È
+extern double YIELD;      // ÆÚÍûÊÕÒæÂÊ
+extern double FUND;      // ÂòÈë¼Û¸ñ
+extern double ROWS;      // Íø¸ñµÄÐÐÊý
+extern double ALL;      //ÓµÓÐµÄ×Ü×Ê½ð
+extern double CUR_ALL;
