@@ -104,8 +104,9 @@ void AdviceMainpage::buyRecorder(){
     while(temp!=NULL) {
         bool should_buy = temp->Low < last_low;  // 当前最低价低于前一个，考虑买入
         bool should_sell = temp->High > last_high; // 当前最高价高于前一个，考虑卖出
-        if(should_buy && CUR_ALL > 0) { // 当当前价格低于上一个价格时，考虑买入
-            if(grid.getIndex(temp->Low,rattle) < grid.getIndex(last_low,rattle)){ // 网格条件
+        if(should_buy && CUR_ALL > FUND) { // 当当前价格低于上一个价格时，考虑买入
+            if(grid.getIndex(temp->Low,rattle) < grid.getIndex(last_low,rattle) && 
+                last_low - temp->Low >=FUND/100.0*GridSize){ // 网格条件
                 Grid::grid s;
                 s.date = temp->date;
                 s.unit = temp->Low;  // 以最低价买入
@@ -136,7 +137,7 @@ void AdviceMainpage::buyRecorder(){
         }
 
         // 更新参考价格为最新值（无论买卖都更新）
-        if(!should_buy) last_low = temp->Low;
+        if(!should_buy) last_low = temp->High;
         if(!should_sell) last_high = temp->High;
         temp = temp->next; // 遍历
     }
@@ -192,5 +193,6 @@ void AdviceMainpage::buyRecorder(){
     cout<<"\n\n——————————————————————\n\n";
     cout<<"当前资金："<<CUR_ALL<<endl;
     cout<<"剩余未卖出批次："<<buy.size()-sell.size()<<endl;
-    cout<<"总收益率："<<fixed<<setprecision(2)<<(CUR_ALL+FUND*(buy.size()-sell.size())-ALL)/ALL*100<<"%"<<endl;
+    cout<<"总收益："<<CUR_ALL+FUND*(buy.size()-sell.size())-ALL<<endl;
+    // cout<<"总收益率："<<fixed<<setprecision(2)<<(CUR_ALL+FUND*(buy.size()-sell.size())-ALL)/ALL*100<<"%"<<endl;
 }

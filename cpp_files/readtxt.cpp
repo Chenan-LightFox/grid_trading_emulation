@@ -73,7 +73,7 @@ void ReadTxt::read(Data *&m)
 	}
 	if (file.is_open())
 	{
-		std::cout << "\n\n\t\t文件读取成功。" << std::endl;
+		// std::cout << "\n\n\t\t文件读取成功。" << std::endl;
 	}
 	file.close(); // 关闭文件
 }

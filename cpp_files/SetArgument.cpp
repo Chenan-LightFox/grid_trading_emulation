@@ -20,6 +20,7 @@ void SetArgument::show_mainpage()
     {
         HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
         system("cls");
+        cout<<"\t\t\t请设置您的交易信息：\n";
         cout << "基准价（元/股）：";
         cin >> CENTER;
         cout << "网格大小（%）：";
