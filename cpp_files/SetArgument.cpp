@@ -31,6 +31,8 @@ void SetArgument::show_mainpage()
         cin >> FUND;
         cout << "模拟行数：";
         cin >> ROWS;
+        cout<<"总资金：";
+        cin>>ALL;
         cout << "所有参数已成功设置!\n";
         getDATAfile();
         system("pause");
@@ -76,6 +78,7 @@ void SetArgument::show_profile(istream &fin)
     cout << "\t\t\t期望收益率（%）：" << YIELD << endl;
     cout << "\t\t\t一次买入金额（元）：" << FUND << endl;
     cout << "\t\t\t模拟行数：" << ROWS << endl;
+    cout << "\t\t\t总资金：" << ALL << endl;
 }
 
 void SetArgument::getDATAfile()
