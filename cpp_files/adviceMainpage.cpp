@@ -41,7 +41,7 @@ void AdviceMainpage::show_mainpage()
     readtext.read(head);               // 读取数据到链表中
     if (head != NULL) 
     { 
-        cout << "\n\n\t\t交易建议已生成完毕。";
+        cout << "\n\t\t交易建议已生成完毕。";
         cout << "\n\t\t回复 1 获取——————\n";
         int operation;
         cin >> operation;
@@ -63,40 +63,11 @@ void AdviceMainpage::show_mainpage()
     }
 }
 
-void AdviceMainpage::show()
-{ // 测试，之后要在算法之后把日期、买入、卖出打印出来
-
-    // cout<<"测试打印file.txt前十组数据：\n";
-    // Data *temp = head;
-	// // 打印表头
-	// cout << setw(12) << "date" << setw(12) << "High" << setw(12) << "Low" << endl;
-
-	// // 遍历链表并打印每个节点的数据
-    // int i=0;
-	// while (temp != NULL&&i<10)
-	// {
-	// 	cout << setw(12) << temp->date << setw(12) << temp->High << setw(12) << temp->Low << endl;
-	// 	temp = temp->next;
-    //     i++;
-	// }
-
-    // cout<<"\n\n——————————————————————\n\n";
-
-    buyRecorder();
-    
-}
-
-void AdviceMainpage::buyRecorder(){
+void AdviceMainpage::show(){
     int buy_index = 0; // 用来记录买入股票的存量
     vector<Grid::grid> buy,rattle,sell;
     Grid grid;
     grid.divide(CENTER,ROWS,GridSize,rattle,YIELD);
-
-    // cout<<"测试grid：\n";
-    // for(int i=0;i<rattle.size();i++){
-    //     grid.print(rattle[i]);
-    // }
-    // cout<<"\n\n——————————————————————\n\n";
 
     double last_low = head->High;  // 初始化参考价格为第一个节点的最高价
     double last_high = head->High;
@@ -145,7 +116,6 @@ void AdviceMainpage::buyRecorder(){
     grid.sortBYi(buy);
     grid.sortBYi(sell); 
     //cout<<"sell的size："<<sell.size()<<endl;
-    cout<<"打印前十条信息：\n";
     // 优化表头格式
     cout << left 
          << setw(15) << "买入日期" 

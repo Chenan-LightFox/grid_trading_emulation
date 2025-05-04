@@ -12,7 +12,7 @@ void MainMenu::show()
 {
     HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
     std::cout << "\n\n\n\n\t\t\t欢迎使用股票交易助手！";
-    std::cout << "\n\t\t\t----------------------------------";
+    std::cout << "\n\t\t\t------------------------------";
     SetConsoleTextAttribute(hConsole, FOREGROUND_GREEN);
     std::cout << "\n\n\t\t\t[1] 获得交易建议";
     SetConsoleTextAttribute(hConsole, FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE);
@@ -20,6 +20,7 @@ void MainMenu::show()
     SetConsoleTextAttribute(hConsole, FOREGROUND_RED);
     std::cout << "\n\n\t\t\t[3] 退出\n";
     SetConsoleTextAttribute(hConsole, FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE);
+    std::cout << "\n\t\t\t------------------------------\n";
 }
 
 void MainMenu::get_start()
