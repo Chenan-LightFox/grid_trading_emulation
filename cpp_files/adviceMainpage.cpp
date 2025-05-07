@@ -37,10 +37,7 @@ void AdviceMainpage::show_mainpage()
         return;
     }
 
-    cout<<"请输入您需要测试的指数文件名（包含后缀名，需在docs目录下）：\n";
-    string filename;
-    cin >> filename;
-    ReadTxt readtext("docs/"+filename); // 从此开始head才有数据，能够调用，若出错应则停止程序（即head==NULL）
+    ReadTxt readtext("docs/file.txt"); // 从此开始head才有数据，能够调用，若出错应则停止程序（即head==NULL）
     readtext.read(head);               // 读取数据到链表中
     if (head != NULL) 
     { 

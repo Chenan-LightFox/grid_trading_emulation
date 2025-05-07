@@ -60,7 +60,7 @@ int main() // main function
     }
     ifstream exitFile("docs/file.txt");
     if(exitFile.is_open()==false){
-        cout<<"找不到测试文件！请将测试文件（TXT）传入到docs文件夹下！\n";
+        cout<<"找不到测试文件！\n请将测试文件（命名为file.txt）传入到docs文件夹下！\n";
         system("pause");
         return 1;
     }
