@@ -1,6 +1,7 @@
 #include <iostream>
 #include "../head_files/readtxt.h"
 #include <iomanip>
+using namespace std;
 
 // 析构函数，释放资源
 ReadTxt::~ReadTxt() {};
@@ -8,18 +9,18 @@ ReadTxt::~ReadTxt() {};
 // 从文本文件中读取数据并存储到链表中
 void ReadTxt::read(Data *&m)
 {
-	std::ifstream file;
+	ifstream file;
 	file.open(textname); // 打开文件
 	if (!file.is_open())
 	{
-		std::cout << "Error: file not found" << std::endl; // 文件未找到
+		return;
 	}
 	else
 	{
 		// 定义变量以存储文件中的数据
-		std::string date;
-		std::string t = "abc";
-		std::string t1 = "abc";
+		string date;
+		string t = "abc";
+		string t1 = "abc";
 		double Open;
 		double High;
 		double Low;
@@ -30,7 +31,7 @@ void ReadTxt::read(Data *&m)
 		double Turnover;
 
 		// 按行读取文件内容
-		while (std::getline(file, t))
+		while (getline(file, t))
 		{
 			// 跳过非数字开头的行
 			if (t[0] > 57 || t[0] < 48)
@@ -39,7 +40,7 @@ void ReadTxt::read(Data *&m)
 			}
 			// 创建新节点以存储数据
 			Data *temp = new Data;
-			std::istringstream iss(t); // 使用字符串流解析数据
+			istringstream iss(t); // 使用字符串流解析数据
 			iss >> date >> t1 >> t1 >> t1 >> t1 >> t1 >> t1 >> t1 >> t1 >> Open >> High >> Low >> Close >> Change >> Amplitude >> Volume >> Turnover;
 
 			// 将解析的数据存储到节点中
@@ -73,7 +74,7 @@ void ReadTxt::read(Data *&m)
 	}
 	if (file.is_open())
 	{
-		// std::cout << "\n\n\t\t文件读取成功。" << std::endl;
+		// cout << "\n\n\t\t文件读取成功。" << endl;
 	}
 	file.close(); // 关闭文件
 }
@@ -83,12 +84,12 @@ void ReadTxt::print(Data *m)
 {
 	Data *temp = m;
 	// 打印表头
-	std::cout << std::setw(12) << "date" << std::setw(12) << "Open" << std::setw(12) << "High" << std::setw(12) << "Low" << std::setw(12) << "Close" << std::setw(12) << "Change" << std::setw(12) << "Amplitude" << std::setw(12) << "Volume" << std::setw(12) << "Turnover" << std::endl;
+	cout << setw(12) << "date" << setw(12) << "Open" << setw(12) << "High" << setw(12) << "Low" << setw(12) << "Close" << setw(12) << "Change" << setw(12) << "Amplitude" << setw(12) << "Volume" << setw(12) << "Turnover" << endl;
 
 	// 遍历链表并打印每个节点的数据
 	while (temp != NULL)
 	{
-		std::cout << std::setw(12) << temp->date << std::setw(12) << temp->Open << std::setw(12) << temp->High << std::setw(12) << temp->Low << std::setw(12) << temp->Close << std::setw(12) << temp->Change << std::setw(12) << temp->Amplitude << std::setw(12) << temp->Volume << std::setw(12) << temp->Turnover << std::endl;
+		cout << setw(12) << temp->date << setw(12) << temp->Open << setw(12) << temp->High << setw(12) << temp->Low << setw(12) << temp->Close << setw(12) << temp->Change << setw(12) << temp->Amplitude << setw(12) << temp->Volume << setw(12) << temp->Turnover << endl;
 		temp = temp->next;
 	}
 }

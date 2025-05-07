@@ -56,15 +56,9 @@ int main() // main function
     if (system("cd docs") == 1) { // 检查docs文件夹是否存在
         system("mkdir docs"); // 创建docs文件夹
         cout << "docs文件夹不存在，已为您创建！\n";
+        system("pause");
     }
     else system("cd ../");
-    ifstream exitFile("docs/file.txt");
-    if(exitFile.is_open()==false){
-        cout<<"找不到测试文件！\n请将测试文件（命名为file.txt）传入到docs文件夹下！\n";
-        system("pause");
-        return 1;
-    }
-    else exitFile.close();
     loadFromFile();
     system("cls");
     if(ALL==0){

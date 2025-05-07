@@ -26,7 +26,14 @@ inline void back_to_mainmenu()
 
 void AdviceMainpage::show_mainpage()
 {
-    // 先判断参数是否设置完全，若未完全，跳转到设置参数界面。
+    // 判断是否存在测试文件
+    ifstream exitFile("docs/file.txt");
+    if(exitFile.is_open()==false){
+        cout<<"找不到测试文件！\n请将测试文件（命名为file.txt）传入到docs文件夹下！\n";
+        return;
+    }
+    else exitFile.close();
+    // 判断参数是否设置完全，若未完全，跳转到设置参数界面。
     ifstream fin;
     fin.open("docs/data.txt");
     if (fin.is_open() == false){
@@ -36,7 +43,6 @@ void AdviceMainpage::show_mainpage()
         setarg.show_mainpage();
         return;
     }
-
     ReadTxt readtext("docs/file.txt"); // 从此开始head才有数据，能够调用，若出错应则停止程序（即head==NULL）
     readtext.read(head);               // 读取数据到链表中
     if (head != NULL) 
