@@ -61,12 +61,6 @@ int main() // main function
     else system("cd ../");
     loadFromFile();
     system("cls");
-    if(ALL==0){
-        cout<<"\t\t\t请设置总资金：";
-        cin>>ALL;
-        ofstream fout("docs/data.txt",ios::app);
-        fout<<"ALL "<<ALL<<endl;
-    }
     MainMenu mainmenu;
     mainmenu.show();
     mainmenu.get_start();
