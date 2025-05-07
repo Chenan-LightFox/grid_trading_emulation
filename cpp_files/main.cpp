@@ -53,6 +53,18 @@ void loadFromFile() //每次程序启动时，从文件中读取数据
 
 int main() // main function
 {  
+    if(system("dir docs") == 1) { // 检查docs文件夹是否存在
+        system("cls");
+        system("mkdir docs"); // 创建docs文件夹
+        cout<<"docs文件夹不存在，已为您创建！\n";
+    }
+    ifstream exitFile("docs/file.txt");
+    if(exitFile.is_open()==false){
+        cout<<"找不到测试文件！请将测试文件（TXT）传入到docs文件夹下！\n";
+        system("pause");
+        return 1;
+    }
+    else exitFile.close();
     loadFromFile();
     system("cls");
     if(ALL==0){
