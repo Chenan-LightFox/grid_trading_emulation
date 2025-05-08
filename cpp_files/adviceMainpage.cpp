@@ -43,6 +43,7 @@ void AdviceMainpage::show_mainpage()
         setarg.show_mainpage();
         return;
     }
+    else fin.close();
     ReadTxt readtext("docs/file.txt"); // 从此开始head才有数据，能够调用，若出错应则停止程序（即head==NULL）
     readtext.read(head);               // 读取数据到链表中
     if (head != NULL) 
