@@ -1,12 +1,10 @@
+﻿################################################################################
+# 此 .gitignore 文件已由 Microsoft(R) Visual Studio 自动创建。
+################################################################################
 
-/.vscode
-/.vscode
-*.exe
-/.vscode
 /.vs
-/grid_tra.624BDE6E/x64
-/x64
 /grid_trading_emulation.sln
 /grid_trading_emulation.vcxproj
 /grid_trading_emulation.vcxproj.filters
 /grid_trading_emulation.vcxproj.user
+/x64
