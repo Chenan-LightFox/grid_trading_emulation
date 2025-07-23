@@ -2,17 +2,17 @@
 #include "../head_files/GridCalculating.h"
 #include "../head_files/PrintLine.h"
 
-// ÊäÈë³õÊ¼Íø¸ñ²ÎÊý
+// ï¿½ï¿½ï¿½ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 void Grid::grid_params_input() {
-	print_line("\t\tÇëÊäÈë²ÎÊý£º");
-	print_line("\t\t\t²¶×½²¨¶¯´óÐ¡\t£º", cyan);
+	print_line("\t\tï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
+	print_line("\t\t\tï¿½ï¿½×½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð¡\tï¿½ï¿½", cyan);
 	std::cin >> gridSize;
-	print_line("\t\t\tÒ»ÐÐµÄÊÕÒæÂÊ\t£º", cyan);
+	print_line("\t\t\tÒ»ï¿½Ðµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½\tï¿½ï¿½", cyan);
 	std::cin >> profitRate;
-	print_line("\t\t\tÊ×ÐÐÂòÈë´¥·¢¼Û\t£º", cyan);
+	print_line("\t\t\tï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ë´¥ï¿½ï¿½ï¿½ï¿½\tï¿½ï¿½", cyan);
 	std::cin >> firstBuyInPrice;
-	print_line("\t\t\tÄ£ÐÍÐÐÊý\t\t£º", cyan);
+	print_line("\t\t\tÄ£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½\t\tï¿½ï¿½", cyan);
 	std::cin >> gridLine;
-	print_line("\t\t\tÂòÈë½ð¶î\t\t£º", cyan);
+	print_line("\t\t\tï¿½ï¿½ï¿½ï¿½ï¿½ï¿½\t\tï¿½ï¿½", cyan);
 	std::cin >> buyInAmounts;
 }

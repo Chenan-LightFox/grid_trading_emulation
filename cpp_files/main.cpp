@@ -1,9 +1,20 @@
 #include <iostream>
-#include "../head_files/PrintLine.h"
+#include "PrintLine.h"
+using namespace std;
 
-int main() {
-	print_line("»¶Ó­Ê¹ÓÃÍø¸ñ½»Ò×ÖúÊÖ");
+void MainMenu()
+{
+    cout << "\n\n\n\n\t\t\tï¿½ï¿½Ó­Ê¹ï¿½Ã¹ï¿½Æ±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö£ï¿½";
+    cout << "\n\t\t\t------------------------------";
+    print_line("\n\n\t\t\t[1] ï¿½ï¿½Ã½ï¿½ï¿½×½ï¿½ï¿½ï¿½", green);
+    print_line("\n\t\t\t[2] ï¿½ï¿½ï¿½Ã¸ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢", white);
+    print_line("\n\t\t\t[3] ï¿½Ë³ï¿½", red);
+    cout << "\n\t\t\t------------------------------\n";
+}
 
+int main()
+{
+    MainMenu();
 
-	return 0;
+    return 0;
 }
