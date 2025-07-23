@@ -6,7 +6,7 @@
 enum textColor {black, blue, green, cyan, red, purple, yellow, white};
 
 //The default value of color is 7(white)
-inline void print_line(std::string s, textColor color) {
+inline void print_line(std::string s, textColor color = white) {
 	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), color);
 	std::cout << s << std::endl;
 	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), white);
