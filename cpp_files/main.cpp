@@ -3,7 +3,7 @@
 
 int main()
 {
-    MainMenu();
+    MainMenu(0);
 
     return 0;
 }

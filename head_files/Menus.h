@@ -3,13 +3,20 @@
 #include <conio.h>
 using namespace std;
 
-void MainMenu()
+void MainMenu(int chooseOn)
 {
     print_line("\n\n\n\n\t\t\t欢迎使用网格交易助手！"
         "\n\t\t\t------------------------------");
-    print_line("\n\n\t\t\t[1] 获取交易策略", green);
-    print_line("\n\t\t\t[2] 设置交易参数");
-    print_line("\n\t\t\t[3] 退出", red);
+    if(chooseOn == 1) print_line("\n\n\t\t\t[1] 获取交易策略", black, white);
+    else print_line("\n\n\t\t\t[1] 获取交易策略", green);
+    if (chooseOn == 2) print_line("\n\t\t\t[2] 设置交易参数", black, white);
+    else print_line("\n\t\t\t[2] 设置交易参数", blue);
+    if (chooseOn == 3) {
+        print_line("\n\t\t\t[3] 退出", black, white);
+        print_line("\n\t\t\t------------------------------\n");
+        exit(0);
+    }
+    else print_line("\n\t\t\t[3] 退出", red);
     print_line("\n\t\t\t------------------------------\n");
     char key;
     while (true) {
@@ -19,14 +26,20 @@ void MainMenu()
             key = _getch();
             switch (key) {
             case '1':
-                print_line("\n\t\t\t获取交易策略", green);
+                system("cls");
+                MainMenu(1);
+                Sleep(1000);
+                // TODO: Add func there
                 break;
             case '2':
-                print_line("\n\t\t\t设置交易参数", green);
+                system("cls");
+                MainMenu(2);
+                Sleep(1000);
+                // TODO: Add func there
                 break;
             case '3':
-                print_line("\n\t\t\t退出程序", red);
-                exit(0);
+                system("cls");
+                MainMenu(3);
             }
         }
     }
