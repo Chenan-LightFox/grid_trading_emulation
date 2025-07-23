@@ -5,7 +5,7 @@
 // 输入初始网格参数
 void Grid::grid_params_input() {
 	print_line("\t\t请输入参数：", white);
-	print_line("\t\t\t捕捉波动大小\t：",cyan);
+	print_line("\t\t\t捕捉波动大小\t：", cyan);
 	std::cin >> gridSize;
 	print_line("\t\t\t一行的收益率\t：", cyan);
 	std::cin >> profitRate;
