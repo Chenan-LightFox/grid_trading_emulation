@@ -61,9 +61,41 @@ void main_menu_display(int chooseOn)
 
 void param_menu_display() {
     Grid grid;
-    print_line("\n\n\n\n\t\t\t网格交易参数设置"
+    print_line("\n\n\n\n\t\t\t交易助手 - 个人信息"
 		"\n\t\t\t------------------------------");
-
+    print_line("\n\n\t\t\t[1] 设置您的交易信息",green);
+    print_line("\n\n\t\t\t[2] 删除您的交易信息",red);
+    print_line("\n\n\t\t\t[3] 回到主界面\n",blue);
+    print_line("\n\t\t\t---------------\n");
+    char key;
+    while (true) {
+        if (_kbhit()) {
+            key = _getch();
+            switch (key) {
+            case '1':
+                system("cls");
+                Sleep(200);
+                Grid grid;
+                grid.grid_params_input();
+                grid.grid_params_save();
+                break;
+            case '2':
+                Sleep(200);
+                if (remove("./GTE_Data/grid_params.txt") != 0)
+                {
+                    std::perror("删除失败");
+                }
+                else
+                {
+                    std::cout << "删除成功！" << std::endl;
+                }
+                system("pause");
+                system("cls");
+                break;
+            case '3':
+                system("cls");
+                main_menu_display(0);
+            }
+        }
+    }
 }
-
-//////////////////////////////////////
