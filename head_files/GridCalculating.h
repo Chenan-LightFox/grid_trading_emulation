@@ -9,4 +9,5 @@ private:
 	double buyInAmounts;	// ÂòÈë½ğ¶î
 public:
 	void grid_params_input();
+	void grid_params_save();
 };

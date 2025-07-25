@@ -1,6 +1,7 @@
 ﻿#pragma once
-#include "../head_files/PrintLine.h"
 #include <conio.h>
+#include "../head_files/PrintLine.h"
+#include "../head_files/GridCalculating.h"
 using namespace std;
 
 ///////////////MainMenu///////////////
@@ -19,18 +20,18 @@ void main_menu_choice() {
             case '1':
                 system("cls");
                 main_menu_display(1);
-                Sleep(500);
+                Sleep(200);
                 break;
             case '2':
                 system("cls");
                 main_menu_display(2);
-                Sleep(500);
+                Sleep(200);
                 param_menu_display();
                 break;
             case '3':
                 system("cls");
                 main_menu_display(3);
-                Sleep(500);
+                Sleep(200);
                 exit(0);
             }
         }
@@ -59,6 +60,9 @@ void main_menu_display(int chooseOn)
 //////////////ParamMenu///////////////
 
 void param_menu_display() {
+    Grid grid;
+    print_line("\n\n\n\n\t\t\t网格交易参数设置"
+		"\n\t\t\t------------------------------");
 
 }
 

@@ -1,4 +1,5 @@
 ﻿#include <iostream>
+#include <fstream>
 #include "../head_files/GridCalculating.h"
 #include "../head_files/PrintLine.h"
 
@@ -15,4 +16,17 @@ void Grid::grid_params_input() {
 	std::cin >> gridLine;
 	print_line("\t\t\t买入金额\t\t：", cyan);
 	std::cin >> buyInAmounts;
+}
+
+// 输出网格参数到文件
+void Grid::grid_params_save() {
+	std::ofstream outFile("./GTE_Data/grid_params.txt");
+	if (outFile.is_open()) {
+		outFile << gridSize << profitRate << firstBuyInPrice
+				<< gridLine << buyInAmounts;
+		outFile.close();
+		print_line("[√]参数已保存到 grid_params.txt", green);
+	} else {
+		print_line("[x]无法打开文件保存参数", red);
+	}
 }
