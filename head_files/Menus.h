@@ -13,7 +13,7 @@ void main_menu_choice() {
     char key;
     while (true) {
         // 检查是否有按键按下
-        if (_kbhit()) {
+        if (_kbhit()) { 
             // 获取按下的键
             key = _getch();
             switch (key) {
@@ -21,13 +21,13 @@ void main_menu_choice() {
                 system("cls");
                 main_menu_display(1);
                 Sleep(200);
-                break;
+                return;
             case '2':
                 system("cls");
                 main_menu_display(2);
                 Sleep(200);
                 param_menu_display();
-                break;
+                return;
             case '3':
                 system("cls");
                 main_menu_display(3);
@@ -56,9 +56,8 @@ void main_menu_display(int chooseOn)
     if (chooseOn != 1 && chooseOn != 2 && chooseOn != 3) main_menu_choice();
 }
 
-//////////////////////////////////////
-//////////////ParamMenu///////////////
 
+//////////////ParamMenu///////////////
 void param_menu_display() {
     Grid grid;
     print_line("\n\n\n\n\t\t\t交易助手 - 个人信息"
@@ -78,7 +77,10 @@ void param_menu_display() {
                 Grid grid;
                 grid.grid_params_input();
                 grid.grid_params_save();
-                break;
+                system("pause");
+                system("cls");
+                param_menu_display();
+                return;
             case '2':
                 Sleep(200);
                 if (remove("./GTE_Data/grid_params.txt") != 0)
@@ -91,10 +93,13 @@ void param_menu_display() {
                 }
                 system("pause");
                 system("cls");
-                break;
+                param_menu_display();
+                return;
             case '3':
                 system("cls");
+                Sleep(200);
                 main_menu_display(0);
+                return;
             }
         }
     }
