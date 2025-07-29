@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 #include <conio.h>
 #include "../head_files/PrintLine.h"
 #include "../head_files/GridCalculating.h"
@@ -45,13 +45,16 @@ void main_menu_display(int chooseOn)
         "\n\t\t\t------------------------------");
     if (chooseOn == 1) {
         print_line("\n\n\t\t\t[1] 获取交易策略", black, white);
-    } else print_line("\n\n\t\t\t[1] 获取交易策略", green);
+    }
+    else print_line("\n\n\t\t\t[1] 获取交易策略", green);
     if (chooseOn == 2) {
         print_line("\n\t\t\t[2] 设置交易参数", black, white);
-    } else print_line("\n\t\t\t[2] 设置交易参数", blue);
+    }
+    else print_line("\n\t\t\t[2] 设置交易参数", blue);
     if (chooseOn == 3) {
         print_line("\n\t\t\t[3] 退出", black, white);
-    } else print_line("\n\t\t\t[3] 退出", red);
+    }
+    else print_line("\n\t\t\t[3] 退出", red);
     print_line("\n\t\t\t------------------------------\n");
 
     if (chooseOn != 1 && chooseOn != 2 && chooseOn != 3) main_menu_choice();
@@ -67,32 +70,34 @@ void param_menu_choice() {
             key = _getch();
             switch (key) {
             case '1':
-                param_menu_display(1);
-                Sleep(200);
                 system("cls");
+                Sleep(200);
                 Grid grid;
                 grid.grid_params_input();
                 grid.grid_params_save();
-                break;
+                system("pause");
+                system("cls");
+                param_menu_display(0);
+                return;
             case '2':
-                param_menu_display(2);
                 Sleep(200);
                 if (remove("./GTE_Data/grid_params.txt") != 0)
                 {
-                    print_line("删除失败", red);
+                    std::perror("删除失败");
                 }
                 else
                 {
-                    print_line("删除成功！");
+                    std::cout << "删除成功！" << std::endl;
                 }
                 system("pause");
                 system("cls");
-                break;
+                param_menu_display(0);
+                return;
             case '3':
-                param_menu_display(3);
-                Sleep(200);
                 system("cls");
+                Sleep(200);
                 main_menu_display(0);
+                return;
             }
         }
     }
@@ -101,7 +106,7 @@ void param_menu_choice() {
 void param_menu_display(int chooseOn) {
     Grid grid;
     print_line("\n\n\n\n\t\t\t交易助手 - 个人信息"
-		"\n\t\t\t------------------------------");
+        "\n\t\t\t------------------------------");
     if (chooseOn == 1) {
         print_line("\n\n\t\t\t[1] 设置您的交易信息", black, white);
     }
@@ -115,6 +120,7 @@ void param_menu_display(int chooseOn) {
     }
     else print_line("\n\t\t\t[3] 回到主界面", blue);
     print_line("\n\t\t\t------------------------------\n");
+    param_menu_choice();
 }
 
 //////////////////////////////////////
