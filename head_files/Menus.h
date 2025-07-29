@@ -7,7 +7,7 @@ using namespace std;
 ///////////////MainMenu///////////////
 
 void main_menu_display(int);
-void param_menu_display();
+void param_menu_display(int);
 
 void main_menu_choice() {
     char key;
@@ -26,7 +26,8 @@ void main_menu_choice() {
                 system("cls");
                 main_menu_display(2);
                 Sleep(200);
-                param_menu_display();
+                system("cls");
+                param_menu_display(0);
                 break;
             case '3':
                 system("cls");
@@ -59,43 +60,61 @@ void main_menu_display(int chooseOn)
 //////////////////////////////////////
 //////////////ParamMenu///////////////
 
-void param_menu_display() {
-    Grid grid;
-    print_line("\n\n\n\n\t\t\t交易助手 - 个人信息"
-		"\n\t\t\t------------------------------");
-    print_line("\n\n\t\t\t[1] 设置您的交易信息",green);
-    print_line("\n\n\t\t\t[2] 删除您的交易信息",red);
-    print_line("\n\n\t\t\t[3] 回到主界面\n",blue);
-    print_line("\n\t\t\t---------------\n");
+void param_menu_choice() {
     char key;
     while (true) {
         if (_kbhit()) {
             key = _getch();
             switch (key) {
             case '1':
-                system("cls");
+                param_menu_display(1);
                 Sleep(200);
+                system("cls");
                 Grid grid;
                 grid.grid_params_input();
                 grid.grid_params_save();
                 break;
             case '2':
+                param_menu_display(2);
                 Sleep(200);
                 if (remove("./GTE_Data/grid_params.txt") != 0)
                 {
-                    std::perror("删除失败");
+                    print_line("删除失败", red);
                 }
                 else
                 {
-                    std::cout << "删除成功！" << std::endl;
+                    print_line("删除成功！");
                 }
                 system("pause");
                 system("cls");
                 break;
             case '3':
+                param_menu_display(3);
+                Sleep(200);
                 system("cls");
                 main_menu_display(0);
             }
         }
     }
 }
+
+void param_menu_display(int chooseOn) {
+    Grid grid;
+    print_line("\n\n\n\n\t\t\t交易助手 - 个人信息"
+		"\n\t\t\t------------------------------");
+    if (chooseOn == 1) {
+        print_line("\n\n\t\t\t[1] 设置您的交易信息", black, white);
+    }
+    else print_line("\n\n\t\t\t[1] 设置您的交易信息", green);
+    if (chooseOn == 2) {
+        print_line("\n\t\t\t[2] 删除您的交易信息", black, white);
+    }
+    else print_line("\n\t\t\t[2] 删除您的交易信息", red);
+    if (chooseOn == 3) {
+        print_line("\n\t\t\t[3] 回到主界面", black, white);
+    }
+    else print_line("\n\t\t\t[3] 回到主界面", blue);
+    print_line("\n\t\t\t------------------------------\n");
+}
+
+//////////////////////////////////////
