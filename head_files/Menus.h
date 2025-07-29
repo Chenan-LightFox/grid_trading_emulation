@@ -13,7 +13,7 @@ void main_menu_choice() {
     char key;
     while (true) {
         // 检查是否有按键按下
-        if (_kbhit()) { 
+        if (_kbhit()) {
             // 获取按下的键
             key = _getch();
             switch (key) {
@@ -21,13 +21,13 @@ void main_menu_choice() {
                 system("cls");
                 main_menu_display(1);
                 Sleep(200);
-                return;
+                break;
             case '2':
                 system("cls");
                 main_menu_display(2);
                 Sleep(200);
                 param_menu_display();
-                return;
+                break;
             case '3':
                 system("cls");
                 main_menu_display(3);
@@ -56,15 +56,14 @@ void main_menu_display(int chooseOn)
     if (chooseOn != 1 && chooseOn != 2 && chooseOn != 3) main_menu_choice();
 }
 
-
 //////////////ParamMenu///////////////
 void param_menu_display() {
     Grid grid;
     print_line("\n\n\n\n\t\t\t交易助手 - 个人信息"
-		"\n\t\t\t------------------------------");
-    print_line("\n\n\t\t\t[1] 设置您的交易信息",green);
-    print_line("\n\n\t\t\t[2] 删除您的交易信息",red);
-    print_line("\n\n\t\t\t[3] 回到主界面\n",blue);
+        "\n\t\t\t------------------------------");
+    print_line("\n\n\t\t\t[1] 设置您的交易信息", green);
+    print_line("\n\n\t\t\t[2] 删除您的交易信息", red);
+    print_line("\n\n\t\t\t[3] 回到主界面\n", blue);
     print_line("\n\t\t\t---------------\n");
     char key;
     while (true) {
