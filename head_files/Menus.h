@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 #include <conio.h>
 #include "../head_files/PrintLine.h"
 #include "../head_files/GridCalculating.h"
@@ -60,16 +60,10 @@ void main_menu_display(int chooseOn)
     if (chooseOn != 1 && chooseOn != 2 && chooseOn != 3) main_menu_choice();
 }
 
+//////////////////////////////////////
 //////////////ParamMenu///////////////
 
-void param_menu_display() {
-    Grid grid;
-    print_line("\n\n\n\n\t\t\t交易助手 - 个人信息"
-		"\n\t\t\t------------------------------");
-    print_line("\n\n\t\t\t[1] 设置您的交易信息",green);
-    print_line("\n\n\t\t\t[2] 删除您的交易信息",red);
-    print_line("\n\n\t\t\t[3] 回到主界面\n",blue);
-    print_line("\n\t\t\t---------------\n");
+void param_menu_choice() {
     char key;
     while (true) {
         if (_kbhit()) {
@@ -81,7 +75,10 @@ void param_menu_display() {
                 Grid grid;
                 grid.grid_params_input();
                 grid.grid_params_save();
-                break;
+                system("pause");
+                system("cls");
+                param_menu_display(0);
+                return;
             case '2':
                 Sleep(200);
                 if (remove("./GTE_Data/grid_params.txt") != 0)
@@ -94,13 +91,32 @@ void param_menu_display() {
                 }
                 system("pause");
                 system("cls");
-                break;
+                param_menu_display(0);
+                return;
             case '3':
                 system("cls");
                 Sleep(200);
                 main_menu_display(0);
+                return;
             }
         }
+    }
+}
+
+void param_menu_display(int chooseOn) {
+    Grid grid;
+    print_line("\n\n\n\n\t\t\t交易助手 - 个人信息"
+        "\n\t\t\t------------------------------");
+    if (chooseOn == 1) {
+        print_line("\n\n\t\t\t[1] 设置您的交易信息", black, white);
+    }
+    else print_line("\n\n\t\t\t[1] 设置您的交易信息", green);
+    if (chooseOn == 2) {
+        print_line("\n\t\t\t[2] 删除您的交易信息", black, white);
+    }
+    else print_line("\n\t\t\t[2] 删除您的交易信息", red);
+    if (chooseOn == 3) {
+        print_line("\n\t\t\t[3] 回到主界面", black, white);
     }
     else print_line("\n\t\t\t[3] 回到主界面", blue);
     print_line("\n\t\t\t------------------------------\n");
