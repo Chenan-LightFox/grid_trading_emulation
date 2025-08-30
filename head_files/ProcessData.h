@@ -55,7 +55,7 @@ private:
 	}
 
 public:
-	struct DATA {
+	struct Data {
 		string date;
 		double open;
 		double high;
@@ -195,12 +195,7 @@ public:
 		cout << "数据库文件：" << dbFilename << endl;
 	}
 
-	vector<DATA> ExportData() {
-		vector<DATA> result;
-		string tableName;
-		cout << "请输入要导出数据的表名：";
-		cin >> tableName;
-
+	vector<Data> ExportData(const string& tableName) {
 		const string dbFilename = "./GTE_Data/Database.db"; // 数据库名
 		sqlite3* db = nullptr;
 		int rc = sqlite3_open(dbFilename.c_str(), &db);
@@ -250,10 +245,10 @@ public:
 
 		// 遍历查询结果
 		int rowCount = 0;
-		cout << "开始导出数据..." << endl;
+		// cout << "开始导出数据..." << endl;
 
 		while (sqlite3_step(stmt) == SQLITE_ROW) {
-			DATA data;
+			Data data;
 			try {
 				// 处理日期（文本类型）
 				const unsigned char* date = sqlite3_column_text(stmt, 0);
@@ -273,9 +268,9 @@ public:
 				rowCount++;
 
 				// 每100行显示一次进度
-				if (rowCount % 100 == 0) {
-					cout << "已导出" << rowCount << "行数据" << endl;
-				}
+				// if (rowCount % 100 == 0) {
+				// 	cout << "已导出" << rowCount << "行数据" << endl;
+				// }
 			}
 			catch (const exception& e) {
 				cerr << "处理第" << rowCount + 1 << "行数据时出错：" << e.what() << endl;
@@ -293,8 +288,8 @@ public:
 
 		// 输出导出统计信息
 		cout << "\n数据导出完成！" << endl;
-		cout << "共导出" << rowCount << "行数据" << endl;
-		cout << "数据来源：" << dbFilename << "中的表" << tableName << endl;
+		// cout << "共导出" << rowCount << "行数据" << endl;
+		// cout << "数据来源：" << dbFilename << "中的表" << tableName << endl;
 
 		return result;
 	}
