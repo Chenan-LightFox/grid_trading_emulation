@@ -1,7 +1,8 @@
-#include "../head_files/buy_and_sell.h"
+#include "../head_files/BuyAndSell.h"
+#include "../head_files/PrintLine.h"
 
 // 析构函数，释放资源
-Accept_data::~Accept_data() {
+AcceptData::~AcceptData() {
     while (head != NULL) {
 	    Data* temp = head;
 	    head = head->next;
@@ -10,13 +11,13 @@ Accept_data::~Accept_data() {
 }
 
 // 从文本文件中读取数据并存储到链表中
-void Accept_data::read(Data*& m)
+void AcceptData::read(Data*& m)
 {
 	std::ifstream file;
 	file.open(textname); // 打开文件
 	if (!file.is_open())
 	{
-		std::cout << "Error: file not found" << std::endl; // 文件未找到
+		print_line("错误: 未找到文件。", red); // 文件未找到
 	}
 	else
 	{
@@ -76,13 +77,13 @@ void Accept_data::read(Data*& m)
 	}
 	if (file.is_open())
 	{
-		std::cout << "\n\n\t\t文件读取成功。" << std::endl;
+		print_line("\n\n\t\t文件读取成功。");
 	}
 	file.close(); // 关闭文件
 }
 
 // 打印链表中的数据
-void Accept_data::print(Data* m)
+void AcceptData::print(Data* m)
 {
 	Data* temp = m;
 	// 打印表头
@@ -100,37 +101,37 @@ Data* head = NULL;
 
 void start_buy_and_sell(std::vector<int> grid) {
     int raise[2]={0,0};//趋势发生改变时记录，-1表示下跌，1表示上涨，0表示持平,但是由于测试是用到的数据纯线性，无需考虑持平时误买误卖
-    Accept_data accept_data("./GTE_Data/data.txt");
+    AcceptData accept_data("./GTE_Data/data.txt");
     accept_data.read(head);
-    std::cout << "数据已导入，开始模拟买卖。" << std::endl;
-    Data*temp=head;
-    while(temp != NULL) {
+	print_line("数据已导入，开始模拟买卖。");
+    Data* temp=head;
+    while (temp != NULL) {
         raise[0] = raise[1]; // 保存上一个状态
         int size = grid.size();
-        if(temp->Change > 0) {                                           
-            for(int i=0;i<size;i++) {     
-                if(1)buy(Grid(), i, grid);            
+        if (temp->Change > 0) {                                           
+            for (int i=0; i<size; i++) {     
+                if(1) buy(Grid(), i, grid);            
             }
-            for(int i=size-1;i>=0;i--) {
+            for (int i=size-1; i>=0; i--) {
                 if(1) sell(Grid(), i, grid);
             }
-            for(int i=0;i<size;i++) {     
-                if(1)buy(Grid(), i, grid);            
+            for (int i=0; i<size; i++) {     
+                if(1) buy(Grid(), i, grid);            
             }
         } 
         else {
-            for(int i=0;i<size;i++) {     
-                if(1)sell(Grid(), i, grid);            
+            for (int i=0; i<size; i++) {     
+                if(1) sell(Grid(), i, grid);            
             }
-            for(int i=size-1;i>=0;i--) {
+            for (int i=size-1; i>=0; i--) {
                 if(1) buy(Grid(), i, grid);
             }
-            for(int i=0;i<size;i++) {     
-                if(1)sell(Grid(), i, grid);            
+            for (int i=0; i<size; i++) {     
+                if(1) sell(Grid(), i, grid);            
             }
         } 
     }
-    std::cout << "买卖模拟完成。交易日志产生" << std::endl;
+	print_line("买卖模拟完成。交易日志产生");
     
 }
 void buy(Grid a,int number, std::vector<int> grid) {

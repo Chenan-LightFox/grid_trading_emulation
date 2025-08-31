@@ -1,8 +1,9 @@
 #pragma once
 #include <iostream>
 #include <fstream>
+#include <sstream>
 #include <vector>
-#include<iomanip>
+#include <iomanip>
 #include "../head_files/GridCalculating.h"
 
 struct Data {
@@ -19,12 +20,12 @@ struct Data {
 };
 extern Data* head;			// 实现时通过extern声明
 
-class Accept_data
+class AcceptData
 {
 public:
-	Accept_data(std::string a) :
+	AcceptData(std::string a) :
 		textname(a) {};
-	~Accept_data();
+	~AcceptData();
 	void read(Data*& m);
 	void print(Data* m);
 private:
