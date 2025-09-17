@@ -7,21 +7,21 @@ using namespace std;
 
 struct grid
 {
-	double stage = 1.00;//档位
-	double rdbuy = 0.0;//买入触发价
-	double buy = 0.0;//交易买入价
-	double  rdsell = 0.0;//卖出触发价
-	double sell = 0.0;//交易卖出价
-	double decrease = 0;//跌幅
-	double profit = 0;//盈利
+	double stage = 1.00;	//档位
+	double rdbuy = 0.0;		//买入触发价
+	double buy = 0.0;		//交易买入价
+	double rdsell = 0.0;	//卖出触发价
+	double sell = 0.0;		//交易卖出价
+	double decrease = 0;	//跌幅
+	double profit = 0;		//盈利
 };
 
 static vector<grid> get_grid(Grid g){
-	double a=g.gridSize;
-	double b=g.profitRate;
-	double frdbuy=g.firstBuyInPrice;
-	int line=g.gridLine;
-	double tmoney=g.buyInAmounts;
+	double a = g.gridSize;
+	double b = g.profitRate;
+	double frdbuy = g.firstBuyInPrice;
+	int line = g.gridLine;
+	double tmoney = g.buyInAmounts;
 	double fbuy = frdbuy - 0.005;
 	double fsell = fbuy * (1 + b);
 	double frdsell = fsell - 0.005;
