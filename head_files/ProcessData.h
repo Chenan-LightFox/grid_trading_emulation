@@ -91,8 +91,9 @@ public:
 			sqlite3_close(db); // 确保资源释放
 			return;
 		}
+		// 打开成功或创建成功
 
-		// 创建表的 SQL 语句（只包含需要存储的列）
+		// 创建表的 SQL 语句（只包含需要存储的列，中间一些中英文名称省略）
 		string createTableSQL = "CREATE TABLE IF NOT EXISTS" + filename + "("
 			"Date TEXT PRIMARY KEY,"
 			"Open REAL,"
@@ -168,9 +169,9 @@ public:
 				if (executeSQL(db, insertSQL, "插入第" + to_string(lineNumber) + "行失败")) {
 					successCount++;
 					// 每 100 行输出一次进度，避免过多打印
-					if (successCount % 100 == 0) {
-						cout << "已成功导入" << successCount << "行数据（当前行：" << lineNumber << "）" << endl;
-					}
+					// if (successCount % 100 == 0) {
+					// 	cout << "已成功导入" << successCount << "行数据（当前行：" << lineNumber << "）" << endl;
+					// }
 				}
 				else {
 					skipCount++;
