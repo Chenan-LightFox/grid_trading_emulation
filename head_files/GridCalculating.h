@@ -1,13 +1,13 @@
 #pragma once
 
 class Grid {
-private:
-	double gridSize;		// ²¶×½²¨¶¯´óĞ¡
-	double profitRate;		// Ò»ĞĞµÄÊÕÒæÂÊ
-	double firstBuyInPrice;	// Ê×ĞĞÂòÈë´¥·¢¼Û
-	int	   gridLine;		// Ä£ĞÍĞĞÊı
-	double buyInAmounts;	// ÂòÈë½ğ¶î
 public:
+	double gridSize;		// æ•æ‰æ³¢åŠ¨å¤§å°
+	double profitRate;		// ä¸€è¡Œçš„æ”¶ç›Šç‡
+	double firstBuyInPrice;	// é¦–è¡Œä¹°å…¥è§¦å‘ä»·
+	int	   gridLine;		// æ¨¡å‹è¡Œæ•°
+	double buyInAmounts;	// ä¹°å…¥é‡‘é¢
+
 	void grid_params_input();
 	void grid_params_save();
 };
