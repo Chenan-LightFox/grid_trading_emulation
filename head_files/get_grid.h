@@ -2,7 +2,7 @@
 #include<iostream>
 #include<vector>
 #include<iomanip>
-#include "..\head_files\GridCalculating.h"
+#include "../head_files/GridCalculating.h"
 using namespace std;
 
 struct grid
