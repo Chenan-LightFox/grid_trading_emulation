@@ -5,47 +5,49 @@
 #include "../head_files/GridCalculating.h"
 using namespace std;
 
-struct grid
-{
-	double stage = 1.00;	//档位
-	double rdbuy = 0.0;		//买入触发价
-	double buy = 0.0;		//交易买入价
-	double rdsell = 0.0;	//卖出触发价
-	double sell = 0.0;		//交易卖出价
-	double decrease = 0;	//跌幅
-	double profit = 0;		//盈利
+// 网格交易单格参数结构体
+struct grid {
+    double stage = 1.00;    // 档位系数(初始为1.00)
+    double rdbuy = 0.0;     // 买入触发价
+    double buy = 0.0;       // 实际买入价
+    double rdsell = 0.0;    // 卖出触发价
+    double sell = 0.0;      // 实际卖出价
+    double decrease = 0;    // 相对初始档位跌幅
+    double profit = 0.0;    // 该格交易理论盈利
 };
 
-static vector<grid> get_grid(Grid g){
-	double a = g.gridSize;
-	double b = g.profitRate;
-	double frdbuy = g.firstBuyInPrice;
-	int line = g.gridLine;
-	double tmoney = g.buyInAmounts;
-	double fbuy = frdbuy - 0.005;
-	double fsell = fbuy * (1 + b);
-	double frdsell = fsell - 0.005;
-	double fprofit = (fsell - fbuy) * (tmoney / fbuy);
-	grid fgrid = { 1.00,frdbuy,fbuy,frdsell,fsell,0,fprofit };
-	double tstage = 1.00;
-	double trdbuy = 0;
-	double tbuy = 0;
-	double trdsell = 0;
-	double tsell = 0;
-	double tprofit = 0;
-	vector<grid>arr;
-	arr.push_back(fgrid);
-	double tdecrease = 0;
-	for (int i = 0; i < line - 1; i++)
-	{
-		tstage = arr[i].stage / (1 + a / 2);
-		tdecrease = tstage - 1;
-		trdbuy = arr[0].rdbuy * tstage;
-		tbuy = trdbuy - 0.005;
-		tsell = tbuy * (1 + b);
-		trdsell = tsell - 0.005;
-		tprofit = (tsell - tbuy) * (tmoney / tbuy);
-		arr.push_back({ tstage,trdbuy,tbuy,trdsell,tsell,tdecrease,tprofit });
-	}
-	return arr;
+// 根据配置生成网格数据列表
+static vector<grid> get_grid(Grid g) {
+    vector<grid> arr;
+    // 计算首个网格参数并添加到列表
+    double firstBuy = g.firstBuyInPrice - 0.005;  // 首格买入价(触发价-0.005)
+    double firstSell = firstBuy * (1 + g.profitRate);  // 首格卖出价(按利润率计算)
+    arr.push_back({
+        1.00,
+        g.firstBuyInPrice,          // 首格买入触发价
+        firstBuy,
+        firstSell - 0.005,          // 首格卖出触发价(卖出价-0.005)
+        firstSell,
+        0,                          // 首格无跌幅
+        (firstSell - firstBuy) * (g.buyInAmounts / firstBuy)  // 首格盈利
+    });
+
+    // 循环生成剩余网格(总数为gridLine)
+    for (int i = 0; i < g.gridLine - 1; ++i) {
+        double tstage = arr[i].stage / (1 + g.gridSize / 2);  // 计算当前档位系数
+        double tbuyTrig = arr[0].rdbuy * tstage;              // 当前买入触发价
+        double tbuy = tbuyTrig - 0.005;                       // 当前买入价
+        double tsell = tbuy * (1 + g.profitRate);             // 当前卖出价
+        
+        arr.push_back({
+            tstage,
+            tbuyTrig,
+            tbuy,
+            tsell - 0.005,           // 当前卖出触发价
+            tsell,
+            tstage - 1,              // 计算跌幅(档位系数-1)
+            (tsell - tbuy) * (g.buyInAmounts / tbuy)  // 当前网格盈利
+        });
+    }
+    return arr;
 }
