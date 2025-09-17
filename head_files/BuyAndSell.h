@@ -5,6 +5,7 @@
 #include <vector>
 #include <iomanip>
 #include "../head_files/GridCalculating.h"
+/*opencv*/
 
 struct Data {
 	std::string date;	//日期
@@ -33,6 +34,6 @@ private:
 };
 
 void accept_data();
-void start_buy_and_sell(std::vector<int> grid); 
-void buy(const Grid a,int number,std::vector<int>grid);//number，grid存储使用者目前各个网格的持有数,目前未接入软件故仅无法真正买入卖出，资产均由四则运算得到
-void sell(const Grid a,int number,std::vector<int>grid);
+void start_buy_and_sell(Grid user_grid); 
+void buy(Grid &a,int number,vector<int>numexcel,vector<int>priceexcel);//number，grid存储使用者目前各个网格的持有数,目前未接入软件故仅无法真正买入卖出，资产均由四则运算得到
+void sell(Grid &a,int number,vector<int>numexcel,vector<int>priceexcel);
