@@ -35,5 +35,5 @@ private:
 
 void accept_data();
 void start_buy_and_sell(Grid user_grid); 
-void buy(Grid &a,int number,vector<int>numexcel,vector<int>priceexcel);//number，grid存储使用者目前各个网格的持有数,目前未接入软件故仅无法真正买入卖出，资产均由四则运算得到
-void sell(Grid &a,int number,vector<int>numexcel,vector<int>priceexcel);
+void buy(Grid &a,int number,std::vector<int>numexcel,std::vector<int>priceexcel);
+void sell(Grid &a,int number,std::vector<int>numexcel,std::vector<int>priceexcel);
