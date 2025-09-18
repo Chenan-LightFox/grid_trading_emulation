@@ -10,8 +10,9 @@ void main_menu_display(int);
 void param_menu_display(int);
 
 void main_menu_choice() {
+	bool exit_flag = false;
     char key;
-    while (true) {
+    while (!exit_flag) {
         // 检查是否有按键按下
         if (_kbhit()) {
             // 获取按下的键
@@ -21,18 +22,21 @@ void main_menu_choice() {
                 system("cls");
                 main_menu_display(1);
                 Sleep(200);
+                exit_flag = true;
                 break;
             case '2':
                 system("cls");
                 main_menu_display(2);
                 Sleep(200);
                 system("cls");
+                exit_flag = true;
                 param_menu_display(0);
                 break;
             case '3':
                 system("cls");
                 main_menu_display(3);
                 Sleep(200);
+                exit_flag = true;
                 exit(0);
             }
         }
@@ -64,14 +68,16 @@ void main_menu_display(int chooseOn)
 //////////////ParamMenu///////////////
 
 void param_menu_choice() {
+    bool exit_flag = false;
     char key;
-    while (true) {
+    while (!exit_flag) {
         if (_kbhit()) {
             key = _getch();
             switch (key) {
             case '1':
                 system("cls");
                 Sleep(200);
+                exit_flag = true;
                 Grid grid;
                 grid.grid_params_input();
                 grid.grid_params_save();
@@ -81,6 +87,7 @@ void param_menu_choice() {
                 return;
             case '2':
                 Sleep(200);
+                exit_flag = true;
                 if (remove("./GTE_Data/grid_params.txt") != 0)
                 {
                     std::perror("删除失败");
@@ -96,6 +103,7 @@ void param_menu_choice() {
             case '3':
                 system("cls");
                 Sleep(200);
+                exit_flag = true;
                 main_menu_display(0);
                 return;
             }
