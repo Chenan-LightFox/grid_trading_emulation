@@ -1,13 +1,7 @@
 ﻿#include "../head_files/BuyAndSell.h"
 #include "../head_files/PrintLine.h"
-<<<<<<< HEAD
 #include <windows.h>
 #include"../head_files/GetGrid.h"
-=======
-#include"../head_files/GetGrid.h"
-#include <Windows.h>
-
->>>>>>> e7c67b7065e6b31b4ffb9b63649ecc1dce6107e9
 
 // 析构函数，释放资源
 AcceptData::~AcceptData() {
@@ -132,13 +126,8 @@ void start_buy_and_sell(Grid user_grid) {
         if (temp->Open - temp->Close > 0) {
             for (int i = size - 1; i >= 0; i--) {	//上升段     
                 if(gridexcel[i].buy > temp->Open){
-<<<<<<< HEAD
 					if(temp->High>gridexcel[i].buy){
 						buy(user_grid, i, numexcel,gridexcel); 
-=======
-					if(temp->High > gridexcel[i].buy){
-						buy(user_grid, i, numexcel); 
->>>>>>> e7c67b7065e6b31b4ffb9b63649ecc1dce6107e9
 					}
 					else{
 						break;
@@ -158,13 +147,8 @@ void start_buy_and_sell(Grid user_grid) {
             }
             for (int i = size - 1; i >= 0; i--) {//上升段
                 if(gridexcel[i].buy > temp->Low){
-<<<<<<< HEAD
 					if(temp->Close>gridexcel[i].buy){
 						buy(user_grid, i, numexcel,gridexcel); 
-=======
-					if(temp->Close > gridexcel[i].buy){
-						buy(user_grid, i, numexcel); 
->>>>>>> e7c67b7065e6b31b4ffb9b63649ecc1dce6107e9
 					}
 					else{
 						break;
@@ -186,13 +170,8 @@ void start_buy_and_sell(Grid user_grid) {
             }
 			for (int i = size - 1; i >= 0; i--) {//上升段
                 if(gridexcel[i].buy > temp->Low){
-<<<<<<< HEAD
 					if(temp->High>gridexcel[i].buy){
 						buy(user_grid, i, numexcel,gridexcel); 
-=======
-					if(temp->High > gridexcel[i].buy){
-						buy(user_grid, i, numexcel); 
->>>>>>> e7c67b7065e6b31b4ffb9b63649ecc1dce6107e9
 					}
 					else{
 						break;
@@ -215,12 +194,7 @@ void start_buy_and_sell(Grid user_grid) {
     }
 	print_line("买卖模拟完成。交易日志产生");
 }
-<<<<<<< HEAD
 void buy(Grid &a,int number,std::vector<int>numexcel,std::vector<grid> gridexcel){ 
-=======
-
-void buy(Grid &a, int number, std::vector<int> numexcel){ 
->>>>>>> e7c67b7065e6b31b4ffb9b63649ecc1dce6107e9
 	// 买入股数,直接用用户输入的数据，可能股数不对
 	int numOfBuy = a.buyInAmounts/gridexcel[number].buy;
     std::ofstream trading_log("./GTE_Data/trading_log.txt", std::ios::app);
@@ -237,11 +211,7 @@ void buy(Grid &a, int number, std::vector<int> numexcel){
     trading_log.close();
 }
 
-<<<<<<< HEAD
  void sell(Grid a, int number, std::vector<int>numexcel,std::vector<grid> gridexcel) {
-=======
- void sell(Grid &a, int number, std::vector<int> numexcel) {
->>>>>>> e7c67b7065e6b31b4ffb9b63649ecc1dce6107e9
     std::ofstream trading_log("./GTE_Data/trading_log.txt", std::ios::app);
 
     if(numexcel[number] > 0) {
