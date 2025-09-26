@@ -7,6 +7,8 @@
 #include "../head_files/GridCalculating.h"
 /*opencv*/
 
+class Grid; // 前向声明Grid类
+
 struct Data {
 	std::string date;	//日期
 	double Open;		//开盘价
@@ -35,5 +37,10 @@ private:
 
 void accept_data();
 void start_buy_and_sell(Grid user_grid); 
+<<<<<<< HEAD
 void buy(Grid &a,int number,std::vector<int>numexcel,std::vector<grid> gridexcel);
 void sell(Grid &a,int number,std::vector<int>numexcel,std::vector<grid> gridexcel);
+=======
+void buy(Grid &a, int number, std::vector<int> numexcel);
+void sell(Grid &a, int number, std::vector<int> numexcel);
+>>>>>>> e7c67b7065e6b31b4ffb9b63649ecc1dce6107e9
