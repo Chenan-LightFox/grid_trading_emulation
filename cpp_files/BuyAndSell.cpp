@@ -126,7 +126,7 @@ void start_buy_and_sell(Grid user_grid) {
             for (int i = size - 1; i >= 0; i--) {	//上升段     
                 if(gridexcel[i].buy > temp->Open){
 					if(temp->High>gridexcel[i].buy){
-						buy(user_grid, i, numexcel,gridexcel); 
+						buy(user_grid, i, numexcel, gridexcel); 
 					}
 					else{
 						break;
@@ -136,7 +136,7 @@ void start_buy_and_sell(Grid user_grid) {
             for (int i = 0; i < size; i++) {//下降段
                 if(gridexcel[i].sell < temp->High){
 					if(gridexcel[i].sell > temp->Low){
-						sell(user_grid, i, numexcel,gridexcel); 
+						sell(user_grid, i, numexcel, gridexcel); 
 					}
 					else{
 						break;
@@ -147,7 +147,7 @@ void start_buy_and_sell(Grid user_grid) {
             for (int i = size - 1; i >= 0; i--) {//上升段
                 if(gridexcel[i].buy > temp->Low){
 					if(temp->Close>gridexcel[i].buy){
-						buy(user_grid, i, numexcel,gridexcel); 
+						buy(user_grid, i, numexcel, gridexcel); 
 					}
 					else{
 						break;
@@ -159,7 +159,7 @@ void start_buy_and_sell(Grid user_grid) {
             for (int i = 0; i < size; i++) {//下降段
                 if(gridexcel[i].sell < temp->Open){
 					if(gridexcel[i].sell > temp->Low){
-						sell(user_grid, i, numexcel,gridexcel); 
+						sell(user_grid, i, numexcel, gridexcel); 
 					}
 					else{
 						break;
@@ -170,7 +170,7 @@ void start_buy_and_sell(Grid user_grid) {
 			for (int i = size - 1; i >= 0; i--) {//上升段
                 if(gridexcel[i].buy > temp->Low){
 					if(temp->High>gridexcel[i].buy){
-						buy(user_grid, i, numexcel,gridexcel); 
+						buy(user_grid, i, numexcel, gridexcel); 
 					}
 					else{
 						break;
@@ -180,7 +180,7 @@ void start_buy_and_sell(Grid user_grid) {
 			for (int i = 0; i < size; i++) {//下降段
                 if(gridexcel[i].sell < temp->High){
 					if(gridexcel[i].sell > temp->Close){
-						sell(user_grid, i, numexcel,gridexcel); 
+						sell(user_grid, i, numexcel, gridexcel); 
 					}
 					else{
 						break;
