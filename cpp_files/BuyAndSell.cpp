@@ -1,6 +1,5 @@
 ﻿#include "../head_files/BuyAndSell.h"
 #include "../head_files/PrintLine.h"
-#include <windows.h>
 #include"../head_files/GetGrid.h"
 
 // 析构函数，释放资源
@@ -195,7 +194,6 @@ void start_buy_and_sell(Grid user_grid) {
 	print_line("买卖模拟完成。交易日志产生");
 }
 void buy(Grid &a,int number,std::vector<int>numexcel,std::vector<grid> gridexcel){ 
-	// 买入股数,直接用用户输入的数据，可能股数不对
 	int numOfBuy = a.buyInAmounts/gridexcel[number].buy;
     std::ofstream trading_log("./GTE_Data/trading_log.txt", std::ios::app);
 
@@ -211,7 +209,7 @@ void buy(Grid &a,int number,std::vector<int>numexcel,std::vector<grid> gridexcel
     trading_log.close();
 }
 
- void sell(Grid a, int number, std::vector<int>numexcel,std::vector<grid> gridexcel) {
+ void sell(Grid &a, int number, std::vector<int>numexcel,std::vector<grid> gridexcel) {
     std::ofstream trading_log("./GTE_Data/trading_log.txt", std::ios::app);
 
     if(numexcel[number] > 0) {
