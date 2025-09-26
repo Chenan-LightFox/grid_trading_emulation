@@ -35,5 +35,5 @@ private:
 
 void accept_data();
 void start_buy_and_sell(Grid user_grid); 
-void buy(Grid &a,int number,std::vector<int>numexcel);
-void sell(Grid &a,int number,std::vector<int>numexcel);
+void buy(Grid &a,int number,std::vector<int>numexcel,std::vector<grid> gridexcel);
+void sell(Grid &a,int number,std::vector<int>numexcel,std::vector<grid> gridexcel);
