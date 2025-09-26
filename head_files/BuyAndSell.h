@@ -5,9 +5,8 @@
 #include <vector>
 #include <iomanip>
 #include "../head_files/GridCalculating.h"
+#include "../head_files/GetGrid.h"
 /*opencv*/
-
-class Grid; // 前向声明Grid类
 
 struct Data {
 	std::string date;	//日期
@@ -37,5 +36,5 @@ private:
 
 void accept_data();
 void start_buy_and_sell(Grid user_grid); 
-void buy(Grid &a,int number,std::vector<int>numexcel,std::vector<grid> gridexcel);
-void sell(Grid &a,int number,std::vector<int>numexcel,std::vector<grid> gridexcel);
+void buy(Grid &a,int number,std::vector<int>numexcel, std::vector<grid> gridexcel);
+void sell(Grid &a,int number,std::vector<int>numexcel, std::vector<grid> gridexcel);
