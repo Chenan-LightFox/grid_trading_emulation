@@ -341,7 +341,7 @@ public:
 		sqlite3_close(db);
 
 		// 输出导出统计信息
-		cout << "\n数据导出完成！" << endl;
+		// cout << "\n数据导出完成！" << endl;
 		// cout << "共导出" << rowCount << "行数据" << endl;
 		// cout << "数据来源：" << dbFilename << "中的表" << tableName << endl;
 

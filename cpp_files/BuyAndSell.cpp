@@ -48,7 +48,7 @@ void AcceptData::print(const vector<ProcessData::Data>& dataList)
 void start_buy_and_sell(Grid user_grid) {
     // 获取表名（根据实际需求调整，这里假设用户输入的表名存储在某个变量中）
     string tableName;
-    cout << "请输入要操作的表名：";
+	print_line("\n\n\n\t\t\t请输入要操作的表名：", cyan);
     cin >> tableName;
 
     // 导入数据到数据库（如果尚未导入）
@@ -61,7 +61,7 @@ void start_buy_and_sell(Grid user_grid) {
     // 从数据库导出数据
     vector<ProcessData::Data> dataList = acceptData.exportFromDB(tableName);
     if (dataList.empty()) {
-        print_line("错误：未获取到数据", red);
+        print_line("\n\n\n\t\t\t错误：未获取到数据 \n", red);
         return;
     }
 
@@ -70,9 +70,11 @@ void start_buy_and_sell(Grid user_grid) {
     vector<grid> gridexcel = get_grid(user_grid);  // 标准网格
     vector<int> numexcel(size, 0);  // 持有股数初始化
 
-    print_line("数据已导入，开始模拟买卖。");
+    print_line("\n\t\t\t数据已导入，开始模拟买卖。 \n");
 
-	cout << "初始资产：" << user_grid.properity << "元" << endl;
+	print_line("\n\t\t\t初始资产：", cyan);
+    print_line(to_string(user_grid.properity), green);
+    print_line("元\n",green);
 
     // 线性模拟买卖，遍历数据库导出的数据列表
     for (const auto& data : dataList) {
@@ -142,9 +144,10 @@ void start_buy_and_sell(Grid user_grid) {
             }
         }
     }
-    print_line("买卖模拟完成。交易日志产生");
-	system("pause");
-	cout << "最终资产：" << user_grid.properity << "元" << endl;
+    print_line("\n\t\t\t买卖模拟完成。交易日志产生\n");
+    print_line("\n\t\t\t初始资产：", cyan);
+    print_line(to_string(user_grid.properity), green);
+    print_line("元\n", green);
 }
 
 void buy(Grid& a, int number, vector<int>& numexcel, vector<grid>& gridexcel) {
