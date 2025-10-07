@@ -2,12 +2,14 @@
 #include <conio.h>
 #include "../head_files/PrintLine.h"
 #include "../head_files/GridCalculating.h"
+#include "../head_files/BuyAndSell.h"
 using namespace std;
 
 ///////////////MainMenu///////////////
 
 void main_menu_display(int);
 void param_menu_display(int);
+void BuyAndSell_display();
 
 void main_menu_choice() {
 	bool exit_flag = false;
@@ -22,7 +24,9 @@ void main_menu_choice() {
                 system("cls");
                 main_menu_display(1);
                 Sleep(200);
+                system("cls");
                 exit_flag = true;
+                BuyAndSell_display();
                 break;
             case '2':
                 system("cls");
@@ -132,3 +136,7 @@ void param_menu_display(int chooseOn) {
 }
 
 //////////////////////////////////////
+
+void BuyAndSell_display() {
+	start_buy_and_sell(Grid());
+}
