@@ -26,11 +26,7 @@ void main_menu_choice() {
                 Sleep(200);
                 system("cls");
                 exit_flag = true;
-<<<<<<< HEAD
                 BuyAndSell_display();
-=======
-				// TODO: Add strategy generation function here
->>>>>>> 2a1c7e2cef9fa68f41befac2c6d66a2ed0d10369
                 break;
             case '2':
                 system("cls");
