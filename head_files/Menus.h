@@ -143,4 +143,7 @@ void BuyAndSell_display() {
 	grid.grid_params_read();
     system("cls");
 	start_buy_and_sell(grid);
+	system("pause");
+	system("cls");
+    main_menu_display(0);
 }

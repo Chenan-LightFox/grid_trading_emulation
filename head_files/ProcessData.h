@@ -318,6 +318,11 @@ public:
 				data.volume = sqlite3_column_type(stmt, 7) != SQLITE_NULL ? sqlite3_column_double(stmt, 7) : 0.0;
 				data.turnover = sqlite3_column_type(stmt, 8) != SQLITE_NULL ? sqlite3_column_double(stmt, 8) : 0.0;
 
+				data.open *= 0.001;
+				data.high *= 0.001;
+				data.low *= 0.001;
+				data.close *= 0.001;
+
 				result.push_back(data);
 				rowCount++;
 

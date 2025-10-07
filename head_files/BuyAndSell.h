@@ -25,5 +25,5 @@ private:
 
 
 void start_buy_and_sell(Grid user_grid);
-void buy(Grid& a, int number, std::vector<int>& numexcel, std::vector<grid>& gridexcel);
-void sell(Grid& a, int number, std::vector<int>& numexcel, std::vector<grid>& gridexcel);
+void buy(string date, Grid& a, int number, std::vector<int>& numexcel, std::vector<grid>& gridexcel);
+void sell(string date, Grid& a, int number, std::vector<int>& numexcel, std::vector<grid>& gridexcel);

@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 #include<iostream>
 #include<vector>
 #include<iomanip>
@@ -34,10 +34,10 @@ static vector<grid> get_grid(Grid g) {
 
     // 循环生成剩余网格(总数为gridLine)
     for (int i = 0; i < g.gridLine - 1; ++i) {
-        double tstage = arr[i].stage / (1 + g.gridSize / 2);  // 计算当前档位系数
+        double tstage = arr[i].stage / (1 + g.gridSize / 200);  // 计算当前档位系数
         double tbuyTrig = arr[0].rdbuy * tstage;              // 当前买入触发价
         double tbuy = tbuyTrig - 0.005;                       // 当前买入价
-        double tsell = tbuy * (1 + g.profitRate);             // 当前卖出价
+        double tsell = tbuy * (1 + g.profitRate / 100);             // 当前卖出价
         
         arr.push_back({
             tstage,
@@ -50,4 +50,20 @@ static vector<grid> get_grid(Grid g) {
         });
     }
     return arr;
+}
+
+// 打印网格数据列表(调试用)
+static void print_grid(const vector<grid>& arr) {
+    cout << "\n";
+    cout << fixed << setprecision(3);
+    cout << "档位系数\t买入触发价\t买入价\t卖出触发价\t卖出价\t跌幅\t理论盈利\n";
+    for (const auto& g : arr) {
+        cout << g.stage << "\t"
+            << g.rdbuy << "\t"
+            << g.buy << "\t"
+            << g.rdsell << "\t"
+            << g.sell << "\t"
+            << g.decrease << "\t"
+            << g.profit << "\n";
+    }
 }
