@@ -11,4 +11,5 @@ public:
 
 	void grid_params_input();
 	void grid_params_save();
+	void grid_params_read();
 };

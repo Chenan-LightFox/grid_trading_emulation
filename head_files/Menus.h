@@ -26,7 +26,11 @@ void main_menu_choice() {
                 Sleep(200);
                 system("cls");
                 exit_flag = true;
+<<<<<<< HEAD
                 BuyAndSell_display();
+=======
+				// TODO: Add strategy generation function here
+>>>>>>> 2a1c7e2cef9fa68f41befac2c6d66a2ed0d10369
                 break;
             case '2':
                 system("cls");
@@ -50,19 +54,19 @@ void main_menu_choice() {
 void main_menu_display(int chooseOn)
 {
     print_line("\n\n\n\n\t\t\t欢迎使用网格交易助手！"
-        "\n\t\t\t------------------------------");
+        "\n\t\t\t------------------------------\n");
     if (chooseOn == 1) {
-        print_line("\n\n\t\t\t[1] 获取交易策略", black, white);
+        print_line("\n\n\t\t\t[1] 获取交易策略\n", black, white);
     }
-    else print_line("\n\n\t\t\t[1] 获取交易策略", green);
+    else print_line("\n\n\t\t\t[1] 获取交易策略\n", green);
     if (chooseOn == 2) {
-        print_line("\n\t\t\t[2] 设置交易参数", black, white);
+        print_line("\n\t\t\t[2] 设置交易参数\n", black, white);
     }
-    else print_line("\n\t\t\t[2] 设置交易参数", blue);
+    else print_line("\n\t\t\t[2] 设置交易参数\n", blue);
     if (chooseOn == 3) {
-        print_line("\n\t\t\t[3] 退出", black, white);
+        print_line("\n\t\t\t[3] 退出\n", black, white);
     }
-    else print_line("\n\t\t\t[3] 退出", red);
+    else print_line("\n\t\t\t[3] 退出\n", red);
     print_line("\n\t\t\t------------------------------\n");
 
     if (chooseOn != 1 && chooseOn != 2 && chooseOn != 3) main_menu_choice();
@@ -94,11 +98,11 @@ void param_menu_choice() {
                 exit_flag = true;
                 if (remove("./GTE_Data/grid_params.txt") != 0)
                 {
-                    std::perror("删除失败");
+                    print_line("删除失败！\n", red);
                 }
                 else
                 {
-                    std::cout << "删除成功！" << std::endl;
+                    print_line("删除成功！\n", green);
                 }
                 system("pause");
                 system("cls");
@@ -118,20 +122,21 @@ void param_menu_choice() {
 void param_menu_display(int chooseOn) {
     Grid grid;
     print_line("\n\n\n\n\t\t\t交易助手 - 个人信息"
-        "\n\t\t\t------------------------------");
+        "\n\t\t\t------------------------------\n");
     if (chooseOn == 1) {
-        print_line("\n\n\t\t\t[1] 设置您的交易信息", black, white);
+        print_line("\n\n\t\t\t[1] 设置您的交易信息\n", black, white);
     }
-    else print_line("\n\n\t\t\t[1] 设置您的交易信息", green);
+    else print_line("\n\n\t\t\t[1] 设置您的交易信息\n", green);
     if (chooseOn == 2) {
-        print_line("\n\t\t\t[2] 删除您的交易信息", black, white);
+        print_line("\n\t\t\t[2] 删除您的交易信息\n", black, white);
     }
-    else print_line("\n\t\t\t[2] 删除您的交易信息", red);
+    else print_line("\n\t\t\t[2] 删除您的交易信息\n", red);
     if (chooseOn == 3) {
-        print_line("\n\t\t\t[3] 回到主界面", black, white);
+        print_line("\n\t\t\t[3] 回到主界面\n", black, white);
     }
-    else print_line("\n\t\t\t[3] 回到主界面", blue);
+    else print_line("\n\t\t\t[3] 回到主界面\n", blue);
     print_line("\n\t\t\t------------------------------\n");
+    grid.grid_params_read();
     param_menu_choice();
 }
 
