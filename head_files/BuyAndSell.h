@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 #include <iostream>
 #include <fstream>
 #include <sstream>
@@ -6,35 +6,24 @@
 #include <iomanip>
 #include "../head_files/GridCalculating.h"
 #include "../head_files/GetGrid.h"
-/*opencv*/
+#include "../head_files/ProcessData.h"  // 引入ProcessData头文件
 
-struct Data {
-	std::string date;	//日期
-	double Open;		//开盘价
-	double High;		//最高价
-	double Low;			//最低价
-	double Close;		//收盘价
-	double Change;		//涨跌额
-	double Amplitude;	//涨跌幅
-	double Volume;		//成交量
-	double Turnover;	//成交额
-	Data* next;
-};
-extern Data* head;			// 实现时通过extern声明
+// 注意：移除了原Data结构体和head全局变量，使用ProcessData中的Data结构体
 
 class AcceptData
 {
 public:
-	AcceptData(std::string a) :
-		textname(a) {};
-	~AcceptData();
-	void read(Data*& m);
-	void print(Data* m);
+    AcceptData(std::string a) : textname(a) {};
+    ~AcceptData() = default;  // 无需释放链表资源
+    void importToDB(string filename);  // 改为导入数据库
+    std::vector<ProcessData::Data> exportFromDB(const std::string& tableName);  // 从数据库导出
+    void print(const std::vector<ProcessData::Data>& dataList);  // 打印数据列表
 private:
-	std::string textname;
+    std::string textname;
+    ProcessData dbHandler;  // 数据库处理对象
 };
 
-void accept_data();
-void start_buy_and_sell(Grid user_grid); 
-void buy(Grid &a,int number,std::vector<int>numexcel, std::vector<grid> gridexcel);
-void sell(Grid &a,int number,std::vector<int>numexcel, std::vector<grid> gridexcel);
+
+void start_buy_and_sell(Grid user_grid);
+void buy(string date, Grid& a, int number, std::vector<int>& numexcel, std::vector<grid>& gridexcel);
+void sell(string date, Grid& a, int number, std::vector<int>& numexcel, std::vector<grid>& gridexcel);

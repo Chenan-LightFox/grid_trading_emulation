@@ -9,7 +9,7 @@ enum textColor {black, blue, green, cyan, red, purple, yellow, white};
 inline void print_line(std::string s, textColor foreColor = white, textColor backColor = black) {
 	WORD colorAttribute = static_cast<WORD>(foreColor) | (static_cast<WORD>(backColor) << 4);
 	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), colorAttribute);
-	std::cout << s << std::endl;
+	std::cout << s;
 	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), white);
 }
 
