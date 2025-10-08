@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 #include <iostream>
 #include <fstream>
 #include <string>
@@ -68,13 +68,63 @@ public:
 		double turnover;
 	};
 
-	void ImportData() {
-		string filename;
-		cout << "请输入 TXT 文件名（不包含.txt）：";
-		cin >> filename;
+	// 检查数据库中是否存在指定表
+	static bool tableExists(const std::string& dbPath, const std::string& tableName) {
+		sqlite3* db = nullptr;
+		sqlite3_stmt* stmt = nullptr;
+		bool exists = false;
 
+		// 1. 打开数据库连接
+		int rc = sqlite3_open(dbPath.c_str(), &db);
+		if (rc != SQLITE_OK) {
+			std::cerr << "无法打开数据库: " << sqlite3_errmsg(db) << std::endl;
+			sqlite3_close(db);
+			return false;
+		}
+
+		// 2. 构造查询语句：查询sqlite_master系统表
+		// sqlite_master是SQLite的系统表，存储数据库中所有表/视图的信息
+		std::string sql = "SELECT name FROM sqlite_master WHERE type='table' AND name=?";
+
+		// 3. 准备SQL语句（防止SQL注入）
+		rc = sqlite3_prepare_v2(db, sql.c_str(), -1, &stmt, nullptr);
+		if (rc != SQLITE_OK) {
+			std::cerr << "SQL语句准备失败: " << sqlite3_errmsg(db) << std::endl;
+			sqlite3_finalize(stmt);
+			sqlite3_close(db);
+			return false;
+		}
+
+		// 4. 绑定参数（表名）
+		rc = sqlite3_bind_text(stmt, 1, tableName.c_str(), -1, SQLITE_STATIC);
+		if (rc != SQLITE_OK) {
+			std::cerr << "参数绑定失败: " << sqlite3_errmsg(db) << std::endl;
+			sqlite3_finalize(stmt);
+			sqlite3_close(db);
+			return false;
+		}
+
+		// 5. 执行查询并检查结果
+		rc = sqlite3_step(stmt);
+		if (rc == SQLITE_ROW) {
+			// 如果查询到结果，说明表存在
+			exists = true;
+		}
+		else if (rc != SQLITE_DONE) {
+			// 查询执行失败
+			std::cerr << "查询失败: " << sqlite3_errmsg(db) << std::endl;
+		}
+
+		// 6. 释放资源
+		sqlite3_finalize(stmt);
+		sqlite3_close(db);
+
+		return exists;
+	}
+
+	void ImportData(string filename) {
 		// 构建完整的文件名
-		string txtFilename = "./GTE_Data" + filename + ".txt";
+		string txtFilename = "./GTE_Data/" + filename + ".txt";
 		const string dbFilename = "./GTE_Data/Database.db"; // 数据库名
 
 		// 打开 TXT 文件
@@ -95,7 +145,7 @@ public:
 		// 打开成功或创建成功
 
 		// 创建表的 SQL 语句（只包含需要存储的列，中间一些中英文名称省略）
-		string createTableSQL = "CREATE TABLE IF NOT EXISTS" + filename + "("
+		string createTableSQL = "CREATE TABLE IF NOT EXISTS " + filename + "("
 			"Date TEXT PRIMARY KEY,"
 			"Open REAL,"
 			"High REAL,"
@@ -152,8 +202,9 @@ public:
 				const string volume = fields[12];
 				const string turnover = fields[13];
 
+
 				// 构建插入 SQL 语句（处理空值和特殊字符）
-				string insertSQL = "INSERT OR IGNORE INTO" + filename + "("
+				string insertSQL = "INSERT OR IGNORE INTO " + filename + "("
 					"Date, Open, High, Low, Close, Change,ChangePercent,Volume, Turnover"
 					") VALUES ('" +
 					date + "'," +
@@ -201,6 +252,7 @@ public:
 		const string dbFilename = "./GTE_Data/Database.db"; // 数据库名
 		sqlite3* db = nullptr;
 		int rc = sqlite3_open(dbFilename.c_str(), &db);
+		vector<Data> result;
 
 		if (rc != SQLITE_OK || db == nullptr) {
 			cerr << "错误：无法打开数据库" << dbFilename << "，原因：" << sqlite3_errmsg(db) << endl;
@@ -266,6 +318,11 @@ public:
 				data.volume = sqlite3_column_type(stmt, 7) != SQLITE_NULL ? sqlite3_column_double(stmt, 7) : 0.0;
 				data.turnover = sqlite3_column_type(stmt, 8) != SQLITE_NULL ? sqlite3_column_double(stmt, 8) : 0.0;
 
+				data.open *= 0.001;
+				data.high *= 0.001;
+				data.low *= 0.001;
+				data.close *= 0.001;
+
 				result.push_back(data);
 				rowCount++;
 
@@ -289,7 +346,7 @@ public:
 		sqlite3_close(db);
 
 		// 输出导出统计信息
-		cout << "\n数据导出完成！" << endl;
+		// cout << "\n数据导出完成！" << endl;
 		// cout << "共导出" << rowCount << "行数据" << endl;
 		// cout << "数据来源：" << dbFilename << "中的表" << tableName << endl;
 
