@@ -1,4 +1,4 @@
-﻿#include "../head_files/BuyAndSell.h"
+#include "../head_files/BuyAndSell.h"
 #include "../head_files/PrintLine.h"
 #include <windows.h>
 #include "../head_files/GetGrid.h"
@@ -289,17 +289,19 @@ void start_buy_and_sell2(Grid user_grid) {
 }
 
 
-void buy(string date, Grid& a, int number, vector<int>& numexcel, vector<grid>& gridexcel) {
+void buy(string date, Grid& a, int number, vector<int>& numexcel, vector<grid>& gridexcel,double price) {
     // 买入股数，使用用户输入的数据
     if (numexcel[number])return;
-    int numOfBuy = a.buyInAmounts / gridexcel[number].buy;
+	if (price == 0)price = gridexcel[number].buy*1e3;
+	else price = price * 1e3;
+    int numOfBuy = a.buyInAmounts / (gridexcel[number].buy*1e3);
     ofstream trading_log("./GTE_Data/trading_log.txt", ios::app);
 
-    if (a.properity - numOfBuy * gridexcel[number].buy >= 0) {
-        a.properity -= numOfBuy * gridexcel[number].buy;
+    if (a.properity - numOfBuy * price >= 0) {
+        a.properity -= numOfBuy * price;
         numexcel[number] += numOfBuy;
-        trading_log << "于" << date << "以" << gridexcel[number].buy << "每股买入" << numOfBuy << "股" << endl
-            << "－" << numOfBuy * gridexcel[number].buy << "元" << "\n\n";
+        trading_log << "于" << date << "以" << price << "每股买入" << numOfBuy << "股" << endl
+            << "－" << numOfBuy * price << "元" << "\n\n";
     }
     else {
         // trading_log << "于" << date << "资金不足无法买入" << "\n\n";
@@ -312,9 +314,9 @@ void sell(string date, Grid& a, int number, vector<int>& numexcel, vector<grid>&
     ofstream trading_log("./GTE_Data/trading_log.txt", ios::app);
 
     if (numexcel[number] > 0) {
-        a.properity += numexcel[number] * gridexcel[number].sell;
-        trading_log << "于" << date << "以" << gridexcel[number].sell << "卖出" << numexcel[number] << "股" << endl
-            << "+" << gridexcel[number].sell * numexcel[number] << "元" << "\n\n";
+        a.properity += numexcel[number] * gridexcel[number].sell*1e3;
+        trading_log << "于" << date << "以" << gridexcel[number].sell*1e3 << "卖出" << numexcel[number] << "股" << endl
+            << "+" << gridexcel[number].sell * numexcel[number]*1e3 << "元" << "\n\n";
         numexcel[number] = 0;
     }
     else {
@@ -323,6 +325,7 @@ void sell(string date, Grid& a, int number, vector<int>& numexcel, vector<grid>&
 
     trading_log.close();
 }
+<<<<<<< HEAD
 
 int show_inventory(std::vector<int>& numexcel) {
     int sum = 0;
@@ -331,3 +334,5 @@ int show_inventory(std::vector<int>& numexcel) {
     }
     return sum;
 }
+=======
+>>>>>>> b3417ffe1842954fd6779064091354d8ff1f95e6
