@@ -101,18 +101,8 @@ void start_buy_and_sell(Grid user_grid) {
         // 使用ProcessData::Data中的字段（注意字段名小写）
         if (data.open - data.close > 0) {
             for (int i = size - 1; i >= 0; i--) {  // 上升段
-                if (gridexcel[i].buy > data.open) {
-                    if (data.high > gridexcel[i].buy) {
-                        buy(data.date, user_grid, i, numexcel, gridexcel);
-                    }
-                    else {
-                        break;
-                    }
-                }
-            }
-            for (int i = 0; i < size; i++) {  // 下降段
-                if (gridexcel[i].sell < data.high) {
-                    if (gridexcel[i].sell > data.low) {
+                if (gridexcel[i].sell > data.open) {
+                    if (data.high > gridexcel[i].sell) {
                         sell(data.date, user_grid, i, numexcel, gridexcel);
                     }
                     else {
@@ -120,10 +110,20 @@ void start_buy_and_sell(Grid user_grid) {
                     }
                 }
             }
-            for (int i = size - 1; i >= 0; i--) {  // 上升段
-                if (gridexcel[i].buy > data.low) {
-                    if (data.close > gridexcel[i].buy) {
+            for (int i = 0; i < size; i++) {  // 下降段
+                if (gridexcel[i].buy < data.high) {
+                    if (gridexcel[i].buy > data.low) {
                         buy(data.date, user_grid, i, numexcel, gridexcel);
+                    }
+                    else {
+                        break;
+                    }
+                }
+            }
+            for (int i = size - 1; i >= 0; i--) {  // 上升段
+                if (gridexcel[i].sell > data.low) {
+                    if (data.close > gridexcel[i].sell) {
+                        sell(data.date, user_grid, i, numexcel, gridexcel);
                     }
                     else {
                         break;
@@ -133,18 +133,8 @@ void start_buy_and_sell(Grid user_grid) {
         }
         else {
             for (int i = 0; i < size; i++) {  // 下降段
-                if (gridexcel[i].sell < data.open) {
-                    if (gridexcel[i].sell > data.low) {
-                        sell(data.date, user_grid, i, numexcel, gridexcel);
-                    }
-                    else {
-                        break;
-                    }
-                }
-            }
-            for (int i = size - 1; i >= 0; i--) {  // 上升段
-                if (gridexcel[i].buy > data.low) {
-                    if (data.high > gridexcel[i].buy) {
+                if (gridexcel[i].buy < data.open) {
+                    if (gridexcel[i].buy > data.low) {
                         buy(data.date, user_grid, i, numexcel, gridexcel);
                     }
                     else {
@@ -152,10 +142,20 @@ void start_buy_and_sell(Grid user_grid) {
                     }
                 }
             }
-            for (int i = 0; i < size; i++) {  // 下降段
-                if (gridexcel[i].sell < data.high) {
-                    if (gridexcel[i].sell > data.close) {
+            for (int i = size - 1; i >= 0; i--) {  // 上升段
+                if (gridexcel[i].sell > data.low) {
+                    if (data.high > gridexcel[i].sell) {
                         sell(data.date, user_grid, i, numexcel, gridexcel);
+                    }
+                    else {
+                        break;
+                    }
+                }
+            }
+            for (int i = 0; i < size; i++) {  // 下降段
+                if (gridexcel[i].buy < data.high) {
+                    if (gridexcel[i].buy > data.close) {
+                        buy(data.date, user_grid, i, numexcel, gridexcel);
                     }
                     else {
                         break;
@@ -173,119 +173,6 @@ void start_buy_and_sell(Grid user_grid) {
 }
 
 void start_buy_and_sell2(Grid user_grid) {
-    ifstream inFile("./GTE_Data/grid_params.txt");
-    if (!inFile.is_open()) {
-        print_line("\n\t\t\t错误：无法打开参数文件 grid_params.txt，请先设置参数。\n", red);
-        return;
-    }
-
-    // 获取表名（根据实际需求调整，这里假设用户输入的表名存储在某个变量中）
-    string tableName;
-    print_line("\n\t\t\t请输入要操作的表名：", cyan);
-    cin >> tableName;
-
-    // 导入数据到数据库（如果尚未导入）
-    AcceptData acceptData(tableName);
-
-    if (!ProcessData::tableExists("./GTE_Data/Database.db", tableName)) {
-        acceptData.importToDB(tableName);  // 仅当表不存在时导入
-    }
-
-    // 从数据库导出数据
-    vector<ProcessData::Data> dataList = acceptData.exportFromDB(tableName);
-    if (dataList.empty()) {
-        print_line("\n\n\n\t\t\t错误：未获取到数据 \n", red);
-        return;
-    }
-
-    // 生成网格数据
-    int size = user_grid.gridLine;
-    vector<grid> gridexcel = get_grid(user_grid);  // 标准网格
-    // print_grid(gridexcel);  // 打印网格数据（调试用）
-
-    vector<int> numexcel(size, 0);  // 持有股数初始化
-
-    print_line("\n\t\t\t数据已导入，开始模拟买卖。 \n");
-
-    print_line("\n\t\t\t初始资产：", cyan);
-    print_line(to_string(user_grid.properity), green);
-    print_line("元\n", green);
-
-    ofstream trading_log("./GTE_Data/trading_log.txt");
-    trading_log.close();
-
-    // 线性模拟买卖，遍历数据库导出的数据列表
-    for (const auto& data : dataList) {
-        // 使用ProcessData::Data中的字段（注意字段名小写）
-        if (data.open - data.close > 0) {
-            for (int i = size - 1; i >= 0; i--) {  // 上升段
-                if (gridexcel[i].buy > data.open) {
-                    if (data.high > gridexcel[i].buy) {
-                        buy(data.date, user_grid, i, numexcel, gridexcel);
-                    }
-                    else {
-                        break;
-                    }
-                }
-            }
-            for (int i = 0; i < size; i++) {  // 下降段
-                if (gridexcel[i].sell < data.high) {
-                    if (gridexcel[i].sell > data.low) {
-                        sell(data.date, user_grid, i, numexcel, gridexcel);
-                    }
-                    else {
-                        break;
-                    }
-                }
-            }
-            for (int i = size - 1; i >= 0; i--) {  // 上升段
-                if (gridexcel[i].buy > data.low) {
-                    if (data.close > gridexcel[i].buy) {
-                        buy(data.date, user_grid, i, numexcel, gridexcel);
-                    }
-                    else {
-                        break;
-                    }
-                }
-            }
-        }
-        else {
-            for (int i = 0; i < size; i++) {  // 下降段
-                if (gridexcel[i].sell < data.open) {
-                    if (gridexcel[i].sell > data.low) {
-                        sell(data.date, user_grid, i, numexcel, gridexcel);
-                    }
-                    else {
-                        break;
-                    }
-                }
-            }
-            for (int i = size - 1; i >= 0; i--) {  // 上升段
-                if (gridexcel[i].buy > data.low) {
-                    if (data.high > gridexcel[i].buy) {
-                        buy(data.date, user_grid, i, numexcel, gridexcel);
-                    }
-                    else {
-                        break;
-                    }
-                }
-            }
-            for (int i = 0; i < size; i++) {  // 下降段
-                if (gridexcel[i].sell < data.high) {
-                    if (gridexcel[i].sell > data.close) {
-                        sell(data.date, user_grid, i, numexcel, gridexcel);
-                    }
-                    else {
-                        break;
-                    }
-                }
-            }
-        }
-    }
-    print_line("\n\t\t\t买卖模拟完成。交易日志产生\n");
-    print_line("\n\t\t\t最终资产：", cyan);
-    print_line(to_string(user_grid.properity), green);
-    print_line("元\n", green);
 }
 
 
@@ -325,8 +212,6 @@ void sell(string date, Grid& a, int number, vector<int>& numexcel, vector<grid>&
 
     trading_log.close();
 }
-<<<<<<< HEAD
-
 int show_inventory(std::vector<int>& numexcel) {
     int sum = 0;
     for (auto a : numexcel) {
@@ -334,5 +219,4 @@ int show_inventory(std::vector<int>& numexcel) {
     }
     return sum;
 }
-=======
->>>>>>> b3417ffe1842954fd6779064091354d8ff1f95e6
+
