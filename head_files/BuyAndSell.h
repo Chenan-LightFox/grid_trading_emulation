@@ -26,6 +26,6 @@ private:
 void inti(int size,string date, Grid& a, int number, std::vector<int>& numexcel, std::vector<grid>& gridexcel,double first_data_in);
 void start_buy_and_sell(Grid user_grid);
 void start_buy_and_sell2(Grid user_grid);//实时获取数据、实时购买的模板
-void buy(string date, Grid& a, int number, std::vector<int>& numexcel, std::vector<grid>& gridexcel);
+void buy(string date, Grid& a, int number, std::vector<int>& numexcel, std::vector<grid>& gridexcel,double price=0);
 void sell(string date, Grid& a, int number, std::vector<int>& numexcel, std::vector<grid>& gridexcel);
 int show_inventory(std::vector<int>& numexcel);//展示股数
