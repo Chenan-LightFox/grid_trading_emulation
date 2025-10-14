@@ -14,7 +14,7 @@ struct Data {
 	double Change;		//涨跌额
 	double Amplitude;	//涨跌幅
 	double Volume;		//成交量
-	double Turnover;	//成交额
+	double Turnover;	//成交额a
 	Data* next;
 };
 extern Data* head;			// 实现时通过extern声明
