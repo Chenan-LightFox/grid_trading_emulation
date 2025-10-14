@@ -1,0 +1,32 @@
+﻿  BuyAndSell.cpp
+C:\Users\91044\Desktop\hkk\b\grid_trading_emulation\cpp_files\BuyAndSell.cpp(1,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+C:\Users\91044\Desktop\hkk\b\grid_trading_emulation\head_files\GridCalculating.h(1,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+  (编译源文件“cpp_files/BuyAndSell.cpp”)
+  
+C:\Users\91044\Desktop\hkk\b\grid_trading_emulation\cpp_files\BuyAndSell.cpp(91,16): error C2001: 常量中有换行符
+C:\Users\91044\Desktop\hkk\b\grid_trading_emulation\cpp_files\BuyAndSell.cpp(92,5): error C2146: 语法错误: 缺少“)”(在标识符“print_line”的前面)
+C:\Users\91044\Desktop\hkk\b\grid_trading_emulation\cpp_files\BuyAndSell.cpp(92,5): error C2146: 语法错误: 缺少“;”(在标识符“print_line”的前面)
+C:\Users\91044\Desktop\hkk\b\grid_trading_emulation\cpp_files\BuyAndSell.cpp(188,18): warning C4244: “初始化”: 从“double”转换到“int”，可能丢失数据
+C:\Users\91044\Desktop\hkk\b\grid_trading_emulation\cpp_files\BuyAndSell.cpp(193,24): error C3688: 文本后缀“浠”无效；未找到文文本运算符或文本运算符模板“operator """"浠”
+C:\Users\91044\Desktop\hkk\b\grid_trading_emulation\cpp_files\BuyAndSell.cpp(193,95): error C2001: 常量中有换行符
+C:\Users\91044\Desktop\hkk\b\grid_trading_emulation\cpp_files\BuyAndSell.cpp(194,16): error C3688: 文本后缀“鍏”无效；未找到文文本运算符或文本运算符模板“operator """"鍏”
+C:\Users\91044\Desktop\hkk\b\grid_trading_emulation\cpp_files\BuyAndSell.cpp(208,24): error C3688: 文本后缀“浠”无效；未找到文文本运算符或文本运算符模板“operator """"浠”
+C:\Users\91044\Desktop\hkk\b\grid_trading_emulation\cpp_files\BuyAndSell.cpp(208,115): error C2001: 常量中有换行符
+C:\Users\91044\Desktop\hkk\b\grid_trading_emulation\cpp_files\BuyAndSell.cpp(209,78): error C2017: 非法的转义序列
+C:\Users\91044\Desktop\hkk\b\grid_trading_emulation\cpp_files\BuyAndSell.cpp(209,80): error C2017: 非法的转义序列
+C:\Users\91044\Desktop\hkk\b\grid_trading_emulation\cpp_files\BuyAndSell.cpp(209,79): error C2146: 语法错误: 缺少“;”(在标识符“n”的前面)
+C:\Users\91044\Desktop\hkk\b\grid_trading_emulation\cpp_files\BuyAndSell.cpp(209,82): error C2001: 常量中有换行符
+C:\Users\91044\Desktop\hkk\b\grid_trading_emulation\cpp_files\BuyAndSell.cpp(209,79): error C2065: “n”: 未声明的标识符
+C:\Users\91044\Desktop\hkk\b\grid_trading_emulation\cpp_files\BuyAndSell.cpp(209,81): error C2146: 语法错误: 缺少“;”(在标识符“n”的前面)
+C:\Users\91044\Desktop\hkk\b\grid_trading_emulation\cpp_files\BuyAndSell.cpp(209,81): error C2065: “n”: 未声明的标识符
+C:\Users\91044\Desktop\hkk\b\grid_trading_emulation\cpp_files\BuyAndSell.cpp(209,82): error C2143: 语法错误: 缺少“;”(在“字符串”的前面)
+C:\Users\91044\Desktop\hkk\b\grid_trading_emulation\cpp_files\BuyAndSell.cpp(210,9): error C2146: 语法错误: 缺少“;”(在标识符“numexcel”的前面)
+  GridCalculating.cpp
+C:\Users\91044\Desktop\hkk\b\grid_trading_emulation\head_files\GridCalculating.h(1,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+  (编译源文件“cpp_files/GridCalculating.cpp”)
+  
+  main.cpp
+C:\Users\91044\Desktop\hkk\b\grid_trading_emulation\head_files\GridCalculating.h(1,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+  (编译源文件“cpp_files/main.cpp”)
+  
+  正在生成代码...
