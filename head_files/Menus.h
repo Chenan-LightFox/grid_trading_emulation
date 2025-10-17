@@ -137,6 +137,7 @@ void param_menu_display(int chooseOn) {
 }
 
 //////////////////////////////////////
+/////////////BuyAndSell///////////////
 
 void BuyAndSell_display() {
 	Grid grid;
@@ -147,3 +148,5 @@ void BuyAndSell_display() {
 	system("cls");
     main_menu_display(0);
 }
+
+//////////////////////////////////////

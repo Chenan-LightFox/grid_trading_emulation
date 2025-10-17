@@ -21,7 +21,7 @@ static vector<grid> get_grid(Grid g) {
     vector<grid> arr;
     // 计算首个网格参数并添加到列表
     double firstBuy = g.firstBuyInPrice - 0.005;  // 首格买入价(触发价-0.005)
-    double firstSell = firstBuy * (1 + g.profitRate);  // 首格卖出价(按利润率计算)
+    double firstSell = firstBuy * (1 + g.profitRate / 100.0);  // 首格卖出价(按利润率计算)
     arr.push_back({
         1.00,
         g.firstBuyInPrice,          // 首格买入触发价
@@ -53,17 +53,21 @@ static vector<grid> get_grid(Grid g) {
 }
 
 // 打印网格数据列表(调试用)
+/*
 static void print_grid(const vector<grid>& arr) {
     cout << "\n";
     cout << fixed << setprecision(3);
-    cout << "档位系数\t买入触发价\t买入价\t卖出触发价\t卖出价\t跌幅\t理论盈利\n";
+    cout << setw(16) << "档位系数" << setw(16) << "买入触发价" << setw(16)
+        << "买入价" << setw(16) << "卖出触发价" << setw(16)
+        << "卖出价" << setw(16) << "跌幅" << setw(16) << "理论盈利" << "\n";
     for (const auto& g : arr) {
-        cout << g.stage << "\t"
-            << g.rdbuy << "\t"
-            << g.buy << "\t"
-            << g.rdsell << "\t"
-            << g.sell << "\t"
-            << g.decrease << "\t"
+        cout << setw(16) << g.stage << setw(16)
+            << g.rdbuy << setw(16)
+            << g.buy << setw(16)
+            << g.rdsell << setw(16)
+            << g.sell << setw(16)
+            << g.decrease << setw(16)
             << g.profit << "\n";
     }
 }
+*/

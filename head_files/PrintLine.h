@@ -23,3 +23,16 @@ inline void print_line(std::string s, textColor foreColor = white, textColor bac
 	yellow	| 6
 	white	| 7
 */
+
+// 去除小数点后多余的0
+inline std::string decline0s(std::string str) {
+	if (str.find('.') != std::string::npos) {
+		// 去除末尾的0
+		str.erase(str.find_last_not_of('0') + 1, std::string::npos);
+		// 如果小数点后没有数字了，去掉小数点
+		if (str.back() == '.') {
+			str.pop_back();
+		}
+	}
+	return str;
+}

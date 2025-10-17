@@ -13,11 +13,11 @@ void Grid::grid_params_input() {
 	std::cin >> profitRate;
 	print_line("\n\t\t\t首行买入触发价（千元）\t：", cyan);
 	std::cin >> firstBuyInPrice;
-	print_line("\n\t\t\t模型行数\t：", cyan);
+	print_line("\n\t\t\t模型行数\t\t：", cyan);
 	std::cin >> gridLine;
-	print_line("\n\t\t\t买入金额（元）\t：", cyan);
+	print_line("\n\t\t\t买入金额（元）\t\t：", cyan);
 	std::cin >> buyInAmounts;
-	print_line("\n\t\t\t总资产（元）\t：", cyan);
+	print_line("\n\t\t\t总资产（元）\t\t：", cyan);
 	std::cin >> properity;
 }
 
@@ -42,18 +42,18 @@ void Grid::grid_params_read() {
 			>> gridLine >> buyInAmounts >> properity;
 		inFile.close();
 		print_line("\n\n\t\t\t您目前的参数设置如下：\n", green);
-		print_line("\t\t\t捕捉波动大小\t：", cyan);
-		print_line(std::to_string(gridSize), green);
-		print_line("\n\t\t\t一行的收益率\t：", cyan);
-		print_line(std::to_string(profitRate), green);
-		print_line("\n\t\t\t首行买入触发价\t：", cyan);
-		print_line(std::to_string(firstBuyInPrice), green);
-		print_line("\n\t\t\t模型行数\t：", cyan);
-		print_line(std::to_string(gridLine), green);
-		print_line("\n\t\t\t买入金额\t：", cyan);
-		print_line(std::to_string(buyInAmounts) + "\n", green);
-		print_line("\t\t\t总资产\t：", cyan);
-		print_line(std::to_string(properity) + "\n", green);
+		print_line("\t\t\t捕捉波动大小（%）\t：", cyan);
+		print_line(decline0s(std::to_string(gridSize)), green);
+		print_line("\n\t\t\t一行的收益率（%）\t：", cyan);
+		print_line(decline0s(std::to_string(profitRate)), green);
+		print_line("\n\t\t\t首行买入触发价（千元）\t：", cyan);
+		print_line(decline0s(std::to_string(firstBuyInPrice)), green);
+		print_line("\n\t\t\t模型行数\t\t：", cyan);
+		print_line(decline0s(std::to_string(gridLine)), green);
+		print_line("\n\t\t\t买入金额（元）\t\t：", cyan);
+		print_line(decline0s(std::to_string(buyInAmounts)) + "\n", green);
+		print_line("\t\t\t总资产（元）\t\t：", cyan);
+		print_line(decline0s(std::to_string(properity)) + "\n", green);
 	} else {
 		print_line("\n\n\t\t\t您目前未设置参数。\n", red);
 	}
